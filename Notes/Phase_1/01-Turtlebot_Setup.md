@@ -1,6 +1,24 @@
-## Lenovo Thinkpad x260 
+# Turtlebot Setup
+- [ ] Overview
+- [ ] Physical Setup
+- [x] Laptop Setup
+- [ ] Network Setup
+- [ ] Turtlebot Bringup
+- [ ] Testing Kobuki Setup
+- [ ] Orbbec Astra Bringup
+- [ ] 
 
-### Installing Ubuntu 16.04 (with ROS Kinetic afterwards)
+## Overview
+---
+TurtleBot 2 is an open robotics platform designed for education and research on state of art robotics. It is also a powerful  tool to teach and learn ROS (Robot Operating System) and make the most of this cutting edge techonology. Equiped with a 3D sensor, it can map and navigate indoor enviroments. Due to the Turtlebot's modularity, you can attach your own sensors, electronics, and mechanics easily.
+
+## Physical Setup
+---
+
+
+## Laptop Setup
+---
+### Installing Ubuntu 16.04 and ROS Kinetic
 ---
  Using the Turtlebot 16.04 USB stick
   - Insert USB stick into laptop
@@ -46,4 +64,20 @@ sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
 sudo cp -r ~/tmp/turtlebot-wallpapers/root/usr/share/backgrounds/* /usr/share/backgrounds/.
 ```
 - You may need to setup the backgrounds yourself by right-clicking on the desktop
+
+## Network Setup
+---
+
+
+## Turtlebot Bringup
+---
+
+
+## Testing Kobuki
+---
+
+
+## Orbbec Astra Bringup
+---
+
 
