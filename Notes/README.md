@@ -12,9 +12,9 @@
 - [ ] Turtlebot Autonomous movement
 - [ ] 3D Map building using RGB-D
 - [ ] Visualizing 3D maps
-- [ ] ROSPCL and PCL
 
 ### Phase 2:
+- [ ] ROSPCL and PCL
 - [ ] Rasberry Pi with ROS
 - [ ] ROS RQT
 - [ ] Python
