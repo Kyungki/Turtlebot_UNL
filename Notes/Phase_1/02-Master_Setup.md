@@ -1,7 +1,7 @@
 ## Laptop Setup
 ### Install Ubuntu 16.04 and ROS Kinetic using the Turtlebot 16.04 USB stick
 
-1. Insert USB stick into laptop
+1. Insert Turtlebot 16.04 USB stick into laptop
 2. Power on laptop
 2. Hit F12 until in [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
 3. Select boot from flash drive device
