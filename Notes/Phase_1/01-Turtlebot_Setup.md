@@ -6,8 +6,8 @@ Installing Ubuntu 16.04
  Using the Turtlebot 16.04 USB stick
 1. Insert USB stick into laptop
 2. Power on laptop
-3. [Enable boot from USB](https://support.lenovo.com/us/en/solutions/ht500222):
-    1) Enter boot menu by pressing <F1/F12> 
+3. Enable boot from USB:
+    1) [Enter boot menu](https://support.lenovo.com/us/en/solutions/ht500222) by pressing <F1/F12> 
     2) Navigate to `Boot` menu pane
     3) Navigate to `Boot Device Priority`
     4) Set `1st Boot Device` to USB 
