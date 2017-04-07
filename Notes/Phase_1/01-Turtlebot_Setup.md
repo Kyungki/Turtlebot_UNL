@@ -9,18 +9,16 @@
 - [ ] 
 
 ## Overview
----
 TurtleBot 2 is an open robotics platform designed for education and research on state of art robotics. It is also a powerful  tool to teach and learn ROS (Robot Operating System) and make the most of this cutting edge techonology. Equiped with a 3D sensor, it can map and navigate indoor enviroments. Due to the Turtlebot's modularity, you can attach your own sensors, electronics, and mechanics easily.
 
 ## Physical Setup
----
+
 
 
 ## Laptop Setup
----
 ### Installing Ubuntu 16.04 and ROS Kinetic
----
- Using the Turtlebot 16.04 USB stick
+
+- Using the Turtlebot 16.04 USB stick
   - Insert USB stick into laptop
 - Power on laptop
 - Hit F12 until in boot menu
@@ -65,19 +63,53 @@ sudo cp -r ~/tmp/turtlebot-wallpapers/root/usr/share/backgrounds/* /usr/share/ba
 ```
 - You may need to setup the backgrounds yourself by right-clicking on the desktop
 
-## Network Setup
----
+- Install Orbbec Astra udev rules
+```
+mkdir ~/tmp
+cd ~/tmp
+wget https://raw.githubusercontent.com/orbbec/astra/master/install/orbbec-usb.rules
+sudo cp orbbec-usb.rules /etc/udev/rules.d/.
+```
 
+- Setup Turtlebot Parameters in Bashrc
+```
+echo export TURTLEBOT_BASE=kobuki >> ~/.bashrc
+echo export TURTLEBOT_3D_SENSOR=astra >> ~/.bashrc
+echo export TURTLEBOT_STACK=hexagons >> ~/.bashrc 
+```
+
+## Network Setup
+- Using the Network Manager in the upper-righthand corner of Ubuntu, connect to a Wireless, Ethernet, or Cellular network.
+
+- Find the current IP for the Turtlebot
+```
+hostname -I
+```
+
+- Add the network parameters to your BashRC
+```
+echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
+echo export ROS_IP=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOSTNAME=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOME=~/.ros >> ~/.bashrc
+```
 
 ## Turtlebot Bringup
----
+The Turtlebot Bringup package contains all the neccesary configuration and launch files to load the Turtlebot drivers.
 
+The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebot configuration settings for ROS
+- In a new terminal
+```
+roslaunch turtlebot_bringup minimal.launch
+```
+
+You should hear a chime from the Kobuki once ROS has connected to it.
 
 ## Testing Kobuki
----
+
 
 
 ## Orbbec Astra Bringup
----
+
 
 
