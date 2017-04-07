@@ -5,3 +5,7 @@
 [Master Laptop Setup](/Notes/Phase_1/02-Master_Setup.md)
 
 [Network Setup](/Notes/Phase_1/02b-Network_Setup.md)
+
+[Load Device Drivers](03-Turtlebot_Bringup.md)
+
+[Teleoperate the Turtlebot](/Notes/Phase_1/04-Turtlebot_Teleop.md)
