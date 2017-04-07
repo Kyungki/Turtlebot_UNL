@@ -53,7 +53,7 @@ sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
 sudo cp -r ~/tmp/turtlebot-wallpapers/root/usr/share/backgrounds/* /usr/share/backgrounds/.
 ```
 
-4. Install Orbbec Astra udev rules
+4. Install [Orbbec Astra](https://github.com/orbbec/ros_astra_camera) udev rules
 ```bash
 mkdir ~/tmp
 cd ~/tmp
