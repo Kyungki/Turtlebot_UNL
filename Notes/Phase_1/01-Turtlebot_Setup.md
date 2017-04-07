@@ -10,7 +10,7 @@
 ## Overview
 TurtleBot 2 is an open robotics platform designed for education and research on state of art robotics. It is also a powerful  tool to teach and learn ROS (Robot Operating System) and make the most of this cutting edge techonology. Equipped with a 3D sensor, it can map and navigate indoor enviroments. Due to the Turtlebot's modularity, you can attach your own sensors, electronics, and mechanics easily.
 
-## Physical Setup
+## Physical Assembly:
 
 ![](Resources/01/explode_view_01.jpg)
 
@@ -74,7 +74,7 @@ sudo ntpdate ntp.ubuntu.com
 ```
 
 ## Network Setup
-Using the Network Manager in the upper-righthand corner of Ubuntu, connect to a Wireless, Ethernet, or Cellular network.
+Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (upper right corner of desktop).
 ![](Resources/01/wificonf.png)
 
 1. Find the current IP for the Turtlebot
@@ -126,8 +126,9 @@ roslaunch turtlebot_bringup 3dsensor.launch
 rosrun rqt_image_view rqt_image_view
 ```
 Astra Topics:
+
 | Topic               | Description |
 | ------------------- | ----------- |
-| /camera/depth/*     | Depth Image
-| /camera/ir/*        | 2D infrared image
-| /camera/image_raw/* | raw RGB image
+| /camera/depth/*     | Depth Image |
+| /camera/ir/*        | 2D infrared image |
+| /camera/image_raw/* | raw RGB image |
