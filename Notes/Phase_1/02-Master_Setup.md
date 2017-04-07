@@ -5,8 +5,15 @@
 2. Power on laptop
 2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
 3. Select boot from flash drive device (`USB HDD: General UDisk`)
-4. [Follow the Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
+4. Follow the [Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
 5. Power off the laptop and remove the USB stick
+
+### Troubleshoot: No Ubuntu in boot menu
+1. Power on Laptop
+2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
+3. Select boot from flash drive device (`USB HDD: General UDisk`)
+4. Boot into the live CD by selecting `Try Ubuntu`
+5. Follow the [Boot-Repair](https://help.ubuntu.com/community/Boot-Repair) instructions. 
 
 ### Install ROS Kinetic Desktop-Full
 1. [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
