@@ -26,3 +26,11 @@ Astra Topics:
 | /camera/depth/*     | Depth Image |
 | /camera/ir/*        | 2D infrared image |
 | /camera/image_raw/* | raw RGB image |
+
+## Testing Kobuki
+Launch the GUI to check out the Kobuki status:
+ ```bash
+ roslaunch turtlebot_dashboard turtlebot_dashboard.launch
+``` 
+If everything is OK, it should look like this:
+![](Resources/01/turtlebot_dashboard.png)
