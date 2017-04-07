@@ -1,48 +1,42 @@
-Install ROS on Lenovo Thinkpad x260
-====================================
+# Turtlebot Setup
+- [ ] Overview
+- [ ] Physical Setup
+- [x] Laptop Setup
+- [ ] Network Setup
+- [ ] Turtlebot Bringup
+- [ ] Testing Kobuki Setup
+- [ ] Orbbec Astra Bringup
 
-Installing Ubuntu 16.04 
---------------------------------------
- Using the Turtlebot 16.04 USB stick
+## Overview
+TurtleBot 2 is an open robotics platform designed for education and research on state of art robotics. It is also a powerful  tool to teach and learn ROS (Robot Operating System) and make the most of this cutting edge techonology. Equipped with a 3D sensor, it can map and navigate indoor enviroments. Due to the Turtlebot's modularity, you can attach your own sensors, electronics, and mechanics easily.
+
+## Physical Setup
+
+![](Resources/01/explode_view_01.jpg)
+
+## Laptop Setup
+### Install Ubuntu 16.04 and ROS Kinetic using the Turtlebot 16.04 USB stick
+
 1. Insert USB stick into laptop
 2. Power on laptop
-3. Enable boot from USB:
-    1) [Enter boot menu](https://support.lenovo.com/us/en/solutions/ht500222) by pressing <F1/F12> 
-    2) Navigate to `Boot` menu pane
-    3) Navigate to `Boot Device Priority`
-    4) Set `1st Boot Device` to USB 
-    5) Save new configuration by pressing 
-4. Shut down machine
-5. Insert Turtlebot 16.04 USB stick
-6. Power on laptop
-7. Follow GUI menu prompts to install Ubunut
-8. Power off and remove installation media
+2. Hit F12 until in [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
+3. Select boot from flash drive device
+4. [Follow the Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
+5. Power off and remove installation media
 
-Install ROS Kinetic
--------------------------------------------------------------------------------------------
-Follow the instructions at http://wiki.ros.org/kinetic/Installation/Ubuntu:
-```bash
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-sudo apt-get update
-sudo apt-get install ros-kinetic-desktop-full
-sudo rosdep init
-rosdep update
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-sudo apt-get install python-rosinstall
-```
+### Install ROS Kinetic Desktop-Full
+1. [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
+2. Install Turtlebot packages
+  ```bash
+  sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-*
+  ```
+2. Install Other required packages:
+  ```bash
+  sudo apt install git chrony
+  ```
 
-Install Turtlebot packages
----------------------------
+3. (Optional) Install Turtlebot Branding:
 ```bash
-sudo apt-get install ros-kinetic-turtlebot* ros-kinetic-astra-*
-```
-
-(Optional) Install Turtlebot Branding
---------------------------------------
-```bash
-sudo apt install git
 mkdir ~/tmp && cd ~/tmp
 git clone https://github.com/TurtleBot-Mfg/turtlebot-doc-indigo
 git clone https://github.com/TurtleBot-Mfg/turtlebot-env-indigo
@@ -59,3 +53,81 @@ sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
 sudo cp -r ~/tmp/turtlebot-wallpapers/root/usr/share/backgrounds/* /usr/share/backgrounds/.
 ```
 
+4. Install Orbbec Astra udev rules
+```bash
+mkdir ~/tmp
+cd ~/tmp
+wget https://raw.githubusercontent.com/orbbec/astra/master/install/orbbec-usb.rules
+sudo cp orbbec-usb.rules /etc/udev/rules.d/.
+```
+
+5. Setup Turtlebot Parameters in Bashrc
+```bash
+echo export TURTLEBOT_BASE=kobuki >> ~/.bashrc
+echo export TURTLEBOT_3D_SENSOR=astra >> ~/.bashrc
+echo export TURTLEBOT_STACK=hexagons >> ~/.bashrc 
+```
+
+Due to incorrect NTP time servers, configure the same NTP zone between all ROS computers:
+```bash
+sudo ntpdate ntp.ubuntu.com
+```
+
+## Network Setup
+Using the Network Manager in the upper-righthand corner of Ubuntu, connect to a Wireless, Ethernet, or Cellular network.
+![](Resources/01/wificonf.png)
+
+1. Find the current IP for the Turtlebot
+```bash
+hostname -I
+```
+
+2. Add the network parameters to your BashRC
+```bash
+echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
+echo export ROS_IP=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOSTNAME=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOME=~/.ros >> ~/.bashrc
+```
+
+## Turtlebot Bringup
+The Turtlebot Bringup package contains all the neccesary configuration and launch files for loading the Turtlebot drivers.
+
+The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebot configuration settings for ROS. 
+To load the minimal.launch file, enter:
+```bash
+ roslaunch turtlebot_bringup minimal.launch
+ ```
+You should hear a chime from the Kobuki once ROS has connected to it.
+
+## Testing Kobuki
+Launch the GUI to check out the Kobuki status:
+ ```bash
+ roslaunch turtlebot_dashboard turtlebot_dashboard.launch
+``` 
+If everything is OK, it should look like this:
+![](Resources/01/turtlebot_dashboard.png)
+
+You can test drive the Kobuki base by using the Keyboard teleop launch file located in the turtlebot_teleop package
+```bash
+roslaunch turtlebot_teleop keyboard_teleop.launch
+```
+![](Resources/01/turtlebot_keyboard_teleop.png)
+
+## Orbbec Astra Bringup
+You can bring up the Orbbec Astra drivers by using the 3d_sensor launch file located in the turtlebot_bringup package
+```bash
+roslaunch turtlebot_bringup 3dsensor.launch
+```
+
+## Seeing Orbbec Astra data
+
+```bash
+rosrun rqt_image_view rqt_image_view
+```
+Astra Topics:
+| Topic               | Description |
+| ------------------- | ----------- |
+| /camera/depth/*     | Depth Image
+| /camera/ir/*        | 2D infrared image
+| /camera/image_raw/* | raw RGB image
