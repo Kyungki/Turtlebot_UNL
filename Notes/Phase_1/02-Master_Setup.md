@@ -6,6 +6,7 @@
 2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
 3. Select boot from flash drive device (`USB HDD: General UDisk`)
 4. Follow the [Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
+    - Note: Check the box to allow the use of proprietary software.
 5. Power off the laptop and remove the USB stick
 
 ### Troubleshoot: No Ubuntu in boot menu
