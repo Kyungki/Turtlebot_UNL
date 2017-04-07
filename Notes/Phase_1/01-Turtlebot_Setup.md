@@ -23,25 +23,14 @@ TurtleBot 2 is an open robotics platform designed for education and research on 
 - Hit F12 until in boot menu
 - Select boot from flash drive device
 - Install Ubuntu
-  - Follow prompts, almost everything is automatic
+  - [Follow the Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
 - Power off and remove installation media
 
-- Install ROS Kinetic following the steps on http://wiki.ros.org/kinetic/Installation/Ubuntu
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-sudo apt-get update
-sudo apt-get install ros-kinetic-desktop-full
-sudo rosdep init
-rosdep update
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-sudo apt-get install python-rosinstall
-```
+- Install ROS Kinetic Desktop-Full
+  - [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 - Install Turtlebot packages
-```
-sudo apt-get install ros-kinetic-turtlebot* ros-kinetic-astra-*
-```
+  - `sudo apt-get install ros-kinetic-turtlebot* ros-kinetic-astra-*`
+
 - (Optional) Install Turtlebot Branding
 ```
 sudo apt install git
@@ -96,7 +85,8 @@ echo export ROS_HOME=~/.ros >> ~/.bashrc
 The Turtlebot Bringup package contains all the neccesary configuration and launch files to load the Turtlebot drivers.
 
 The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebot configuration settings for ROS
-- In a new terminal `roslaunch turtlebot_bringup minimal.launch`
+- In a new terminal
+  - `roslaunch turtlebot_bringup minimal.launch`
 
 You should hear a chime from the Kobuki once ROS has connected to it.
 
@@ -108,5 +98,5 @@ You can test drive the Kobuki base by using the Keyboard teleop launch file loca
 ## Orbbec Astra Bringup
 You can bring up the Orbbec Astra drivers by using the 3d_sensor launch file located in the turtlebot_bringup package
 - In a new terminal
- - `roslaunch turtlebot_bringup 3d_sensor.launch`
+  - `roslaunch turtlebot_bringup 3d_sensor.launch`
 
