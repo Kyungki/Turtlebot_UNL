@@ -3,8 +3,8 @@
 
 1. Insert Turtlebot 16.04 USB stick into laptop
 2. Power on laptop
-2. Hit F12 until in [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
-3. Select boot from flash drive device
+2. Press <F12> to enter [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
+3. Select boot from flash drive device (`USB HDD: General UDisk`)
 4. [Follow the Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
 5. Power off and remove installation media
 
