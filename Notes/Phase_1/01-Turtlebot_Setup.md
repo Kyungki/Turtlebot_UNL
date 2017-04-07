@@ -29,11 +29,12 @@ TurtleBot 2 is an open robotics platform designed for education and research on 
 - Install ROS Kinetic Desktop-Full
   - [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 - Install Turtlebot packages
-  - `sudo apt-get install ros-kinetic-turtlebot* ros-kinetic-astra-*`
+  - `sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-*`
+- Install necessary programs we will be using
+  - `sudo apt install git chrony`
 
 - (Optional) Install Turtlebot Branding
 ```
-sudo apt install git
 mkdir ~/tmp && cd ~/tmp
 git clone https://github.com/TurtleBot-Mfg/turtlebot-doc-indigo
 git clone https://github.com/TurtleBot-Mfg/turtlebot-env-indigo
@@ -66,8 +67,14 @@ echo export TURTLEBOT_3D_SENSOR=astra >> ~/.bashrc
 echo export TURTLEBOT_STACK=hexagons >> ~/.bashrc 
 ```
 
+Due to incorrect NTP time servers, you should configure the same NTP zone between all ROS computers:
+- In a new terminal
+  - sudo ntpdate ntp.ubuntu.com
+
+
 ## Network Setup
 - Using the Network Manager in the upper-righthand corner of Ubuntu, connect to a Wireless, Ethernet, or Cellular network.
+![](Resources/01/wificonf.png)
 
 Find the current IP for the Turtlebot
 - In a new terminal
@@ -91,12 +98,30 @@ The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebo
 You should hear a chime from the Kobuki once ROS has connected to it.
 
 ## Testing Kobuki
+There is a GUI to check out the Kobuki status
+- In a new terminal
+  - `roslaunch turtlebot_dashboard turtlebot_dashboard.launch`
+- It should look like this if everything is OK:
+![](Resources/01/turtlebot_dashboard.png)
+
 You can test drive the Kobuki base by using the Keyboard teleop launch file located in the turtlebot_teleop package
 - In a new terminal
   - `roslaunch turtlebot_teleop keyboard_teleop.launch`
+![](Resources/01/turtlebot_keyboard_teleop.png)
 
 ## Orbbec Astra Bringup
 You can bring up the Orbbec Astra drivers by using the 3d_sensor launch file located in the turtlebot_bringup package
 - In a new terminal
-  - `roslaunch turtlebot_bringup 3d_sensor.launch`
+  - `roslaunch turtlebot_bringup 3dsensor.launch`
 
+## Seeing Orbbec Astra data
+
+- In a new terminal
+  - `rosrun rqt_image_view rqt_image_view`
+
+Astra Topics:
+| Topic               | Description |
+| ------------------- | ----------- |
+| /camera/depth/*     | Depth Image
+| /camera/ir/*        | 2D infrared image
+| /camera/image_raw/* | raw RGB image
