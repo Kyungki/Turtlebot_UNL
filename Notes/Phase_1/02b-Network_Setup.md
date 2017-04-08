@@ -17,7 +17,7 @@ Find the current IP for the Master
 ```bash
 echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
 echo export ROS_IP=$(hostname -I) >> ~/.bashrc
-echo export ROS_HOSTNAME=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
 echo export ROS_HOME=~/.ros >> ~/.bashrc
 ```
 
