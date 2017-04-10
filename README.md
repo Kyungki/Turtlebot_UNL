@@ -11,3 +11,5 @@
 [Teleoperate the Turtlebot](/Notes/Phase_1/04-Turtlebot_Teleop.md)
 
 [Visualize Turtlebot Data](/Notes/Phase_1/05-Turtlebot_Visualization.md)
+
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
