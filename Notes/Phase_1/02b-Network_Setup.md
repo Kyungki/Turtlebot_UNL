@@ -1,6 +1,6 @@
 ## Network Setup
 Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (upper right corner of desktop).
-![](Resources/01-wificonf.png)
+![](Resources/02-wificonf.png)
 
 1. Find the current IP for the Turtlebot by opening a terminal on the turtlebot:
 ```bash
