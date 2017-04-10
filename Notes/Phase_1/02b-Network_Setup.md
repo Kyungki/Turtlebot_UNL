@@ -7,18 +7,31 @@ Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (
 hostname -I
 ```
 
-2. 
-Find the current IP for the Master
+2. Find the current IP for the Master by opening a terminal on the master computer:
 ```bash
  hostname -I
 ```
 
-2. Add the network parameters to your BashRC
+3. Add the network parameters to your BashRC for the turtlebot computer
 ```bash
 echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
 echo export ROS_IP=$(hostname -I) >> ~/.bashrc
 echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
 echo export ROS_HOME=~/.ros >> ~/.bashrc
+```
+
+4. Add the network parameters to your BashRC for the master computer:  
+Replace `IP_OF_TURTLEBOT` with the ip found in step `1`
+```bash
+echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
+echo export ROS_IP=$(hostname -I) >> ~/.bashrc
+echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
+echo export ROS_HOME=~/.ros >> ~/.bashrc
+```
+
+5. Load the new environment variables above into your active terminal window:
+```bash
+source ~/.bashrc
 ```
 
 ## Network Testing
