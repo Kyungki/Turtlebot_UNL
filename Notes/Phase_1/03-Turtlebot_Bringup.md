@@ -33,4 +33,7 @@ Launch the GUI to check out the Kobuki status:
  roslaunch turtlebot_dashboard turtlebot_dashboard.launch
 ``` 
 If everything is OK, it should look like this:
-![](Resources/01/turtlebot_dashboard.png)
+![](Resources/03-turtlebot_dashboard.png)
+
+You may need to press the button that looks like a speedometer to show the Robot Monitor output.
+![](Resources/03-turtlebot_spedometer.png)

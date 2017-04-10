@@ -5,4 +5,4 @@ TurtleBot 2 is an open robotics platform designed for education and research on 
 
 ## Physical Assembly:
 
-![](Resources/01/explode_view_01.jpg)
+![](Resources/01-explode_view_01.jpg)
