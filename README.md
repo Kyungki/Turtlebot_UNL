@@ -9,3 +9,5 @@
 [Load Device Drivers](/Notes/Phase_1/03-Turtlebot_Bringup.md)
 
 [Teleoperate the Turtlebot](/Notes/Phase_1/04-Turtlebot_Teleop.md)
+
+[Visualize Turtlebot Data](/Notes/Phase_1/05-Turtlebot_Visualization.md)
