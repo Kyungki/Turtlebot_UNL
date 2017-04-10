@@ -13,3 +13,21 @@ You can test drive the Kobuki base by using the Keyboard teleop launch file loca
 roslaunch turtlebot_teleop keyboard_teleop.launch
 ```
 ![](Resources/04-turtlebot_keyboard_teleop.png)
+
+
+## Turtlebot Follower
+The Turtlebot has an additional program that can follow an entity in a designated window.
+
+- Open a new terminal on the master laptop:
+  - `roslaunch turtlebot_follower follower.launch`
+
+
+Using the configuration GUI for ROS you can modify the parameters of the follower.
+1. In a new terminal:
+  - `rosrun rqt_reconfigure rqt_reconfigure`
+
+2. Select camera/follower on the reconfigure gui.
+
+3. Play with the sliders and see how the parameters effect the Turtlebot's behavior.
+
+![](Resources/04-turtlebot_follow_reconfigure.png)
