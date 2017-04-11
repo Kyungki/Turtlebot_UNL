@@ -2,17 +2,18 @@
 Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (upper right corner of desktop).
 ![](Resources/02-wificonf.png)
 
-1. Find the current IP for the Turtlebot by opening a terminal on the turtlebot:
+Previously, we used strictly the IP address of Turtlebot and Master.  
+Using the `hostname` command in Linux, we are able to dynamically load the IP of the Turtlebot so less configuration is needed.
+
+1. You can find the IP of a computer by opening a terminal and typing:
 ```bash
 hostname -I
 ```
 
-2. Find the current IP for the Master by opening a terminal on the master computer:
-```bash
- hostname -I
-```
-
-3. Add the network parameters to your BashRC for the turtlebot computer
+2. Add the network parameters to your BashRC for the turtlebot computer  
+(bashrc is a file that configures the Linux shell environment)  
+    1. Open a new terminal on the turtlebot computer and type the following:  
+       (Breakdown of commands explained in the next section of this document)
 ```bash
 echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
 echo export ROS_IP=$(hostname -I) >> ~/.bashrc
@@ -20,8 +21,9 @@ echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
 echo export ROS_HOME=~/.ros >> ~/.bashrc
 ```
 
-4. Add the network parameters to your BashRC for the master computer:  
-Replace `IP_OF_TURTLEBOT` with the ip found in step `1`
+3. Add the network parameters to your BashRC for the master computer:  
+    1. Open a new terminal on the master computer, and type the following:  
+       (Replace `IP_OF_TURTLEBOT` with the ip found in step `1`)  
 ```bash
 echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
 echo export ROS_IP=$(hostname -I) >> ~/.bashrc
@@ -29,10 +31,47 @@ echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
 echo export ROS_HOME=~/.ros >> ~/.bashrc
 ```
 
-5. Load the new environment variables above into your active terminal window:
+4. Load the new environment variables above into your active terminal window:
 ```bash
 source ~/.bashrc
 ```
+
+## Command Breakdown
+```bash
+echo export ROS_MASTER_URI=http://$(hostname -I):11311 >> ~/.bashrc
+```
+  `echo` is a Linux command that prints text to a designated output (default is the terminal)  
+  `export` is a Linux shell command that handles variables in the shell environment  
+  `ROS_MASTER_URI` is the network address for a ROS instance to contact a ROS Master Server  
+  `http://$(hostname -I):11311` sets the designated network address using the current IP found by the `hostname` command  
+  `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
+
+```bash
+echo export ROS_IP=$(hostname -I) >> ~/.bashrc
+```
+  `echo` is a Linux command that prints text to a designated output (default is the terminal)  
+ `export` is a Linux shell command that handles variables in the shell environment  
+ `ROS_IP` is the network address for a ROS instance to contact a ROS Master Server  
+ `$(hostname -I)` sets the designated network address using the current IP found by the `hostname` command  
+ `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
+
+```bash
+echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
+```
+ `echo` is a Linux command that prints text to a designated output (default is the terminal)  
+ `export` is a Linux shell command that handles variables in the shell environment  
+ `ROS_HOSTNAME` is the name of the computer on a network, used for communication on a local network  
+ `$(hostname)` sets the designated network name using the current hostname found by the `hostname` command  
+ `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
+
+```bash
+echo export ROS_HOME=~/.ros >> ~/.bashrc
+```
+ `echo` is a Linux command that prints text to a designated output (default is the terminal)  
+ `export` is a Linux shell command that handles variables in the shell environment  
+ `ROS_HOME` is the environment variable for the location of the ROS home folder  
+ `~/.ros` is the directory in Linux for the location of the ROS home folder  
+ `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
 
 ## Network Testing
 ROS requires completely free network connectivity between the Turtlebot and the Master computer.
