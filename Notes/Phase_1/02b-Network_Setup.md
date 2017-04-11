@@ -2,8 +2,10 @@
 Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (upper right corner of desktop).
 ![](Resources/02-wificonf.png)
 
+
 Previously, we used strictly the IP address of Turtlebot and Master.  
 Using the `hostname` command in Linux, we are able to dynamically load the IP of the Turtlebot so less configuration is needed.
+
 
 1. You can find the IP of a computer by opening a terminal and typing:
 ```bash
@@ -31,7 +33,8 @@ echo export ROS_HOSTNAME=$(hostname) >> ~/.bashrc
 echo export ROS_HOME=~/.ros >> ~/.bashrc
 ```
 
-4. Load the new environment variables above into your active terminal window:
+4. Load the new environment variables above into your active terminal window  
+    1. On both Master and Turtlebot computers, open a terminal and type:
 ```bash
 source ~/.bashrc
 ```
@@ -76,10 +79,10 @@ echo export ROS_HOME=~/.ros >> ~/.bashrc
 ## Network Testing
 ROS requires completely free network connectivity between the Turtlebot and the Master computer.
 
-The first test is the basic Ping between the Master and the Turtlebot:
-- `ping IP_OF_TURTLEBOT`
-
-You should see the following returned if the Turtlebot is on the network:
+1. The first test is the basic Ping between the Master and the Turtlebot.  
+    1. From the master computer
+       * `ping IP_OF_TURTLEBOT`
+    2. You should see the following returned if the Turtlebot is on the network:
 ```
 PING IP_OF_TURTLEBOT (IP_OF_TURTLEBOT) 56(84) bytes of data.
 64 bytes from IP_OF_TURTLEBOT: icmp_seq=1 ttl=64 time=66.8 ms
