@@ -1,8 +1,9 @@
 ## Turtlebot Bringup
 The Turtlebot Bringup package contains all the neccesary configuration and launch files for loading the Turtlebot drivers.
 
-The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebot configuration settings for ROS. 
-To load the minimal.launch file, enter:
+The minimal.launch file starts up the Kobuki base drivers and the basic Turtlebot configuration settings for ROS.  
+1. Load the minimal.launch file
+    1. On the Turtlebot computer, open a new terminal and type:
 ```bash
  roslaunch turtlebot_bringup minimal.launch
  ```
@@ -10,14 +11,17 @@ You should hear a chime from the Kobuki once ROS has connected to it.
 
 ## Orbbec Astra Bringup
 You can bring up the Orbbec Astra drivers by using the 3d_sensor launch file located in the turtlebot_bringup package
+1. Load the 3dsensor.launch file
+    1. On the Turtlebot computer, open a new terminal and type:
 ```bash
 roslaunch turtlebot_bringup 3dsensor.launch
 ```
 
 ## Seeing Orbbec Astra data
-
+You can view data from the Orbbec Astra using the rqt_image_view program.
+1. On the master computer, open a new terminal and type:
 ```bash
-rosrun rqt_image_view rqt_image_view
+rosrun rqt_image_view rqt_image_view image:=/camera/rgb/image_raw
 ```
 Astra Topics:
 
@@ -28,7 +32,8 @@ Astra Topics:
 | /camera/image_raw/* | raw RGB image |
 
 ## Testing Kobuki
-Launch the GUI to check out the Kobuki status:
+1. Launch the GUI to check out the Kobuki status
+    1. From the master computer, open a new terminal and type:
  ```bash
  roslaunch turtlebot_dashboard turtlebot_dashboard.launch
 ``` 
