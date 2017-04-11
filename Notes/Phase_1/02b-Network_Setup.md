@@ -19,7 +19,7 @@ hostname -I
 ```bash
 echo export ROS_MASTER_URI=http://\$\(hostname -I\):11311 >> ~/.bashrc
 echo export ROS_IP=\$\(hostname -I\) >> ~/.bashrc
-echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
+echo export ROS_HOSTNAME=\$\(hostname -I\) >> ~/.bashrc
 echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```
 (The backwards slash `\` is an escape character in a Linux terminal shell)
@@ -30,7 +30,7 @@ echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```bash
 echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
 echo export ROS_IP=\$\(hostname -I\) >> ~/.bashrc
-echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
+echo export ROS_HOSTNAME=\$\(hostname -I\) >> ~/.bashrc
 echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```
 
@@ -66,12 +66,12 @@ echo export ROS_IP=\$\(hostname -I\) >> ~/.bashrc
  `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
 
 ```bash
-echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
+echo export ROS_HOSTNAME=\$\(hostname -I\) >> ~/.bashrc
 ```
  `echo` is a Linux command that prints text to a designated output (default is the terminal)  
  `export` is a Linux shell command that handles variables in the shell environment  
  `ROS_HOSTNAME` is the name of the computer on a network, used for communication on a local network  
- `\$\(hostname\)` sets the designated network name using the current hostname found by the `hostname` command, and the `\` are escape characters to prevent the hostname command from being run in the terminal  
+ `\$\(hostname -I\)` sets the designated network name using the current hostname found by the `hostname` command, and the `\` are escape characters to prevent the hostname command from being run in the terminal  
  `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
 
 ```bash
