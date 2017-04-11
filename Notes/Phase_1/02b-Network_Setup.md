@@ -20,7 +20,7 @@ hostname -I
 echo export ROS_MASTER_URI=http://\$\(hostname -I\):11311 >> ~/.bashrc
 echo export ROS_IP=\$\(hostname -I\) >> ~/.bashrc
 echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
-echo export ROS_HOME=~/.ros >> ~/.bashrc
+echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```
 (The backwards slash `\` is an escape character in a Linux terminal shell)
 
@@ -31,7 +31,7 @@ echo export ROS_HOME=~/.ros >> ~/.bashrc
 echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
 echo export ROS_IP=\$\(hostname -I\) >> ~/.bashrc
 echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
-echo export ROS_HOME=~/.ros >> ~/.bashrc
+echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```
 
 4. Verify that the commands have been properly and printed to the bashrc file:
@@ -75,9 +75,37 @@ echo export ROS_HOSTNAME=\$\(hostname\) >> ~/.bashrc
  `>> ~/.bashrc` tells the `echo` command to send the output to the file ~/.bashrc  
 
 ```bash
-echo export ROS_HOME=~/.ros >> ~/.bashrc
+echo export ROS_HOME=\~/.ros >> ~/.bashrc
 ```
  `echo` is a Linux command that prints text to a designated output (default is the terminal)  
  `export` is a Linux shell command that handles variables in the shell environment  
  `ROS_HOME` is the environment variable for the location of the ROS home folder  
- `~/.ros` is the directory in Linux for the location of the ROS home folder  
+ `\~/.ros` is the directory in Linux for the location of the ROS home folder  
+
+## Network Testing
+ROS requires completely free network connectivity between the Turtlebot and the Master computer.
+
+1. Test the Ping command between the Master and the Turtlebot:
+    1. On the master computer, open a new terminal:
+      * `ping IP_OF_TURTLEBOT`
+      * You should see the following returned if the Turtlebot is on the network:
+```
+PING IP_OF_TURTLEBOT (IP_OF_TURTLEBOT) 56(84) bytes of data.
+64 bytes from IP_OF_TURTLEBOT: icmp_seq=1 ttl=64 time=66.8 ms
+```
+
+2. Try connecting to the ROS Master server hosted on the Turtlebot
+    1. On the Turtlebot, open a new terminal and type:
+      * `roscore`
+    2. On the master computer, open a new terminal and type:
+      * `rostopic list`
+    3. If successful, you should see the following output:
+```
+/rosout
+/rosout_agg
+```
+
+# Troubleshooting
+If your laptop cannot connect to the network, ensure that you installed [the proprietary drivers](http://askubuntu.com/questions/22118/can-i-install-extra-drivers-via-the-command-prompt).
+
+If you continue to have issues, check out the [ROS Network Setup Page](http://wiki.ros.org/ROS/NetworkSetup)
