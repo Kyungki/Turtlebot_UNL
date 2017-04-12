@@ -1,12 +1,20 @@
 ## Laptop Setup
 ### Install Ubuntu 16.04 and ROS Kinetic using the Turtlebot 16.04 USB stick
 
-1. Insert USB stick into laptop
+1. Insert Turtlebot 16.04 USB stick into laptop
 2. Power on laptop
-2. Hit F12 until in [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
-3. Select boot from flash drive device
-4. [Follow the Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
-5. Power off and remove installation media
+2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
+3. Select boot from flash drive device (`USB HDD: General UDisk`)
+4. Follow the [Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
+    - Note: Check the box to allow the use of proprietary software.
+5. Power off the laptop and remove the USB stick
+
+### Troubleshoot: No Ubuntu in boot menu
+1. Power on Laptop
+2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
+3. Select boot from flash drive device (`USB HDD: General UDisk`)
+4. Boot into the live CD by selecting `Try Ubuntu`
+5. Follow the [Boot-Repair](https://help.ubuntu.com/community/Boot-Repair) instructions. 
 
 ### Install ROS Kinetic Desktop-Full
 1. [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
