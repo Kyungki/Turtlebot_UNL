@@ -152,6 +152,8 @@ In order to start and configure RTABMAP properly, we need to create our own laun
       * The grey tiles surrounding the map is unknown space
       * The 3d points that are verified using closed-loop detection will be shown in RVIZ
       
+4. Stop `rtabmap.launch` by closing the terminal
+      
 ![](Resources/07-rtabmap_collected.gif)
 
 ## Viewing the RTABMAP data
@@ -163,6 +165,8 @@ With the `rtabmap-databaseViewer` tool, you can:
   - Refine detected loop closures
   - Generate a 3D map file (.ply, .pcd)
   - Generate 2D-3D laser scans (.ply, .pcd)
+
+* You need to stop the rtabmap.launch to download the database file
 
 1. Copy the database from the Turtlebot to the Master Computer
     1. On the Master Computer, open a new terminal:
