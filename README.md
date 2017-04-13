@@ -16,4 +16,6 @@
 
 [Create a 2D map](/Notes/Phase_1/06-Gmapping.md)
 
+[Create a 3D map](/Notes/Phase_1/07-RGB-D_SLAM.md)
+
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
