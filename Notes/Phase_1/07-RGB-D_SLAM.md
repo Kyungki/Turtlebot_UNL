@@ -168,13 +168,13 @@ With the `rtabmap-databaseViewer` tool, you can:
     1. On the Master Computer, open a new terminal:
         * `mkdir ~/workspace`
         * `cd ~/workspace`
-        * `scp turtlebot@IP_OF_TURTLEBOT:~/workspace/rtabmap.db .`
+        * `scp turtlebot@IP_OF_TURTLEBOT:~/workspace/rtabmap.db ~/workspace/.`
           * The remote copy operation may take some time depending on the database size
 
 2. Use `rtabmap-databaseViewer` to view the rtabmap data
     1. On the master computer, in a terminal:
         * `cd ~/workspace`
-        * `rtabmap-databaseViewer rtabmap.db
+        * `rtabmap-databaseViewer rtabmap.db`
     2. If a prompt comes up to Update Parameters
         * Press "Yes"  
         ![](Resources/07-rtabmap_database_update_parameters.png)
