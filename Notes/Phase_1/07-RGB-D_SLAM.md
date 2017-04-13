@@ -134,7 +134,7 @@ In order to start and configure RTABMAP properly, we need to create our own laun
     1. `roslaunch turtlebot_teleop keyboard_teleop.launch`
 
 3. Drive the Turtlebot around your map using the keyboard_teleop, and visualize the collected data in RVIZ.
-    * In order to collect data fully, you will need to stop the turtlebot periodically and slowly turn the turtlebot in circles
+    * In order to collect data fully, you will need to stop the turtlebot periodically and slowly turn the turtlebot in circles  
     ![](Resources/07-rtabmap_circle.gif)
 
     * You can bring up an image view in RVIZ by adding a new display:  
@@ -145,13 +145,14 @@ In order to start and configure RTABMAP properly, we need to create our own laun
       * Click "Ok"
     ![](Resources/07-rtabmap_image_view.gif)
 
-    * While you drive the Turtlebot around, it will begin to generate a map
+    * While you drive the Turtlebot around, it will begin to generate a map  
     ![](Resources/07-rtabmap_map.gif)
       * The white in the map is known empty space
       * The dark borders around the white are known obstacles such as walls and other objects
       * The grey tiles surrounding the map is unknown space
       * The 3d points that are verified using closed-loop detection will be shown in RVIZ
-
+      
+![](Resources/07-rtabmap_collected.gif)
 
 ## Viewing the RTABMAP data
 RTABMAP provides their own tool to visualize and manipulate data.  
@@ -175,7 +176,7 @@ With the `rtabmap-databaseViewer` tool, you can:
         * `cd ~/workspace`
         * `rtabmap-databaseViewer rtabmap.db
     2. If a prompt comes up to Update Parameters
-        * Press "Yes"
+        * Press "Yes"  
         ![](Resources/07-rtabmap_database_update_parameters.png)
     3. The default display in the database viewer shows the loop closure detection  
     ![](Resources/07-rtabmap_loop_closure_display.png)
