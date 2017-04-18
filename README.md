@@ -17,5 +17,10 @@
 [Create a 2D map](/Notes/Phase_1/06-Gmapping.md)
 
 [Create a 3D map](/Notes/Phase_1/07-RGB-D_SLAM.md)
+    * [Using RTABMAP](/Notes/Phase_1/07b-RTABMAP.md)
+    * [Using RGBD-SLAM](/Notes/Phase_1/07c-RGBDSLAM.md)
+    * [Using ORB_SLAM](/Notes/Phase_1/07d-ORB_SLAM2.md)
+
+[Using an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
