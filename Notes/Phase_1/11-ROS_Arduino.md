@@ -34,7 +34,9 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
     * `sudo dmesg`
     * Find the Device Connected info and look for:  
         `[ 2857.315493] usb 1-6: FTDI USB Serial Device converter now attached to ttyUSB0`
-
+   Note: When using USB 3, the port may be `ttyACM0`
+   You may also need to add permission to use the port: `sudo chmod 777 /dev/ttyACM0`
+   
 2. Create a new package in your *catkin_ws* for housing our launch files
     * `cd ~/catkin_ws/src`
     * `catkin_create_pkg turtlebot_houston`
