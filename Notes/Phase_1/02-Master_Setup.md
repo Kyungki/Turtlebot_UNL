@@ -20,11 +20,11 @@
 1. [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 2. Install Turtlebot packages
   ```bash
-  sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-*
+  sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-* -y
   ```
 2. Install Other required packages:
   ```bash
-  sudo apt install git chrony
+  sudo apt install git chrony -y
   ```
 
 3. (Optional) Install Turtlebot Branding:
@@ -38,58 +38,6 @@ sudo cp -r ~/tmp/turtlebot-branding-indigo/root/lib/plymouth/themes /usr/share/p
 sudo cp -r ~/tmp/turtlebot-branding-indigo/root/usr/share/themes /usr/share/plymouth/themes
 sudo cp -r ~/tmp/turtlebot-doc-indigo/root/etc/skel/* /etc/skel/.
 cp ~/tmp/turtlebot-doc-indigo/root/etc/skel/Desktop/turtlebot-doc.desktop ~/Desktop
-
-1
-
-## Laptop Setup
-
-2
-
-### Install Ubuntu 16.04 and ROS Kinetic using the Turtlebot 16.04 USB stick
-
-3
-
-​
-
-4
-
-1. Insert Turtlebot 16.04 USB stick into laptop
-
-5
-
-2. Power on laptop
-
-6
-
-2. Press `F12` to enter the [boot menu](https://support.lenovo.com/us/en/solutions/ht500222)
-
-7
-
-3. Select boot from flash drive device (`USB HDD: General UDisk`)
-
-8
-
-4. Follow the [Ubuntu Installation Guide](https://www.ubuntu.com/download/desktop/install-ubuntu-desktop)
-
-9
-
-    - Note: Check the box to allow the use of proprietary software.
-
-10
-
-5. Power off the laptop and remove the USB stick
-
-11
-
-​
-
-12
-
-### Troubleshoot: No Ubuntu in boot menu
-
-13
-
-1. Power on Laptop
 sudo cp -r ~/tmp/turtlebot-doc-indigo/root/usr/share/doc/turtlebot /usr/share/doc/.
 sudo cp -r ~/tmp/turtlebot-env-indigo/root/etc/* /etc/.
 sudo cp -r ~/tmp/turtlebot-env-indigo/root/usr/share/glib-2.0/schemas /usr/share/glib-2.0/schemas/.
