@@ -26,54 +26,23 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
 4. Run rosserial to generate ros_lib:
     * `rosrun rosserial_arduino make_libraries.py .`
 
-
-## Sending data to the Arduino
-As an example to send data to the Arduino, we will use the blink example.o
-More informatino [can be pulled up, here](http://wiki.ros.org/rosserial_arduino/Tutorials/)
-
-1. Upload the following code to your Arduino:
-
-```c
-/* 
- * rosserial Subscriber Example
- * Turns 
- */
-
-#include <ros.h>
-#include <std_msgs/Bool.h>
-
-ros::NodeHandle  nh;
-
-void messageCb( const std_msgs::Bool& msg){
-  digitalWrite(13, msg.data);   // set the pin state to the message data
-}
-
-ros::Subscriber<std_msgs::Bool> sub("/arduino/led", &messageCb );
-
-void setup()
-{ 
-  pinMode(13, OUTPUT);
-  nh.initNode();
-  nh.subscribe(sub);
-}
-
-void loop()
-{  
-  nh.spinOnce();
-  delay(1);
-}
-```
-
 ## Connecting to the Arduino
 
 1. Finding the Arduino's mount point:
     * `sudo dmesg -C`
     * unplug the Arduino, replug the Arduino
     * `sudo dmesg`
-    * Find the Device Coonected info and look for:  
+    * Find the Device Connected info and look for:  
         `[ 2857.315493] usb 1-6: FTDI USB Serial Device converter now attached to ttyUSB0`
 
-2. Launch file
+2. Create a new package in your *catkin_ws* for housing our launch files
+    * `cd ~/catkin_ws/src`
+    * `catkin_create_pkg turtlebot_houston`
+    * `cd turtlebot_houston`
+    * `mkdir launch`
+
+3. Make an `arduino.launch` file in the ~/catkin_ws/src/turtlebot_houston/launch folder:
+    * `gedit arduino.launch`
 ```xml
 <launch>
   <node pkg="rosserial_server" type="serial_node" name="rosserial_timing">
@@ -82,14 +51,17 @@ void loop()
 </launch>
 ```
 
-## Communicating with the Arduino
-1. Type
-    * `rostopic list`
-2. With the above example,and ROSSERIAL running, we can see in rostopic our Arduino topic:
-    * __/arduino/led__
-3. You can send data to this topic by using rostopic pub:
-    * `rostopic pub /arduino/led std_msgs/Bool True`
-    * `rostopic pub /arduino/led std_msgs/Bool False`
+4. Build your package using `catkin`
+    * `cd ~/catkin_ws`
+    * `catkin_make`
+
+## Verifying connection to the Arduino
+1. Launch arduino.launch
+    * `source ~/catkin_ws/devel/setup.sh`
+    * `roslaunch turtlebot_houston arduino.launch`
+
+## Sending data to the Arduino
+Follow our [A simple Arduino subscriber](11b-Arduino_Subscriber.md) tutorial
 
 ## Additional Tutorials
 ROSSERIAL has recently improved their tutorials, and have a very wide selection of examples.

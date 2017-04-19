@@ -6,16 +6,18 @@ This section **requires** the *catkin_ws* to be initialized.
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Installation
+This process has to be done on __both__ _master_ and _turtlebot_ computers.  
+
 Download rgbdslam_v2 and configure dependencies
 1. CD to catkin_ws, source the environment setup, and download rgbdslam_v2
     * `cd ~/catkin_ws/src`
-    * `git clone -b kinetic https://github.com/felixendres/rgbdslam_v2`
+    * `git clone -b kinetic https://github.com/felixendres/rgbdslam_v2 rgbdslam`
 2. Remove any conflicting libraries
     * `sudo apt remove ros-kinetic-libg2o libqglviewer-dev`
 3. Install build dependencies
-    * `sudo apt install cmake libeigen3-dev`
+    * `sudo apt install cmake libeigen3-dev libsuitesparse-dev`
 3. Build and install a custom verison of g2o
-    * `cd ~/catkin_ws/src/rgbdslam_v2`
+    * `cd ~/catkin_ws/src`
     * `git clone -b c++03 https://github.com/felixendres/g2o.git`
     * `mkdir g2o/build`
     * `cd g2o/build`
@@ -27,12 +29,15 @@ Download rgbdslam_v2 and configure dependencies
     * `rosdep update`
     * `rosdep install rgbdslam`
 5. Build rgbdslam
+    * `export G2O_DIR=~/catkin_ws/src/g2o/install`
     * `cd ~/catkin_ws`
-    * `export G2O_DIR=~/catkin_ws/src/rgbdslam/g2o/install`
     * `catkin_make`
 
 ## Starting RGBDSLAM on the Turtlebot
-
+On the _Turtlebot_ laptop:  
+1. Open a new terminal
+    * `export G2O_DIR=~/catkin_ws/src/g2o`
+    * `roslaunch rgbdslam headless.launch`
 
 ## Visualizing RGBDSLAM data
 
