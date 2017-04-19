@@ -18,7 +18,7 @@
 
 [Create a 3D map](/Notes/Phase_1/07-RGB-D_SLAM.md)
 
-[Build ROS packages using the catkin bukld system](/Notes/Phase_1/08-Catkin_Workspace.md)
+[Build ROS packages using the catkin build system](/Notes/Phase_1/08-Catkin_Workspace.md)
 
 [Using an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
