@@ -21,15 +21,15 @@ sudo apt install python-qt-binding python3-pyqt5 -y
 ```
 5. Build the Workspace
 ```bash
-cd .. catkin_ws
-catkin_make
+cd ~/catkin_ws/src/turtlebot-houston/catkin_ws
+catkin_mke
 Clean rqt cache
 rm ~/.config/ros.org/rqt_gui.ini
 ```
 6. Source the bash files
 ```bash
  source ~/.bashrc
- source ~/catkin_ws/devel/setup.bash
+ source ~/catkin_ws/src/turtlebot-houston/catkin_ws/devel/setup.bash
  ```
 7. Run the interface
 ```bash
