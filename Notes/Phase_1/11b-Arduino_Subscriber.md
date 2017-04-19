@@ -8,7 +8,7 @@ This section **requires** the *rosserial_arduino* package to be setup.
 [Please click here to learn how to set up rosserial_arduino](11-ROS_Arduino.md)
 
 ## Sending data to the Arduino
-As an example to send data to the Arduino, we will use the blink example.o
+As an example to send data to the Arduino, we will use the blink example.o, which turns on an LED. 
 More informatino [can be pulled up, here](http://wiki.ros.org/rosserial_arduino/Tutorials/)
 
 1. Upload the following code to your Arduino:
