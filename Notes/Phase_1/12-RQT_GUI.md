@@ -23,7 +23,9 @@ sudo apt install python-qt-binding python3-pyqt5 -y
 ```bash
 cd ~/catkin_ws/src/turtlebot-houston/catkin_ws
 catkin_make
+```
 Clean rqt cache
+```
 rm ~/.config/ros.org/rqt_gui.ini
 ```
 6. Source the bash files
