@@ -17,7 +17,7 @@ cd ~/catkin_ws/src/turtlebot-houston/catkin_ws/src/turtlebot-rqt-slam
 
 4. Install dependencies
 ```bash
-sudo apt install python-qt-binding python3-pyqt5
+sudo apt install python-qt-binding python3-pyqt5 -y
 ```
 5. Build the Workspace
 ```bash
