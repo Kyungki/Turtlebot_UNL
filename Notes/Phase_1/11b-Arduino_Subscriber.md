@@ -60,5 +60,3 @@ ROSSERIAL has recently improved their tutorials, and have a very wide selection 
 [Check out the ROSSerial_Arduino Tutorials](http://wiki.ros.org/rosserial_arduino/Tutorials)
 
 ## Troubleshooting
-
-Arduino IDE [can't find arduino](https://askubuntu.com/a/646313)
