@@ -22,7 +22,7 @@ sudo apt install python-qt-binding python3-pyqt5 -y
 5. Build the Workspace
 ```bash
 cd ~/catkin_ws/src/turtlebot-houston/catkin_ws
-catkin_mke
+catkin_make
 Clean rqt cache
 rm ~/.config/ros.org/rqt_gui.ini
 ```
