@@ -1,6 +1,4 @@
-# Turtlebot Tutorials
-
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
+# Turtlebot Tutorials [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
 
 Master Laptop
 * [ROS Setup](/Notes/Phase_1/02-Master_Setup.md)
