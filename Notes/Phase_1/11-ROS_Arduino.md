@@ -61,7 +61,10 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
     * `roslaunch turtlebot_houston arduino.launch`
 
 ## Sending data to the Arduino
-Follow our [A simple Arduino subscriber](11b-Arduino_Subscriber.md) tutorial
+Follow our [a simple Arduino subscriber](11b-Arduino_Subscriber.md) tutorial
+
+## Receiving data from the Arduino
+Follow our [a simple Arduino publisher](11c-Arduino_Publisher.md) tutorial
 
 ## Additional Tutorials
 ROSSERIAL has recently improved their tutorials, and have a very wide selection of examples.
