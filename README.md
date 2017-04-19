@@ -1,7 +1,7 @@
 # Turtlebot Tutorials
 
 Master Laptop
-* [ROS/Turtlebot Setup](/Notes/Phase_1/02-Master_Setup.md)
+* [ROS Setup](/Notes/Phase_1/02-Master_Setup.md)
 
 * [Prevent Laptop Locking/Sleeping](/Notes/Phase_1/01b-Turtlebot_Ubuntu_Setup.md)
 
