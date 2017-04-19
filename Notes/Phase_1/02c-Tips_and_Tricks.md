@@ -9,3 +9,6 @@ The following is a collection of useful tips and tricks that would help speed up
 
 ## Using a shell window manager
 Byobu, Tmux, Screen
+ 
+
+[Return to the main README page](/README.md)
