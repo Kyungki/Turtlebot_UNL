@@ -18,7 +18,7 @@ These are the basic steps for installing ROSSERIAL and the arduino libraries.
 For detailed installation steps, [click here](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup)
 
 1. ROSSERIAL is a package used to bridge ROS with devices using a serial connection  
-    * `sudo apt install ros-kinetic-rosserial*`
+    * `sudo apt install ros-kinetic-rosserial* -y` 
 2. [Download the latest Arduino IDE](https://www.arduino.cc/en/Main/Software) if you don't have it installed
     * Start Arduino at least once before continuing
 3. CD to your libraries folder in your Arduino Sketchbook (typically ~/Arduino)
