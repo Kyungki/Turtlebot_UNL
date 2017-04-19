@@ -1,20 +1,17 @@
 ## Turtlebot Visualization
 Visualizing the 3D Turtlebot model and the data streaming from the Turtlebot can be done through the ROS Visualization (RVIZ) packages.
 
-RVIZ can be run standalone by using:  
-`rosrun rviz rviz`
+RVIZ can be run standalone: `rosrun rviz rviz`
 
 ## Viewing the Turtlebot Model
 You can preview the Turtlebot Model to verify that the RVIZ and Turtlebot packages are installed.
-- In a new terminal:
-  - `roslaunch turtlebot_rviz_launchers view_model.launch`
+- In a new terminal: `roslaunch turtlebot_rviz_launchers view_model.launch`
 
 ![](Resources/05-rviz_turtlebot_view_model.png)
 
 ## Viewing the Live Turtlebot Data
 You can view live sensor data streamed from the Turtlebot by using RVIZ.
-- In a new terminal:
-  - `roslaunch turtlebot_rviz_launchers view_robot.launch`
+- In a new terminal: `roslaunch turtlebot_rviz_launchers view_robot.launch`
 
 ![](Resources/05-rviz_turtlebot_view_robot.png)
 

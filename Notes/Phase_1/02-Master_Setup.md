@@ -20,11 +20,11 @@
 1. [Follow the ROS Ubuntu installation guide](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 2. Install Turtlebot packages
   ```bash
-  sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-*
+  sudo apt install ros-kinetic-turtlebot* ros-kinetic-astra-* -y
   ```
 2. Install Other required packages:
   ```bash
-  sudo apt install git chrony
+  sudo apt install git chrony -y
   ```
 
 3. (Optional) Install Turtlebot Branding:
@@ -63,4 +63,8 @@ echo export TURTLEBOT_STACK=hexagons >> ~/.bashrc
 Due to incorrect NTP time servers, configure the same NTP zone between all ROS computers:
 ```bash
 sudo ntpdate ntp.ubuntu.com
+```
+You may need to install `ntpdate` first:
+```bash
+sudo apt-get install ntpdate -y
 ```

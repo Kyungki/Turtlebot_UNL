@@ -1,5 +1,5 @@
 ## Catkin Workspace
-Catkin is a CMAKE-based build system used to build ROS packages.
+[Catkin](http://wiki.ros.org/catkin) is a CMAKE-based build system used to build ROS packages.
 
 ## Catkin Setup
 We will be setting up a Catkin Workspace on **BOTH** the *Turtlebot* and *Master* computers using the following steps.
@@ -9,8 +9,8 @@ We will be setting up a Catkin Workspace on **BOTH** the *Turtlebot* and *Master
         * `mkdir -p ~/catkin_ws/src`
     2. CD to that directory:
         * `cd ~/catkin_ws/src`
-    3. Initialize the workspace using `catkin_init`
-        * `catkin_init`
+    3. Initialize the workspace:
+        * `catkin_init_workspace`
     4. Build the empty catkin workspace
         * `cd ~/catkin_ws`
         * `catkin_make`

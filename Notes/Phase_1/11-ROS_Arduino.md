@@ -18,7 +18,7 @@ These are the basic steps for installing ROSSERIAL and the arduino libraries.
 For detailed installation steps, [click here](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup)
 
 1. ROSSERIAL is a package used to bridge ROS with devices using a serial connection  
-    * `sudo apt install ros-kinetic-rosserial*`
+    * `sudo apt install ros-kinetic-rosserial* -y` 
 2. [Download the latest Arduino IDE](https://www.arduino.cc/en/Main/Software) if you don't have it installed
     * Start Arduino at least once before continuing
 3. CD to your libraries folder in your Arduino Sketchbook (typically ~/Arduino)
@@ -34,7 +34,7 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
     * `sudo dmesg`
     * Find the Device Connected info and look for:  
         `[ 2857.315493] usb 1-6: FTDI USB Serial Device converter now attached to ttyUSB0`
-
+        
 2. Create a new package in your *catkin_ws* for housing our launch files
     * `cd ~/catkin_ws/src`
     * `catkin_create_pkg turtlebot_houston`
@@ -68,3 +68,4 @@ ROSSERIAL has recently improved their tutorials, and have a very wide selection 
 [Check out the ROSSerial_Arduino Tutorials](http://wiki.ros.org/rosserial_arduino/Tutorials)
 
 ## Troubleshooting
+When using USB 3, the port may be `ttyACM0`. If so, change the port in the `arduino.launch` and change the permissions to the port`sudo chmod 777 /dev/ttyACM0`
