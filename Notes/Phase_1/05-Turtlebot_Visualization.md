@@ -1,8 +1,7 @@
 ## Turtlebot Visualization
 Visualizing the 3D Turtlebot model and the data streaming from the Turtlebot can be done through the ROS Visualization (RVIZ) packages.
 
-RVIZ can be run standalone by using:  
-`rosrun rviz rviz`
+RVIZ can be run standalone: `rosrun rviz rviz`
 
 ## Viewing the Turtlebot Model
 You can preview the Turtlebot Model to verify that the RVIZ and Turtlebot packages are installed.
