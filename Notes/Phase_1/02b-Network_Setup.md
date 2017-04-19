@@ -3,7 +3,6 @@ Connect to a Wireless, Ethernet, or Cellular network using the Network Manager (
 ![](Resources/02-wificonf.png)
 
 
-Previously, we used strictly the IP address of Turtlebot and Master.  
 Using the `hostname` command in Linux, we are able to dynamically load the IP of the Turtlebot so less configuration is needed.
 
 
