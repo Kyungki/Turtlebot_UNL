@@ -9,7 +9,7 @@ These instalation steps are to be done on BOTH the Turtlebot and Master computer
 
 1. Connect to a Wi-Fi network that has internet access
 2. Open a new terminal
-    1. `sudo apt-get install ros-kinetic-rtabmap-ros`
+    1. `sudo apt-get install ros-kinetic-rtabmap-ros -y`
 3. Connect back to your Turtlebot Wi-Fi network.
 
 ## Starting RTABMAP on the Turtlebot
