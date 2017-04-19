@@ -13,10 +13,7 @@ As an example to send data to the Arduino, we will use the blink `example.o` tut
 1. Upload the following code to your Arduino:
 
 ```c
-/* 
- * rosserial Subscriber Example
- * Turns 
- */
+/* rosserial Subscriber Example */
 
 #include <ros.h>
 #include <std_msgs/Bool.h>
