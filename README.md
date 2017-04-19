@@ -1,17 +1,18 @@
 # Turtlebot Tutorials
 
-ROS Setup
-* [Turtlebot Setup](/Notes/Phase_1/01-Turtlebot_Setup.md)
-
+ROS
 * [Laptop Setup](/Notes/Phase_1/02-Master_Setup.md)
 
 * [Prevent Laptop Locking/Sleeping](/Notes/Phase_1/01b-Turtlebot_Ubuntu_Setup.md)
 
 * [Network Setup](/Notes/Phase_1/02b-Network_Setup.md)
+
 * [Build ROS packages using the catkin build system](/Notes/Phase_1/08-Catkin_Workspace.md)
 
 
 Turtlebot
+* [Turtlebot Setup](/Notes/Phase_1/01-Turtlebot_Setup.md)
+
 * [Turtlebot Bringup](/Notes/Phase_1/03-Turtlebot_Bringup.md)
 
 * [Teleoperate the Turtlebot](/Notes/Phase_1/04-Turtlebot_Teleop.md)
