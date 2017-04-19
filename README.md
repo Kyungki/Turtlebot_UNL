@@ -11,15 +11,15 @@ ROS
 
 
 Turtlebot
-* [Turtlebot Setup](/Notes/Phase_1/01-Turtlebot_Setup.md)
+* [Turtlebot Physical Assembly](/Notes/Phase_1/01-Turtlebot_Setup.md)
 
-* [Turtlebot Bringup](/Notes/Phase_1/03-Turtlebot_Bringup.md)
+* [Load Turtlebot Device Drivers](/Notes/Phase_1/03-Turtlebot_Bringup.md)
 
 * [Teleoperate the Turtlebot](/Notes/Phase_1/04-Turtlebot_Teleop.md)
 
 * [Visualize Turtlebot Data](/Notes/Phase_1/05-Turtlebot_Visualization.md)
 
-* [Using an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
+* [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 SLAM
 
