@@ -25,7 +25,7 @@ SLAM
 * [3D SLAM with RGB-D Sensors](/Notes/Phase_1/07-RGB-D_SLAM.md)
 
 GUI
-* [Setup the catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
+* [Set up a catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
 * [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md)
 * 
 
