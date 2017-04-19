@@ -77,7 +77,6 @@ With the `rtabmap-databaseViewer` tool, you can:
 
 1. Copy the database from the Turtlebot to the Master Computer
     1. On the Master Computer, open a new terminal:
-        * `mkdir ~/workspace`
         * `cd ~/workspace`
         * `scp turtlebot@IP_OF_TURTLEBOT:~/workspace/rtabmap.db .`
           * The remote copy operation may take some time depending on the database size
