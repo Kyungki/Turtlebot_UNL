@@ -1,15 +1,14 @@
 # Turtlebot Tutorials [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
 
-Master Laptop
+Laptop Setup
 * [ROS Setup](/Notes/Phase_1/02-Master_Setup.md)
 
 * [Prevent Laptop Locking/Sleeping](/Notes/Phase_1/01b-Turtlebot_Ubuntu_Setup.md)
 
+* [ROS Master/Turtlebot Computer Network Setup](/Notes/Phase_1/02b-Network_Setup.md)
 
 Turtlebot
 * [Turtlebot Physical Assembly](/Notes/Phase_1/01-Turtlebot_Setup.md)
-
-* [Turtlebot Network Setup](/Notes/Phase_1/02b-Network_Setup.md)
 
 * [Load Turtlebot Device Drivers](/Notes/Phase_1/03-Turtlebot_Bringup.md)
 
