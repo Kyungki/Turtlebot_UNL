@@ -26,7 +26,7 @@ SLAM
 
 GUI
 * [Setup the catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
-* [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md
+* [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md)
 * 
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
