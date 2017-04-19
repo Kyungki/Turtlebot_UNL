@@ -36,14 +36,16 @@ Download rgbdslam_v2 and configure dependencies
 ## Starting RGBDSLAM on the Turtlebot
 On the _Turtlebot_ laptop:  
 1. Open a new terminal
-    * `export G2O_DIR=~/catkin_ws/src/g2o`
-    * `roslaunch rgbdslam headless.launch`
+    1. `source ~/catkin_ws/devel/setup.sh`
+    2. `export G2O_DIR=~/catkin_ws/src/g2o`
+    3. `roslaunch rgbdslam headless.launch`
 
 ## Visualizing RGBDSLAM data
-
-
-## Viewing RGBDSLAM data
-
+On the _master_ laptop, start the rgbdslam interface:
+1. Open a new terminal
+    1. `source ~/catkin_ws/devel/setup.sh`
+    2. `rosrun rgbdslam rgbdslam`
+2. Use the GUI to view the data from the rgbdslam node
 
 ## Tuning RGBDSLAM Parameters
 Coming soon, we are working out the best parameters to use with this Turtlebot setup
