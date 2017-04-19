@@ -1,5 +1,5 @@
 ## Fiducial Markers
-Fiducial markers can function as identifies for robots, rooms, and objects, as well as serve tasks in augmented reality and 3d mapping.  
+Fiducial markers can function as identifiers for robots, rooms, and objects, as well as serve tasks in augmented reality and 3d mapping.  
 AprilTags are a visual fiducial system that takes tags created from an ordinary printer. The AprilTag software can compute the 3D position, orientation, and identity of tags relative to the camera's viewpoint.
 
 ## Prequisites
