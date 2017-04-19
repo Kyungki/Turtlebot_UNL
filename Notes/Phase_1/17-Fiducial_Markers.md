@@ -12,14 +12,14 @@ Installation should be done on *both* **master** and **turtlebot** computers
     1. `sudo apt install libopencv* libcgal-dev libcgal-qt5*`
 2. Download, the apriltags-cpp opencv library
     1. `cd ~/workspace`
-    2. `git clone -b kinetic-devel https://github.com/locusrobotics/apriltags_cpp`
+    2. `git clone -b kinetic-devel https://github.com/dabit-industries/apriltags_cpp`
     3. `mkdir apriltags_cpp/build`
     4. `cd apriltags_cpp/build`
     5. `cmake ..`
     6. `make`
     7. `sudo make install`
 3. Download the apriltags library
-    1. `git clone -b kinetic-devel https://github.com/locusrobotics/apriltags`
+    1. `git clone -b kinetic-devel https://github.com/dabit-industries/apriltags`
 4. Build the apriltags packasge
     1. `cd ~/catkin_ws`
     2. `catkin_make`
@@ -76,10 +76,16 @@ In order to have accurate tag localization, you need to get the width of the tag
     2. `roslaunch turtlebot_houston fiducial.launch`
 
 ## View the apriltag detections
-You can view the apriltag detection window on either the **turtlebot** or **master** laptop.
+You can view the apriltag detection window on either the **turtlebot** or **master** laptop.  
 1. Open a new terminal:
     1. `source ~/catkin_ws/devel/setup.sh`
     2. `rosrun rqt_image_view rqt_image_view image:=/apriltags/detections_image`
+
+## Get tag ID and position of markers
+On either the **turtlebot** or **master** laptop:
+1. Open a new terminal:
+    1. `source ~/catkin_ws/devel/setup.sh`
+    2. `rostopic echo /apriltags/detections`
 
 ## Troubleshooting
 Sometimes `catkin_make` fails. You have to run `catkin_make` again after it fails.  
