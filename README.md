@@ -1,5 +1,7 @@
 # Turtlebot Tutorials
 
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
+
 Master Laptop
 * [ROS Setup](/Notes/Phase_1/02-Master_Setup.md)
 
@@ -27,5 +29,3 @@ SLAM
 GUI
 * [Set up a catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
 * [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md)
-
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
