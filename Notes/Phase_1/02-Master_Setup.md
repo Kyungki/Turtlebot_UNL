@@ -64,3 +64,7 @@ Due to incorrect NTP time servers, configure the same NTP zone between all ROS c
 ```bash
 sudo ntpdate ntp.ubuntu.com
 ```
+You may need to install `ntpdate` first:
+```bash
+sudo ntpdate ntp.ubuntu.com -y
+```
