@@ -21,7 +21,7 @@ SLAM
 
 * [3D SLAM with RGB-D Sensors](/Notes/Phase_1/07-RGB-D_SLAM.md)
 
-SENSORS
+Sensors
 * [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 GUI
