@@ -1,6 +1,6 @@
 # Turtlebot Tutorials [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
 
-ROS Setup
+ROS 
 * [ROS Setup](/Notes/Phase_1/02-Master_Setup.md)
 
 * [Prevent Laptop Locking/Sleeping](/Notes/Phase_1/01b-Turtlebot_Ubuntu_Setup.md)
