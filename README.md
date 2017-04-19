@@ -25,5 +25,4 @@ Sensors
 * [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 GUI
-* [Set up a catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
 * [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md)
