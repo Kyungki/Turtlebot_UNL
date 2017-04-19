@@ -16,12 +16,13 @@ Turtlebot
 
 * [Visualize Turtlebot Data](/Notes/Phase_1/05-Turtlebot_Visualization.md)
 
-* [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
-
 SLAM
 * [2D SLAM using GMapping](/Notes/Phase_1/06-Gmapping.md)
 
 * [3D SLAM with RGB-D Sensors](/Notes/Phase_1/07-RGB-D_SLAM.md)
+
+SENSORS
+* [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 GUI
 * [Set up a catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
