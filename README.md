@@ -20,13 +20,13 @@ Turtlebot
 * [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
 SLAM
-
 * [2D SLAM using GMapping](/Notes/Phase_1/06-Gmapping.md)
 
 * [3D SLAM with RGB-D Sensors](/Notes/Phase_1/07-RGB-D_SLAM.md)
 
-Build Your Own
-* [Build ROS packages using the catkin build system](/Notes/Phase_1/08-Catkin_Workspace.md)
-
+GUI
+* [Setup the catkin workspace](/Notes/Phase_1/08-Catkin_Workspace.md)
+* [Launch Gui](/Notes/Phase_1/12-RQT_GUI.md
+* 
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
