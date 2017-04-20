@@ -32,3 +32,6 @@ Using the configuration GUI for ROS you can modify the parameters of the followe
 3. Play with the sliders and see how the parameters effect the Turtlebot's behavior.
 
 ![](Resources/04-turtlebot_follow_reconfigure.png)
+ 
+
+[Return to the main README page](/README.md)

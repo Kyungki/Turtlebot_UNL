@@ -78,3 +78,6 @@ The more physical data available around the Turtlebot, the better the map will b
 
 Gmapping is meant to provide a map for navigation planning without overloading the computer.
 It may have issues with small objects, or big solid-colored surfaces such as white walls.
+ 
+
+[Return to the main README page](/README.md)

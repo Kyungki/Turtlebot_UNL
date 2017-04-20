@@ -42,3 +42,6 @@ If everything is OK, it should look like this:
 
 You may need to press the button that looks like a speedometer to show the Robot Monitor output.
 ![](Resources/03-turtlebot_spedometer.png)
+ 
+
+[Return to the main README page](/README.md)

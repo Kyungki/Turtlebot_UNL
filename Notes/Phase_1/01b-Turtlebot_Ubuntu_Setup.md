@@ -9,3 +9,6 @@ Stop Ubuntu from locking the screen:
 ![](Resources/01b-lock_prompt.png)
 
 
+ 
+
+[Return to the main README page](/README.md)

@@ -108,3 +108,6 @@ PING IP_OF_TURTLEBOT (IP_OF_TURTLEBOT) 56(84) bytes of data.
 If your laptop cannot connect to the network, ensure that you installed [the proprietary drivers](http://askubuntu.com/questions/22118/can-i-install-extra-drivers-via-the-command-prompt).
 
 If you continue to have issues, check out the [ROS Network Setup Page](http://wiki.ros.org/ROS/NetworkSetup)
+ 
+
+[Return to the main README page](/README.md)

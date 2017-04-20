@@ -21,3 +21,6 @@ You can view the output of a topic by click on the checkbox to the right of the 
 ![](Resources/05-rviz_turtlebot_view_robot_displays.png)
 
 You may need to rotate the view in RVIZ around the robot in order to properly view the data output.
+ 
+
+[Return to the main README page](/README.md)

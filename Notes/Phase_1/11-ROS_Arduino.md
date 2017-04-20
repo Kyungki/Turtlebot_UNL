@@ -71,4 +71,7 @@ ROSSERIAL has recently improved their tutorials, and have a very wide selection 
 [Check out the ROSSerial_Arduino Tutorials](http://wiki.ros.org/rosserial_arduino/Tutorials)
 
 ## Troubleshooting
-When using USB 3, the port may be `ttyACM0`. If so, change the port in the `arduino.launch` and change the permissions to the port`sudo chmod 777 /dev/ttyACM0`
+On some arduino's, the port may be `ttyACM0`. If so, change the port in the `arduino.launch` and change the permissions to the port`sudo chmod 777 /dev/ttyACM0`
+ 
+
+[Return to the main README page](/README.md)
