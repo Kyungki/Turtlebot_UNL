@@ -6,12 +6,15 @@ This tutorial will show you how to get a message from an Image topic in ROS, con
 This example requires an image stream on the `/camera/rgb/image_raw` topic.  
 1. On the _turtlebot_, run 3dsensor.launch:
     1. `roslaunch turtlebot_bringup 3dsensor.launch`
+    
+This section **recommends** that the *catkin_ws* to be initialized.
+[Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Getting an Image from a ROS Topic using Python
 The following example code can be used on __either__ the _master_ or _turtlebot_ computers.  
 1. Create a new Python file in your scripts folder in your workspace:
-    1. `mkdir -p ~/workspace/scripts`
-    2. `gedit ~/workspace/scripts/opencv_example_1.py`
+    1. `mkdir -p ~/catkin_ws/src/turtlebot_houston/scripts`
+    2. `gedit ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 2. Start the script by specifying which Python version to use:
 ```python
 #!/usr/bin/env python2.7
@@ -20,7 +23,7 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
 print "Hello!"
 ```
   * Test the script in your terminal:
-      * `python ~/workspace/scripts/opencv_example_1.py`
+      * `python ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 3. Import the neccesary ROS and Computer Vision libraries and Initialize the ROS Node
 ```python
 #!/usr/bin/env python2.7
@@ -37,7 +40,7 @@ rospy.init_node('opencv_example', anonymous=True)
 rospy.loginfo("Hello ROS!")
 ```
   * Test the script in your terminal:
-      * `python ~/workspace/scripts/opencv_example_1.py`
+      * `python ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 5. Create a subscriber for an Image topic, and define a callback function  
    Use _CTRL+C_ to stop the program
 ```python
@@ -61,7 +64,7 @@ while not rospy.is_shutdown():
     rospy.spin()
 ```
   * Test the script in your terminal:
-      * `python ~/workspace/scripts/opencv_example_1.py`
+      * `python ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 6. Import OpenCV and cv_bridge, create a window to show a live image in  
    Use _CTRL+C_ in the terminal to stop the program
 ```python
@@ -111,7 +114,7 @@ while not rospy.is_shutdown():
     rospy.spin()
 ```
   * Test the script in your terminal:
-      * `python ~/workspace/scripts/opencv_example_1.py`
+      * `python ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 7. Rotate the image 90 degrees  
    Use _CTRL+C_ in the terminal to stop the program
 ```python
@@ -130,10 +133,15 @@ define image_callback(img_msg):
 ...
 ```
   * Test the script in your terminal:
-      * `python ~/workspace/scripts/opencv_example_1.py`
+      * `python ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+8. Allow execution permissions for your code, and use rosrun to run it!  
+   In a new terminal:
+    1. `chmod +x ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+    2. `source ~/catkin_ws/devel/setup.sh`
+    3. `rosrun turtlebot_houston opencv_example_1.py`
 
 ## First Example Complete
-`~/workspace/scripts/opencv_example_1.py`
+`~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
 ```python
 #!/usr/bin/env python2.7
 # Import ROS libraries and messages
