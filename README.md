@@ -21,9 +21,15 @@ SLAM
 
 * [3D SLAM with RGB-D Sensors](/Notes/Phase_1/07-RGB-D_SLAM.md)
 
+Arduino
+* [Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
 
-[Launch GUI](/Notes/Phase_1/12-RQT_GUI.md)
+Fiducial Markers
+* [View data from AprilTags](/Notes/Phase_1/17-Fiducial_Markers.md)
 
-[Use an Arduino with the Turtlebot](/Notes/Phase_1/11-ROS_Arduino.md)
+GUI
+* [Launch GUI](/Notes/Phase_1/12-RQT_GUI.md)
 
-[View data from Fiducial Tags](/Notes/Phase_1/17-Fiducial_Markers.md)
+OpenCV
+* [OpenCV and ROS](/Notes/Phase_1/14-OpenCV2.md)
+
