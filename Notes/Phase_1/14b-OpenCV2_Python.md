@@ -19,8 +19,8 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
 # Print "Hello!" to terminal
 print "Hello!"
 ```
-    1. Test the script in your terminal:
-        1. `python ~/workspace/scripts/opencv_example_1.py`
+  * Test the script in your terminal:
+      * `python ~/workspace/scripts/opencv_example_1.py`
 3. Import the neccesary ROS and Computer Vision libraries and Initialize the ROS Node
 ```python
 #!/usr/bin/env python2.7
@@ -36,8 +36,8 @@ rospy.init_node('opencv_example', anonymous=True)
 # Print "Hello ROS!" to the Terminal and ROSLOG
 rospy.loginfo("Hello ROS!")
 ```
-    1. Test the script in your terminal:
-        1. `python ~/workspace/scripts/opencv_example_1.py`
+  * Test the script in your terminal:
+      * `python ~/workspace/scripts/opencv_example_1.py`
 5. Create a subscriber for an Image topic, and define a callback function  
    Use _CTRL+C_ to stop the program
 ```python
@@ -60,8 +60,8 @@ sub_image = rospy.Subscriber("/camera/rgb/image_raw", Image, image_callback)
 while not rospy.is_shutdown():
     rospy.spin()
 ```
-    1. Test the script in your terminal:
-        1. `python ~/workspace/scripts/opencv_example_1.py`
+  * Test the script in your terminal:
+      * `python ~/workspace/scripts/opencv_example_1.py`
 6. Import OpenCV and cv_bridge, create a window to show a live image in  
    Use _CTRL+C_ in the terminal to stop the program
 ```python
@@ -110,6 +110,8 @@ cv2.namedWindow("Image Window", 1)
 while not rospy.is_shutdown():
     rospy.spin()
 ```
+  * Test the script in your terminal:
+      * `python ~/workspace/scripts/opencv_example_1.py`
 7. Rotate the image 90 degrees  
    Use _CTRL+C_ in the terminal to stop the program
 ```python
@@ -127,8 +129,11 @@ define image_callback(img_msg):
 
 ...
 ```
+  * Test the script in your terminal:
+      * `python ~/workspace/scripts/opencv_example_1.py`
 
 ## First Example Complete
+`~/workspace/scripts/opencv_example_1.py`
 ```python
 #!/usr/bin/env python2.7
 # Import ROS libraries and messages
@@ -184,3 +189,7 @@ cv2.namedWindow("Image Window", 1)
 while not rospy.is_shutdown():
     rospy.spin()
 ```
+
+
+
+[Return to the main README page](/README.md)
