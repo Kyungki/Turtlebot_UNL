@@ -1,7 +1,7 @@
 ## ROS Arduino
 
 ## Prequisites
-This section **requires** the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 This section **requires** the *rosserial_arduino* package to be setup.  

@@ -3,7 +3,7 @@ Fiducial markers can function as identifiers for robots, rooms, and objects, as 
 AprilTags are a visual fiducial system that takes tags created from an ordinary printer. The AprilTag software can compute the 3D position, orientation, and identity of tags relative to the camera's viewpoint.
 
 ## Prequisites
-This section **requires** the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Installation

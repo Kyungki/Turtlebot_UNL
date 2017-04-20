@@ -1,6 +1,6 @@
 ## ROS Arduino
 This tutorial provides the necessary setup for using an Arduino with ROS.
-In this Tutorial, you will learn:
+* In this Tutorial, you will learn:
     * Rosserial
     * communication between the Arduino and rosserial
     * configuring udev rules to automatically find the arduino
@@ -10,7 +10,7 @@ In this Tutorial, you will learn:
 
 
 ## Prequisites
-This section **requires** the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Installing ROSSERIAL
@@ -35,13 +35,7 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
     * Find the Device Connected info and look for:  
         `[ 2857.315493] usb 1-6: FTDI USB Serial Device converter now attached to ttyUSB0`
         
-2. Create a new package in your *catkin_ws* for housing our launch files
-    * `cd ~/catkin_ws/src`
-    * `catkin_create_pkg turtlebot_houston`
-    * `cd turtlebot_houston`
-    * `mkdir launch`
-
-3. Make an `arduino.launch` file in the ~/catkin_ws/src/turtlebot_houston/launch folder:
+2. Make an `arduino.launch` file in the ~/catkin_ws/src/turtlebot_houston/launch folder:
     * `gedit arduino.launch`
 ```xml
 <launch>
@@ -51,7 +45,7 @@ For detailed installation steps, [click here](http://wiki.ros.org/rosserial_ardu
 </launch>
 ```
 
-4. Build your package using `catkin`
+3. Build your package using `catkin`
     * `cd ~/catkin_ws`
     * `catkin_make`
 
