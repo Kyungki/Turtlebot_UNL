@@ -1,0 +1,16 @@
+[submodule "Setup/workspace/apriltags_cpp"]
+	path = Setup/workspace/apriltags_cpp
+	url = http://github.com/dabit-industries/apriltags_cpp
+	branch = kinetic-devel
+[submodule "Setup/catkin_ws/src/apriltags"]
+	path = Setup/catkin_ws/src/apriltags
+	url = http://github.com/dabit-industries/apriltags
+	branch = kinetic-devel
+[submodule "Setup/catkin_ws/src/rgbdslam"]
+	path = Setup/catkin_ws/src/rgbdslam
+	url = http://github.com/felixendres/rgbdslam_v2.git
+	branch = kinetic
+[submodule "Setup/catkin_ws/src/g2o"]
+	path = Setup/catkin_ws/src/g2o
+	url = http://github.com/felixendres/g2o
+	branch = c++03
