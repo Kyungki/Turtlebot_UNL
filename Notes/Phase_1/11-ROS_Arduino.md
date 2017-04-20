@@ -1,6 +1,6 @@
 ## ROS Arduino
 This tutorial provides the necessary setup for using an Arduino with ROS.
-In this Tutorial, you will learn:
+* In this Tutorial, you will learn:
     * Rosserial
     * communication between the Arduino and rosserial
     * configuring udev rules to automatically find the arduino
@@ -10,7 +10,7 @@ In this Tutorial, you will learn:
 
 
 ## Prequisites
-This section **requires** the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Installing ROSSERIAL

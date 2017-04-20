@@ -2,7 +2,7 @@
 RGBDSLAM is a RGB-D loop-closure graph-based SLAM approach using visual odometry and custom implementations of opencv methods
 
 ## Prequisites
-This section **requires** the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Installation
