@@ -28,5 +28,14 @@ We will be setting up a Catkin Workspace on **BOTH** the *Turtlebot* and *Master
         * `mkdir scripts`
         * `mkdir src`
 
+## Catkin Tips
+* You can create a new package and declare its dependencies at the same time:
+    * `catkin_create_pkg turtlebot_houston roscpp`
+* You can build outside of the working directly by specifying `--directory /path/to/catkin/ws`:
+    * `catkin_make --directory ~/catkin_ws`
+* You can specify which packages to build using the `--pkg` argument:
+    * `catkin_make --pkg turtlebot_houston`
+
+
 
 [Return to the main README page](/README.md)
