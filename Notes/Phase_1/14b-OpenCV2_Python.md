@@ -7,7 +7,7 @@ This example requires an image stream on the `/camera/rgb/image_raw` topic.
 1. On the _turtlebot_, run 3dsensor.launch:
     1. `roslaunch turtlebot_bringup 3dsensor.launch`
     
-This section **recommends** that the *catkin_ws* to be initialized.
+This section **requires** the *catkin_ws* to be initialized and the *turtlebot_houston* package created.  
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)
 
 ## Getting an Image from a ROS Topic using Python
