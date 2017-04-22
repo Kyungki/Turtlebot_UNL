@@ -14,7 +14,7 @@ This section **requires** the *catkin_ws* to be initialized and the *turtlebot_h
 The following example code can be used on __either__ the _master_ or _turtlebot_ computers.  
 1. Create a new Python file in your scripts folder in your workspace:
     1. `mkdir -p ~/catkin_ws/src/turtlebot_houston/scripts`
-    2. `gedit ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+    2. `gedit ~/catkin_ws/src/turtlebot_houston/scripts/rospy_example.py`
 2. Start the script by specifying which Python version to use:
 
     ```python
@@ -151,7 +151,7 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
     3. `rosrun turtlebot_houston opencv_example_1.py`
 
 ## First Example Complete
-* `~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+* [`~/catkin_ws/src/turtlebot_houston/scripts/rospy_opencv.py`](/Setup/catkin_ws/src/turtlebot_houston/scripts/rospy_opencv.py)
 
     ```python
     #!/usr/bin/env python2.7
@@ -210,8 +210,8 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
     ```
 
 ## Additional Resources
-[ROSPY Tutorials](http://wiki.ros.org/rospy_tutorials/Tutorials)
-[CV_Bridge Tutorials](http://wiki.ros.org/cv_bridge/Tutorials)
+[ROSPY Tutorials](http://wiki.ros.org/rospy_tutorials/Tutorials)  
+[CV_Bridge Tutorials](http://wiki.ros.org/cv_bridge/Tutorials)  
 
 
 [Return to the main README page](/README.md)

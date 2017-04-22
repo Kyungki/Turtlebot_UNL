@@ -64,6 +64,11 @@ Follow our [a simple Arduino publisher](11c-Arduino_Publisher.md) tutorial
 ROSSERIAL has recently improved their tutorials, and have a very wide selection of examples.
 [Check out the ROSSerial_Arduino Tutorials](http://wiki.ros.org/rosserial_arduino/Tutorials)
 
+## What's Next?
+[Arduino Subscriber](11b-Arduino_Subscriber.md)  
+[Arduino Publisher](11c-Arduino_Publisher.md)  
+
+
 ## Troubleshooting
 On some arduino's, the port may be `ttyACM0`. If so, change the port in the `arduino.launch` and change the permissions to the port`sudo chmod 777 /dev/ttyACM0`
  
