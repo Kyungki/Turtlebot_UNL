@@ -8,7 +8,7 @@ catkin_init_workspace
 ```
 2. Clone tutorial repo into workspace
 ```bash
-https://github.com/dabit-industries/turtlebot-houston
+git clone https://github.com/dabit-industries/turtlebot-houston
 ```
 3. Go to directory containing GUI code:
 ```bash
