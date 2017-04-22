@@ -28,6 +28,10 @@ We will be setting up a Catkin Workspace on **BOTH** the *Turtlebot* and *Master
         * `mkdir scripts`
         * `mkdir src`
 
+## What's Next?
+[Building ROSPY with your Catkin Package](08b-ROSPY_Building.md)  
+[Building ROSCPP with your Catkin Package](08c-ROSCPP_Building.md)  
+
 ## Catkin Tips
 * You can create a new package and declare its dependencies at the same time:
     * `catkin_create_pkg turtlebot_houston roscpp`
