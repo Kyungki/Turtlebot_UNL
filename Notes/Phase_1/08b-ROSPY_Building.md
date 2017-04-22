@@ -202,58 +202,36 @@ In order to enable building ROSPY files in our package, we need to edit the *CMa
  
 ## Writing the first ROSPY Python code
 Now we get to write our first Python code to communicate with ROS.  
-1. Create a new file titled [*rospy_hello_world.cpp*](/Setup/catkin_ws/src/turtlebot_houston/src/turtlebot_houston/rospy_hello_world_help_world.py) in your *src* folder
-    1. `gedit ~/catkin_ws/src/turtlebot_houston/src/rospy_hello_world.py`
+1. Create a new file titled [*rospy_hello_world.py*](/Setup/catkin_ws/src/turtlebot_houston/scripts/rospy_hello_world.py) in your *scripts* folder
+    1. `gedit ~/catkin_ws/src/turtlebot_houston/scriptsrospy_hello_world.py`
     2. Start with the following *Hello World* code in gedit:
  
         ```python
+        #!/usr/bin/env python2.7
+        # Import ROS libraries and messages
+        import rospy
 
+        # Print "Hello!" to terminal
+        print "Hello!"
+
+        # Initialize the ROS Node named 'opencv_example', allow multiple nodes to be run with this name
+        rospy.init_node('opencv_example', anonymous=True)
+
+        # Print "Hello ROS!" to the Terminal and ROSLOG
+        rospy.loginfo("Hello ROS!")
         ```
  
     3. Save and exit *rospy_hello_world.py*
-2. Edit your *CMakeLists.txt* and specify to build *rospy_hello_world.py*:
-    1. `gedit ~/catkin_ws/src/turtlebot_houston/CMakeLists.txt`
-        * Near the middle of the file, find the `## Declare a C++ executable`:
- 
-            ```
-            ...
-            ## Declare a C++ executable
-            ## With catkin_make all packages are built within a single CMake context
-            ## The recommended prefix ensures that target names across packages don't collide
-            # add_executable(${PROJECT_NAME}_node src/turtlebot_houston_node.cpp)
-            ...
-            ```
-
-        * Below that line, add the following:
-
-            ```
-            add_executable(roscpp_hello_world src/rospy_hello_world.py)
-            target_link_libraries(roscpp_hello_world ${catkin_LIBRARIES})
-            ```
-
-    2. Save *CMakeLists.txt* and exit gedit
-3. Compile your code using catkin_make:
-    1. `catkin_make --directory ~/catkin_ws --pkg turtlebot_houston`
-        * Upon success, you should see:
-
-            ```
-            ####
-            #### Running command: "make -j4 -l4" in "/home/user/catkin_ws/build/turtlebot_houston"
-            ####
-            Scanning dependencies of target roscpp_hello_world
-            [ 50%] Building CXX object turtlebot_houston/CMakeFiles/roscpp_hello_world.dir/src/rospy_hello_world.py.o
-            [100%] Linking CXX executable /home/user/catkin_ws/devel/lib/turtlebot_houston/roscpp_hello_world
-            [100%] Built target roscpp_hello_world
-            ```
-
-4. Run your code using rosrun:
+2. Set the permissions of your code file to allow execution:
+    1. `chmod +x ~/catkin_ws/src/turtlebot_houston/scripts/rospy_hello_world.py"`
+3. Run your code using rosrun:
     1. `source ~/catkin_ws/devel/setup.sh`
-    2. `rosrun turtlebot_houston roscpp_hello_world`
+    2. `rosrun turtlebot_houston rospy_hello_world.py`
         * Upon success, you should see: `[ INFO] [1492726164.127098818]: Hello ROS!`
 
 
 ## Additional Resources
-[ROSCPP Tutorials](http://wiki.ros.org/roscpp_tutorials)  
+[ROSPY Tutorials](http://wiki.ros.org/rospy_tutorials)  
 
 
 

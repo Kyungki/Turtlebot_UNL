@@ -176,7 +176,7 @@ In order to enable building C++ files in our package, we need to edit the *CMake
  
 ## Writing the first ROSCPP C++ code
 Now we get to write our first c++ code to communicate with ROS.  
-1. Create a new file titled [*roscpp_hello_world.cpp*](/Setup/catkin_ws/src/turtlebot_houston/src/roscpp_hello_world_help_world.cpp) in your *src* folder
+1. Create a new file titled [*roscpp_hello_world.cpp*](/Setup/catkin_ws/src/turtlebot_houston/src/roscpp_hello_world.cpp) in your *src* folder
     1. `gedit ~/catkin_ws/src/turtlebot_houston/src/roscpp_hello_world.cpp`
     2. Start with the following *Hello World* code in gedit:
  

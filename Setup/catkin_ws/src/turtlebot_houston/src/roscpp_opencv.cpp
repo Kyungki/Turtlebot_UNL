@@ -77,17 +77,17 @@ void image_cb(const sensor_msgs::ImageConstPtr& msg)
 
 int main(int argc, char** argv)
 {
-  // Initialize the ROS Node "opencv_example"
-  ros::init(argc, argv, "opencv_example");
+  // Initialize the ROS Node "roscpp_opencv"
+  ros::init(argc, argv, "roscpp_opencv");
   ros::NodeHandle nh;
   
   // Print "Hello" message with node name to the terminal and ROS log file
   ROS_INFO_STREAM("Hello from ROS Node: " << ros::this_node::getName());
 
-  // subscribe to IMAGE_TOPIC with a queue_size of 1 and a callback function of image_cb
+  // Create a ROS Subscriber to IMAGE_TOPIC with a queue_size of 1 and a callback function of image_cb
   ros::Subscriber sub = nh.subscribe(IMAGE_TOPIC, 1, image_cb);
 
-  // publish PUBLISH_TOPIC with a queue_size of 1
+  // Create a ROS Publisher PUBLISH_TOPIC with a queue_size of 1
   pub = nh.advertise<sensor_msgs::Image>(PUBLISH_TOPIC, 1);
 
   // Initialize an OpenCV Window

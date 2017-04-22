@@ -151,7 +151,7 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
     3. `rosrun turtlebot_houston opencv_example_1.py`
 
 ## First Example Complete
-* `~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+* [`~/catkin_ws/src/turtlebot_houston/scripts/rospy_opencv.py`](/Setup/catkin_ws/src/turtlebot_houston/scripts/rospy_opencv.py)
 
     ```python
     #!/usr/bin/env python2.7

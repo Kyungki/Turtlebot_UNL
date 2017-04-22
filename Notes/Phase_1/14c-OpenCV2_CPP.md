@@ -11,11 +11,40 @@ This section **requires** the *catkin_ws* to be initialized and the *turtlebot_h
 [Please click here to learn how to initialize the catkin workspace](08-Catkin_Workspace.md)  
 
 This section **requires** the *roscpp example* to be built in the *turtlebot_houston* package.  
-[Please click here to learn how to build turtlebot_houston with roscpp](08b-ROSCPP_Building.md)  
+[Please click here to learn how to build turtlebot_houston with roscpp](08c-ROSCPP_Building.md)  
 
 
-## ROS Package Setup
-1. Set up your package dependencies:
+## Getting an Image from a ROS topic and using OpenCV
+1. Copy your [example *roscpp_hello_world.cpp* code](/Setup/catkin_ws/src/turtlebot_houston/src/roscpp_hello_world.cpp) to *roscpp_opencv.cpp*:
+    1. `cp ~/catkin_ws/src/turtlebot_houston/src/roscpp_hello_world.cpp ~/catkin_ws/src/turtlebot_houston/src/roscpp_opencv.cpp`
+    2. `gedit ~/catkin_ws/src/turtlebot_houston/src/roscpp_opencv.cpp`
+
+        ```c
+        /*
+         * Hello World Example using ROS and CPP
+         */
+
+        // Include the ROS library
+        #include <ros/ros.h>
+
+        // Main function
+        int main(int argc, char** argv)
+        {
+          // Initialize the ROS Node "roscpp_example"
+          ros::init(argc, argv, "roscpp_example");
+
+          // Instantiate the ROS Node Handler as nh
+          ros::NodeHandle nh;
+
+          // Print "Hello ROS!" to the terminal and ROS log file
+          ROS_INFO_STREAM("Hello from ROS node " << ros::this_node::getName());
+
+          // Program succesful
+          return 0;
+        }
+        ```
+
+2. Set up your package dependencies:
     1. `gedit ~/CMakeLists.txt`
         * Replace `find_package(catkin REQUIRED COMPONENTS)` with:
 
@@ -37,11 +66,15 @@ This section **requires** the *roscpp example* to be built in the *turtlebot_hou
             catkin_package(
               INCLUDE_DIRS
               CATKIN_DEPENDS roscpp
+                             sensor_msgs
+                             std_msgs
+                             cv_bridge
+                             image_transport
             )
             ```
+
+        * Replace your `include_directories(` with:
         
-        * Replace `include_directories(` with:
-            
             ```
             include_directories(
               ${catkin_INCLUDE_DIRS}
@@ -49,36 +82,16 @@ This section **requires** the *roscpp example* to be built in the *turtlebot_hou
             )
             ```
 
-        * Replace `target_link_libraries(opencv_example` with:
+        * Add your build target for *roscpp_opencv.cpp*:
 
             ```
-            target_link_libraries(opencv_example ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+            add_executable(roscpp_opencv_example src/roscpp_opencv_example.cpp)
+            target_link_libraries(roscpp_opencv_example ${catkin_LIBRARIES} ${OpenCV_INCLUDE_DIRS})
             ```
 
-    2. `gedit package.xml`
-        * Add the build_depend and run_depends under roscpp:
-
-            ```
-            <build_depend>roscpp</build_depend>
-            <run_depend>roscpp</run_depend>
-            <build_depend>cv_bridge</build_depend>
-            <build_depend>image_transport</build_depend>
-            <build_depend>libopencv-dev</build_depend>
-            <build_depend>sensor_msgs</build_depend>
-            <build_depend>std_msgs</build_depend>
-            <run_depend>cv_bridge</run_depend>
-            <run_depend>image_transport</run_depend>
-            <run_depend>libopencv-dev</run_depend>
-            <run_depend>sensor_msgs</run_depend>
-            <run_depend>std_msgs</run_depend>
-            ```
-
-## Writing the first ROSCPP OpenCV Code
-For this tutorial, we will start with the *roscpp_example.cpp* code written in the *ROSCPP_BUILDING* tutorial.   
-1. Copy the *roscpp_example.cpp* code into a new file titled *opencv_example.cpp* in your *turtlebot_houston* package and edit it:
-    1. `cp ~/catkin_ws/src/turtlebot_houston/src/roscpp_example.cpp ~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp`
-    2. `gedit ~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp`
-    3. Start with the following *Hello World* code in gedit:
+3. Edit *opencv_example.cpp* in your *src* folder
+    1. `gedit ~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp`
+    2. Replace the *Hello ROS* code with the following *OpenCV* code:
 
         ```c
         /*
@@ -88,83 +101,64 @@ For this tutorial, we will start with the *roscpp_example.cpp* code written in t
         // Include the ROS library
         #include <ros/ros.h>
 
-        // Main function
-        int main(int argc, char** argv)
-        { 
-          // Initialize the ROS Node "opencv_example"
-          ros::init(argc, argv, "opencv_example");
+        // Include opencv2
+        #include <opencv2/imgproc/imgproc.hpp>
+        #include <opencv2/highgui/highgui.hpp>
 
-          // Instantiate the ROS Node Handler as nh
-          ros::NodeHandle nh;
-          
-          // Create a new string, append "Hello ROS!" to it, and print it to the terminal and ROS log file
-          std::stringstream ss;
-          ss << "Hello ROS!";
-          ROS_INFO("%s", ss.str().c_str());
-          
-          // Program succesful
-          return 0;
-        } 
+        // Include CvBridge, Image Transport, Image msg
+        #include <image_transport/image_transport.h>
+        #include <cv_bridge/cv_bridge.h>
+        #include <sensor_msgs/image_encodings.h>
+
+        // OpenCV Window Name
+        static const std::string OPENCV_WINDOW = "Image window";
+
+        // Topics
+        static const std::string IMAGE_TOPIC = "/camera/rgb/image_raw";
+        static const std::string PUBLISH_TOPIC = "/image_converter/output_video";
+
+        // Publisher
+        ros::Publisher pub;
+
+        void image_cb(const sensor_msgs::ImageConstPtr& msg)
+        {
+          std_msgs::Header msg_header = msg->header;
+          std::string frame_id = msg_header.frame_id.c_str();
+          ROS_INFO_STREAM("New Image from " << frame_id);
+
+          cv_bridge::CvImagePtr cv_ptr;
+          try
+          {
+            cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+          }
+          catch (cv_bridge::Exception& e)
+          {
+            ROS_ERROR("cv_bridge exception: %s", e.what());
+            return;
+          }
+
+          // Draw an example crosshair
+          cv::drawMarker(cv_ptr->image, cv::Point(cv_ptr->image.cols/2, cv_ptr->image.rows/2),  cv::Scalar(0, 0, 255), cv::MARKER_CROSS, 10, 1);
+
+          // Update GUI Window
+          cv::imshow(OPENCV_WINDOW, cv_ptr->image);
+          cv::waitKey(3);
+
+          // Output modified video stream
+          pub.publish(cv_ptr->toImageMsg());
+        }
         ```
-
-    3. Save and exit *opencv_example.cpp*
-2. Edit your *CMakeLists.txt* and specify to build *opencv_example.cpp*:
-    1. `gedit ~/catkin_ws/src/turtlebot_houston/CMakeLists.txt`
-        * Near the middle of the file, find the `## Declare a C++ executable`:
-
-            ```
-            ...
-            ## Declare a C++ executable
-            ## With catkin_make all packages are built within a single CMake context
-            ## The recommended prefix ensures that target names across packages don't collide
-            # add_executable(${PROJECT_NAME}_node src/turtlebot_houston_node.cpp)
-            ...
-            ```
-
-        * Below that line, add the following:
-
-            ```
-            add_executable(opencv_example src/opencv_example.cpp)
-            target_link_libraries(opencv_example ${catkin_LIBRARIES})
-            ```
-
-    2. Save *CMakeLists.txt* and exit gedit
-3. Compile your code using catkin_make:
-    1. `catkin_make --directory ~/catkin_ws --pkg turtlebot_houston`
-        * Upon success, you should see:
-
-            ```
-            ####
-            #### Running command: "make -j4 -l4" in "/home/user/catkin_ws/build/turtlebot_houston"
-            ####
-            Scanning dependencies of target opencv_example
-            [ 50%] Building CXX object turtlebot_houston/CMakeFiles/opencv_example.dir/src/opencv_example.cpp.o
-            [100%] Linking CXX executable /home/user/catkin_ws/devel/lib/turtlebot_houston/opencv_example
-            [100%] Built target opencv_example
-            ```
-
-4. Run your code using rosrun:
-    1. `source ~/catkin_ws/devel/setup.sh`
-    2. `rosrun turtlebot_houston opencv_example`
-        * Upon success, you should see: `[ INFO] [1492726164.127098818]: Hello ROS!`
-
-## Getting an Image from a ROS topic and using OpenCV
-
-2. Edit *opencv_example.cpp* in your *src* folder
-    1. `gedit ~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp`
-    2. Replace the *Hello ROS* code with the following *OpenCV* code:
-
     
     3. Save and exit
 
-3. Build and run your new code:
+4. Build and run your new code:
     1. `catkin_make --directory ~/catkin_ws --pkg turtlebot_houston`
     2. `source ~/devel/setup.sh`
     3. `rosrun turtlebot_houston opencv_example`
 
 
 ## First Example Complete
-* `~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp`
+* [~/catkin_ws/src/turtlebot_houston/src/opencv_example.cpp](/Setup/catkin_ws/src/turtlebot_houston/src/roscpp_opencv.cpp)
 
     ```c
     /*

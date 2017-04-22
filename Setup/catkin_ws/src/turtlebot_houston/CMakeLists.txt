@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   cv_bridge
   image_transport
+  pcl_conversions
+  pcl_ros
 )
 
 find_package(OpenCV 2 REQUIRED)
@@ -115,6 +117,8 @@ catkin_package(
                  std_msgs
                  cv_bridge
                  image_transport
+                 pcl_conversions
+                 pcl_ros
 )
 
 ###########
@@ -154,6 +158,9 @@ target_link_libraries(roscpp_subscriber ${catkin_LIBRARIES})
 
 add_executable(roscpp_opencv src/roscpp_opencv.cpp)
 target_link_libraries(roscpp_opencv ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
+add_executable(roscpp_pcl_example src/roscpp_pcl_example.cpp)
+target_link_libraries(roscpp_pcl_example ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
