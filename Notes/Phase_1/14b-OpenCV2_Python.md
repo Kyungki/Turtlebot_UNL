@@ -210,8 +210,8 @@ The following example code can be used on __either__ the _master_ or _turtlebot_
     ```
 
 ## Additional Resources
-[ROSPY Tutorials](http://wiki.ros.org/rospy_tutorials/Tutorials)
-[CV_Bridge Tutorials](http://wiki.ros.org/cv_bridge/Tutorials)
+[ROSPY Tutorials](http://wiki.ros.org/rospy_tutorials/Tutorials)  
+[CV_Bridge Tutorials](http://wiki.ros.org/cv_bridge/Tutorials)  
 
 
 [Return to the main README page](/README.md)
