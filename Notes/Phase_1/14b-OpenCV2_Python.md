@@ -14,7 +14,7 @@ This section **requires** the *catkin_ws* to be initialized and the *turtlebot_h
 The following example code can be used on __either__ the _master_ or _turtlebot_ computers.  
 1. Create a new Python file in your scripts folder in your workspace:
     1. `mkdir -p ~/catkin_ws/src/turtlebot_houston/scripts`
-    2. `gedit ~/catkin_ws/src/turtlebot_houston/scripts/opencv_example_1.py`
+    2. `gedit ~/catkin_ws/src/turtlebot_houston/scripts/rospy_example.py`
 2. Start the script by specifying which Python version to use:
 
     ```python

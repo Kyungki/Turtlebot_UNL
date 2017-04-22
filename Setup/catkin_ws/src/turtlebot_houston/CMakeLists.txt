@@ -8,6 +8,7 @@ project(turtlebot_houston)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  rospy
   roscpp
   sensor_msgs
   std_msgs
@@ -24,7 +25,7 @@ find_package(OpenCV 2 REQUIRED)
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -108,7 +109,8 @@ find_package(OpenCV 2 REQUIRED)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS
-  CATKIN_DEPENDS roscpp
+  CATKIN_DEPENDS rospy
+                 roscpp
                  sensor_msgs
                  std_msgs
                  cv_bridge
@@ -141,8 +143,17 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/turtlebot_houston_node.cpp)
 
-add_executable(opencv_example src/opencv_example.cpp)
-target_link_libraries(opencv_example ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_executable(roscpp_hello_world src/roscpp_hello_world.cpp)
+target_link_libraries(roscpp_hello_world ${catkin_LIBRARIES})
+
+add_executable(roscpp_publisher src/roscpp_publisher.cpp)
+target_link_libraries(roscpp_publisher ${catkin_LIBRARIES})
+
+add_executable(roscpp_subscriber src/roscpp_subscriber.cpp)
+target_link_libraries(roscpp_subscriber ${catkin_LIBRARIES})
+
+add_executable(roscpp_opencv src/roscpp_opencv.cpp)
+target_link_libraries(roscpp_opencv ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -168,10 +179,10 @@ target_link_libraries(opencv_example ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+install(PROGRAMS
+  scripts/rospy_example_class
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
