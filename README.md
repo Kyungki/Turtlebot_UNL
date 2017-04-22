@@ -44,3 +44,6 @@ OpenCV
   * [OpenCV2 and ROSPY](/Notes/Phase_1/14b-OpenCV2_Python.md)
   * [OpenCV2 and ROSCPP](/Notes/Phase_1/14c-OpenCV2_CPP.md)
 
+PCL
+* [PCL and ROS](/Notes/Phase_1/13-ROSPCL.md)
+
