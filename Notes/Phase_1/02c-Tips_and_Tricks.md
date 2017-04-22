@@ -11,4 +11,16 @@ The following is a collection of useful tips and tricks that would help speed up
 Byobu, Tmux, Screen
  
 
+## Using Bash Aliases
+[~/.bash_aliases](/Setup/.bash_aliases)  
+[~/.rosrc](/Setup/.rosrc)  
+
+at bottom of .bashrc:
+```bash
+if [ -f ~/.rosrc ]; then
+  . ~/.rosrc
+fi
+```
+
+
 [Return to the main README page](/README.md)
