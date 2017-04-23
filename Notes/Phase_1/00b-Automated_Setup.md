@@ -1,4 +1,4 @@
-## Automated Setup
+## Automated Environment Setup
 This tool sets up the `turtlebot-houston` environment so that the tutorials can run without setup. It assumes that the [ROS setup](/Notes/Phase_1/02-Master_Setup.md) has been completed.  
 
 ## Installation
