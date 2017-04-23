@@ -10,7 +10,7 @@
 # Backup Files
 ###
 
-. "$_dabit_dir/Setup/automated/backup.sh"
+. "$_dabit_dir/Setup/automated/backup.sh" "mv"
 
 ###
 # Workspace Setup

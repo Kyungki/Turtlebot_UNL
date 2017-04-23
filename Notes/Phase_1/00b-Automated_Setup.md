@@ -26,7 +26,7 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
     1. `dabit-setup-utility install`
         * This code requires some interaction, please follow along in the terminal
         * This may take a while as it is getting all the dependencies and building all the code
-        * This code moves the existing `~/catkin_ws` and `~/workspace` to `~/old_workspace`
+        * This code moves the existing `~/catkin_ws` and `~/workspace` to `~/backup/old_workspace_DD-MM-YY_hh-mm-ss`
     2. On the **Master** Computer, set your *MASTER_IP*:
         * `change_master IP_OF_TURTLEBOT`
 4. Test a code example:
@@ -57,3 +57,8 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
 
 ## Running Wanderer Code:
 **WORK-IN-PROGRESS**
+
+## TROUBLESHOOTING:
+1. *rqt* applications don't run
+    * I.E. `rqt_image_view` doesn't run
+    * `sudo apt remove python-qt4`

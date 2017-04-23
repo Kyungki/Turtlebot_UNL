@@ -1,7 +1,8 @@
 #!/bin/bash
 # Write our program to bash alias
 if [ -z "$DABIT_DIR" ]; then
-    DABIT_DIR=$(dirname $(readlink -f $0))"/../.."
+    #DABIT_DIR=$(dirname $(readlink -f $0))"/../.."
+    DABIT_DIR="$HOME/turtlebot-houston"
 fi
 cp "$DABIT_DIR/Setup/.dabit_aliases" ~/.dabit_aliases
 cp "$DABIT_DIR/Setup/.rosrc" ~/.rosrc

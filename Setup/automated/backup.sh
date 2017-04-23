@@ -29,7 +29,7 @@ __backup_workspace(){
   if [[ "$1" = "mv" ]]; then
     mv -v {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
   else
-    cp -v {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
+    cp -rv {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
   fi
 
   # Copy bashrc to backup folder
