@@ -5,7 +5,6 @@
 ###
 
 . "$DABIT_DIR/Setup/automated/definitions.sh"
-_PWD=$(pwd)
 
 ###
 # Backup Files
@@ -78,7 +77,10 @@ __install_arduino_ide(){
   cd "$_tmp_dir"
   tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
   cd "$_arduino_dir/arduino*"
-  echo ". install.sh"
+  . install.sh
+  mkdir -p "$_user_dir/Arduino/libraries"
+  cd "$_user_dir/Arduino/libraries"
+  rosrun rosserial_arduino make_libraries.py .
 }
 
 echo "Installing Arduino IDE"
@@ -112,7 +114,7 @@ __build_ws
 ###
 
 __run_checks(){
-  echo "run checks"
+  echo "Checks not implemented yet"
 }
 
 echo "Running Checks and Tests"

@@ -23,6 +23,7 @@ _catkin_ws_dir="$_user_dir/$_catkin_ws"
 _workspace_dir="$_user_dir/$_workspace"
 _tmp_dir="$_user_dir/$_tmp"
 _arduino_dir="$_user_dir/Arduino"
+_pwd=$(pwd)
 
 _rosrc_dir="$_user_dir/$_rosrc"
 _aliases_dir="$_user_dir/$_aliases"

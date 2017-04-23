@@ -3,7 +3,7 @@
 if [ -z "$DABIT_DIR" ]; then
     DABIT_DIR=$(dirname $(readlink -f $0))"/../.."
 fi
-cp "$DABIT_DIR/Setup/.bash_aliases" ~/.dabit_aliases
+cp "$DABIT_DIR/Setup/.dabit_aliases" ~/.dabit_aliases
 cp "$DABIT_DIR/Setup/.rosrc" ~/.rosrc
 cp ~/.bashrc ~/.bashrc_backup
 
