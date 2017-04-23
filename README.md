@@ -1,6 +1,6 @@
 # Turtlebot Tutorials [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/dabit-industries/turtlebot-houston)
 
-Bypass the setup instructions in the tutorial with the [Automated Setup](/Notes/Phase_1/00b-Automated_Setup.md)  
+Bypass the environment setup instructions in the tutorial with the [Automated Setup](/Notes/Phase_1/00b-Automated_Setup.md)  
 Checkout the [Turtlebot Code and Setup Files](/Setup)  
 
 ROS 

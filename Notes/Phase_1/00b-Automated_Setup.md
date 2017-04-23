@@ -1,9 +1,8 @@
-## Automated Setup
-This tool is meant to automate all the tutorials.  
-This is only for use if you want to jump right into using the code without following any tutorials and learning any background. 
+## Automated Environment Setup
+This tool sets up the `turtlebot-houston` environment so that the tutorials can run without setup. It assumes that the [ROS setup](/Notes/Phase_1/02-Master_Setup.md) has been completed.  
 
 ## Installation
-Simply use [git](http://rogerdudler.github.io/git-guide/
+Use [git](http://rogerdudler.github.io/git-guide/
 ) to copy this entire repository onto your *Turtlebot* and *Master* computer and follow the other commands:
 ```bash
 git clone --recursive https://github.com/dabit-industries/turtlebot-houston ~/turtlebot-houston
