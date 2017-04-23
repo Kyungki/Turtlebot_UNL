@@ -1,8 +1,5 @@
-# Source the ROS environment
-source /opt/ros/kinetic/setup.bash
-
 # Set the MASTER_IP here
-export MASTER_IP=127.0.0.1
+export MASTER_IP=$(get_ip)
 
 # Set TURTLEBOT parameters
 export TURTLEBOT_BASE=kobuki

@@ -11,7 +11,7 @@ function get_ip() {
             fi
         done
         if [ -z $1 ]; then
-            echo ${hostnames[0]}
+            echo "${hostnames[0]}"
         elif [ $1 = "ipv4" ]; then
             if [ -n "$addr_ipv4" ]; then
                 echo "$addr_ipv4"
@@ -30,9 +30,53 @@ function get_ip() {
 alias get_ip=get_ip
 
 function change_master(){
-    OLD_MASTER_IP=$MASTER_IP
-    sed -i '/MASTER_IP=/c\export MASTER_IP=$1' ~/.rosrc
-    . ~/.rosrc
-    echo "Master changed from $OLD_MASTER_IP to $MASTER_IP"
+    NEW_MASTER="$1"
+    if [ -z "$NEW_MASTER" ]; then
+        echo "Current Master: $MASTER_IP"
+    else
+				OLD_MASTER_IP="$MASTER_IP"
+				sed -i '/MASTER_IP=/c\export MASTER_IP='${NEW_MASTER} ~/.rosrc
+				. ~/.rosrc
+				echo "Master changed from $OLD_MASTER_IP to $MASTER_IP"
+    fi
+		. ~/.rosrc
 }
 alias change_master=change_master
+
+function confirm() {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            return 0
+            ;;
+        *)
+            return 1 
+            ;;
+    esac
+}
+alias confirm=confirm
+    
+function dabit-setup-utility(){
+    if [ -z $1 ]; then
+        echo "Help"
+    elif [ $1 == "install" ]; then
+        confirm "Going to install. Are you sure? [y/N]" && . "$DABIT_DIR/Setup/automated/install.sh"
+    elif [ $1 == "update" ]; then
+        confirm "Updating. Are you sure? [y/N]" && . "$DABIT_DIR/Setup/automated/update.sh"
+    elif [ $1 == "reset" ]; then
+        confirm "Resetting. Are you sure [y/N]" && . "$DABIT_DIR/Setup/automated/reset.sh"
+    elif [ $1 == "backup" ]; then
+        . "$DABIT_DIR/Setup/automated/backup.sh"
+    elif [ $1 == "test" ]; then
+        echo "Environment setup successful"
+        echo ""
+        echo "Please run the following commands:"
+        echo "  dabit-setup-utility install"
+    else
+        echo "invalid command"
+        echo "help"
+    fi
+}
+alias dabit-setup-utility=dabit-setup-utility
+
