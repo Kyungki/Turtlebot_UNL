@@ -61,11 +61,11 @@ function dabit-setup-utility(){
     if [ -z $1 ]; then
         echo "Help"
     elif [ $1 == "install" ]; then
-        confirm "Going to install. Are you sure? [y/N]" && . $DABIT_DIR/automated/install.sh
+        confirm "Going to install. Are you sure? [y/N]" && . $DABIT_DIR/install.sh
     elif [ $1 == "update" ]; then
-        confirm "Updating. Are you sure? [y/N]" && . $DABIT_DIR/automated/update.sh
+        confirm "Updating. Are you sure? [y/N]" && . $DABIT_DIR/update.sh
     elif [ $1 == "reset" ]; then
-        confirm "Resetting. Are you sure [y/N]" && . $DABIT_DIR/automated/reset.sh
+        confirm "Resetting. Are you sure [y/N]" && . $DABIT_DIR/reset.sh
     elif [ $1 == "test" ]; then
         echo "Environment setup successful"
     else
