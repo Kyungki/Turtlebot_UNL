@@ -5,6 +5,7 @@
 ###
 
 . "$DABIT_DIR/Setup/automated/definitions.sh"
+_PWD=$(pwd)
 
 ###
 # Backup Files
@@ -43,9 +44,13 @@ __make_catkin_workspace
 ###
 
 __copy_catkin_ws(){
-  for i in "${_dabit_packages[@]}"
+  for i in "${_ros_packages[@]}"
   do
     cp -rv "$_dabit_dir/Setup/catkin_ws/src/$i" "$_catkin_ws_dir/src"
+  done
+  for i in "${_workspace_packages[@]}"
+  do
+    cp -rv "$_dabit_dir/Setup/workspace/$i" "$_workspace_dir"
   done
 }
 
@@ -57,18 +62,45 @@ __copy_catkin_ws
 ###
 
 __install_dependencies(){
-  echo "install dependencies"
+  echo "Sudo is needed for installing packages"
+  sudo apt install ros-kinetic-rtabmap-ros ros-kinetic-rosserial* python-qt-binding python3-pyqt5 libopencv* libcgal-dev libcgal-qt5* -y
 }
 
 echo "Installing dependencies"
 __install_dependencies
 
 ###
+# Install Arduino IDE
+###
+
+__install_arduino_ide(){
+  wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
+  cd "$_tmp_dir"
+  tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
+  cd "$_arduino_dir/arduino*"
+  echo ". install.sh"
+}
+
+echo "Installing Arduino IDE"
+__install_arduino_ide
+
+###
 # Build Packages
 ###
 
 __build_ws(){
-  echo "build workspace"
+  # Build workspace stuff
+  for i in "${_workspace_install_packages[@]}"
+  do
+    cd "$_workspace_dir/$i"
+    mkdir "build"
+    cd "build"
+    cmake ".."
+    make
+    sudo make install
+  done
+   
+  catkin_make --directory "$_catkin_ws_dir"
 }
 
 echo "Building Workspace"
@@ -86,5 +118,6 @@ __run_checks(){
 echo "Running Checks and Tests"
 __run_checks
 
-
+cd $_PWD
+. ~/.bashrc
 echo "Installation Complete"

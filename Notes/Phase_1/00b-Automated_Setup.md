@@ -27,15 +27,15 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
         * This code requires some interaction, please follow along in the terminal
         * This may take a while as it is getting all the dependencies and building all the code
         * This code moves the existing `~/catkin_ws` and `~/workspace` to `~/old_workspace`
-        
+    2. On the **Master** Computer, set your *MASTER_IP*:
+        * `change_master IP_OF_TURTLEBOT`
 4. Test a code example:
     1. In a new terminal:
         * type: `roslaunch turtlebot_bringup minimal.launch`
     2. In a new terminal:
-        * type: `roslaunch turtlebot_houston test.launch`
+        * type: `rosrun turtlebot_houston roscpp_hello_world`
         * You should see the following in your terminal:
         
             ```
-            // Everything checks out
+            [ INFO] [1492930878.699859775]: Hello from ROS node /roscpp_example
             ```
-    3. In the same terminal, 

@@ -39,6 +39,7 @@ function change_master(){
 				. ~/.rosrc
 				echo "Master changed from $OLD_MASTER_IP to $MASTER_IP"
     fi
+		. ~/.rosrc
 }
 alias change_master=change_master
 
