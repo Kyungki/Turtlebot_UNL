@@ -1,8 +1,8 @@
 ## Automated Setup
-This tool setups the environment in which the tools run. It assumes that the [laptop setup](/Notes/Phase_1/02-Master_Setup.md) has been completed.  
+This tool sets up the `turtlebot-houston` environment so that the tutorials can run without setup. It assumes that the [laptop setup](/Notes/Phase_1/02-Master_Setup.md) has been completed.  
 
 ## Installation
-Simply use [git](http://rogerdudler.github.io/git-guide/
+Use [git](http://rogerdudler.github.io/git-guide/
 ) to copy this entire repository onto your *Turtlebot* and *Master* computer and follow the other commands:
 ```bash
 git clone --recursive https://github.com/dabit-industries/turtlebot-houston ~/turtlebot-houston
