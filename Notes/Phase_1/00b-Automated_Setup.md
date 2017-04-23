@@ -1,6 +1,5 @@
 ## Automated Setup
-This tool is meant to automate all the tutorials.  
-This is only for use if you want to jump right into using the code without following any tutorials and learning any background. 
+This tool setups the environment in which the tools run. It assumes that the [laptop setup](/Notes/Phase_1/02-Master_Setup.md) has been completed.  
 
 ## Installation
 Simply use [git](http://rogerdudler.github.io/git-guide/
