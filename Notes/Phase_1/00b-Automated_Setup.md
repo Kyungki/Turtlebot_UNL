@@ -43,17 +43,22 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
 ## Running ROSPY Sample Code:
 * `rosrun turtlebot_houston rospy_hello_world.py`
 * `rosrun turtlebot_houston rospy_opencv.py`
+    * You need to run `roslaunch turtlebot_bringup 3dsensor.launch` before running this code
 * `rosrun turtlebot_houston rospy_example_class`
 
 ## Running ROSCPP Sample Code:
 * `rosrun turtlebot_houston roscpp_hello_world`
 * `rosrun turtlebot_houston roscpp_opencv`
+    * You need to run `roslaunch turtlebot_bringup 3dsensor.launch` before running this code
 * `rosrun turtlebot_houston roscpp_pcl_example`
 * `rosrun turtlebot_houston roscpp_publisher`
 * `rosrun turtlebot_houston roscpp_subscriber`
 
 ## Running GUI Code:
 1. `rosrun rqt_turtlebot_slam rqt_turtlebot_slam`
+
+## Running ROS Arduino:
+1. `roslaunch turtlebot_houston arduino.launch`
 
 ## Running Wanderer Code:
 **WORK-IN-PROGRESS**
