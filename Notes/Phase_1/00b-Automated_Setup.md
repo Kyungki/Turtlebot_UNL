@@ -17,7 +17,7 @@ git pull
 
 ## Setup
 These commands are to be run on both the **Master** and **Turtlebot** computer
-1. CD Into the repository:
+1. On the command line, navigate to the repository folder:
     1. `cd ~/turtlebot-houston`
 2. Run the environment setup program:
     1. `bash turtlebot-houston/Setup/automated/automate.sh`
