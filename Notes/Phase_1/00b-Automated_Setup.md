@@ -9,15 +9,12 @@ Simply clone this entire repository onto your *Turtlebot* and *Master* computer 
 2. Clone this entire repository:
     1. `git clone --recursive https://github.com/dabit-industries/turtlebot-houston ~/Dabit/turtlebot-houston`
 
-## Master Setup
-
-
-## Turtlebot Setup
-These commands are to be run on the **Turtlebot** computer
+## Setup
+These commands are to be run on both the **Master** and **Turtlebot** computer
 1. CD Into the repository:
     1. `cd ~/Dabit/turtlebot-houston`
 2. Run the environment setup program:
-    1. `bash ~/Dabit/turtlebot-houston/Setup/automated/turtlebot.sh`
+    1. `bash ~/Dabit/turtlebot-houston/Setup/automated/automate.sh`
         * You should see: `Environment setup successful`
 3. Run our utility to check, copy, and compile all the code:
     1. `dabit-setup-utility install`
