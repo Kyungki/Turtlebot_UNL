@@ -47,11 +47,10 @@ function confirm() {
     read -r -p "${1:-Are you sure? [y/N]} " response
     case "$response" in
         [yY][eE][sS]|[yY])
-            true
+            return 0
             ;;
         *)
-            false
-            return 
+            return 1 
             ;;
     esac
 }
@@ -61,13 +60,17 @@ function dabit-setup-utility(){
     if [ -z $1 ]; then
         echo "Help"
     elif [ $1 == "install" ]; then
-        confirm "Going to install. Are you sure? [y/N]" && . $DABIT_DIR/install.sh
+        confirm "Going to install. Are you sure? [y/N]" && . $DABIT_DIR/Setup/automated/install.sh
     elif [ $1 == "update" ]; then
-        confirm "Updating. Are you sure? [y/N]" && . $DABIT_DIR/update.sh
+        confirm "Updating. Are you sure? [y/N]" && . $DABIT_DIR/Setup/automated/update.sh
     elif [ $1 == "reset" ]; then
-        confirm "Resetting. Are you sure [y/N]" && . $DABIT_DIR/reset.sh
+        confirm "Resetting. Are you sure [y/N]" && . $DABIT_DIR/Setup/automated/reset.sh
     elif [ $1 == "test" ]; then
         echo "Environment setup successful"
+        echo ""
+        echo "Please run the following commands:"
+        echo "  source ~/.bashrc"
+        echo "  dabit-setup-utility install"
     else
         echo "invalid command"
         echo "help"

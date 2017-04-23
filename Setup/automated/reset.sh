@@ -1,5 +1,20 @@
 #!/bin/bash
-answer=confirm "Moving all working files to ~/old_workspace. Are you sure? [y/N]"
-if [ answer -eq 1]; then
-  echo "True"
+
+###
+# Define definitions
+###
+
+. "$DABIT_DIR/Setup/automated/definitions.sh"
+
+###
+# Reset Files
+###
+
+confirm "Resetting Workspace. Are you sure? [y/N]"
+if [[ "$?" -eq 0 ]]; then
+  . "$_dabit_dir/Setup/automated/backup.sh" "mv"
+  . "$_dabit_dir/Setup/automated/automate.sh"
 fi
+
+
+echo "RESET COMPLETE"
