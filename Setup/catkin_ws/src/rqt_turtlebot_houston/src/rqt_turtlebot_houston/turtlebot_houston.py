@@ -10,12 +10,12 @@ from python_qt_binding.QtCore import Qt, qWarning, Signal
 from python_qt_binding.QtGui import QIcon
 from python_qt_binding.QtWidgets import QFileDialog, QGraphicsView, QWidget
 
-class turtlebot_slam(Plugin):
+class turtlebot_houston(Plugin):
 
     def __init__(self, context):
-        super(turtlebot_slam, self).__init__(context)
+        super(turtlebot_houston, self).__init__(context)
         # Give QObjects reasonable names
-        self.setObjectName('turtlebot_slam')
+        self.setObjectName('turtlebot_houston')
         rp = rospkg.RosPack()
 
         # Process standalone plugin command-line arguments
@@ -34,11 +34,11 @@ class turtlebot_slam(Plugin):
         self._widget = QWidget()
         # Get path to UI file which is a sibling of this file
         # in this example the .ui and .py file are in the same folder
-        ui_file = os.path.join(rp.get_path('rqt_turtlebot_slam'), 'resource', 'turtlebot_slam.ui')
+        ui_file = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_houston.ui')
         # Extend the widget with all attributes and children from UI file
         loadUi(ui_file, self._widget)
         # Give QObjects reasonable names
-        self._widget.setObjectName('turtlebot_slamUi')
+        self._widget.setObjectName('turtlebot_houstonUi')
 
         self._widget.loadfile.setIcon(QIcon.fromTheme('document-open'))
         self._widget.savefile.setIcon(QIcon.fromTheme('document-save'))
@@ -116,8 +116,8 @@ class turtlebot_slam(Plugin):
             self._widget.status_text.setText("Turtlebot Stopped")
         else:
             self.ip_of_turtlebot = self._widget.ip_of_turtlebot.toPlainText()
-            self.tbot_launch = subprocess.Popen("exec rosrun rqt_turtlebot_slam start_turtlebot "+self.ip_of_turtlebot, stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-            #self.tbot_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_slam turtlebot.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
+            self.tbot_launch = subprocess.Popen("exec rosrun rqt_turtlebot_houston start_turtlebot "+self.ip_of_turtlebot, stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
+            #self.tbot_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston turtlebot.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
             self.tbot_launched = True
             self._widget.slam_algorithm.setEnabled(True)
             self._widget.wanderer.setEnabled(True)
@@ -128,15 +128,15 @@ class turtlebot_slam(Plugin):
         print "Start Tbot Clicked"
 
     def _handle_slam_algorithm_changed(self, package=None):
-        #self.slam_algorithm_launch = subprocess.Popen("exec rosrun rqt_turtlebot_slam slam_algorithm", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
+        #self.slam_algorithm_launch = subprocess.Popen("exec rosrun rqt_turtlebot_houston slam_algorithm", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
         print "Slam Algorithm Changed:" + package
 
     def _handle_wanderer_clicked(self, checked):
-        self.wanderer_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_slam wanderer.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
+        self.wanderer_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston wanderer.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
         print "RTabMap Clicked"
 
     def _handle_keyboard_teleop_clicked(self, checked):
-        #self.keyboard_teleop_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_slam orb_slam.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
+        #self.keyboard_teleop_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston orb_slam.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
         print "Orb_Slam Clicked"
 
     def _handle_loadfile_clicked(self, checked):

@@ -2,9 +2,9 @@
 
 import sys
 
-from rqt_turtlebot_slam.turtlebot_slam import turtlebot_slam
+from rqt_turtlebot_houston.turtlebot_houston import turtlebot_houston
 from rqt_gui.main import Main
 
-plugin = 'rqt_turtlebot_slam'
+plugin = 'rqt_turtlebot_houston'
 main = Main(filename=plugin)
 sys.exit(main.main(standalone=plugin))
