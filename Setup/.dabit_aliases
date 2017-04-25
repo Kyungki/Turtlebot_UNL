@@ -30,12 +30,11 @@ function get_ip() {
 alias get_ip=get_ip
 
 function change_master(){
-    NEW_MASTER="$1"
-    if [ -z "$NEW_MASTER" ]; then
+    if [ -z "$1" ]; then
         echo "Current Master: $MASTER_IP"
     else
 				OLD_MASTER_IP="$MASTER_IP"
-				sed -i '/MASTER_IP=/c\export MASTER_IP='${NEW_MASTER} ~/.rosrc
+				sed -i '/MASTER_IP=/c\export MASTER_IP='"$1" ~/.rosrc
 				. ~/.rosrc
 				echo "Master changed from $OLD_MASTER_IP to $MASTER_IP"
     fi

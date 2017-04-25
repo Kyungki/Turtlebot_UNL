@@ -5,7 +5,7 @@
       "keys": {
         "running-plugins": {
           "type": "repr", 
-          "repr": "{u'kobuki_dashboard/KobukiDashboard': [1], u'rqt_turtlebot_slam/Turtlebot Slam': [1], u'rqt_rviz/RViz': [1]}"
+          "repr": "{u'kobuki_dashboard/KobukiDashboard': [1], u'rqt_turtlebot_houston/Turtlebot Slam': [1], u'rqt_rviz/RViz': [1]}"
         }
       }, 
       "groups": {
@@ -31,10 +31,10 @@
             }
           }
         }, 
-        "plugin__rqt_turtlebot_slam__Turtlebot Slam__1": {
+        "plugin__rqt_turtlebot_houston__Turtlebot Slam__1": {
           "keys": {}, 
           "groups": {
-            "dock_widget__turtlebot_slamUi": {
+            "dock_widget__turtlebot_houstonUi": {
               "keys": {
                 "dockable": {
                   "type": "repr", 

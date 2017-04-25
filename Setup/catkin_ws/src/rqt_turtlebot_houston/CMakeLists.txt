@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(rqt_turtlebot_slam)
+project(rqt_turtlebot_houston)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  rqt_gui_py
 )
 
 ## System dependencies are found with CMake's conventions
@@ -80,7 +79,7 @@ catkin_python_setup()
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES rqt_turtlebot_slam
+#  LIBRARIES rqt_turtlebot_houston
 #  CATKIN_DEPENDS rospy rqt_gui_py
 #  DEPENDS system_lib
 )
@@ -97,19 +96,19 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(rqt_turtlebot_slam
-#   src/${PROJECT_NAME}/rqt_turtlebot_slam.cpp
+# add_library(rqt_turtlebot_houston
+#   src/${PROJECT_NAME}/rqt_turtlebot_houston.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(rqt_turtlebot_slam_node src/rqt_turtlebot_slam_node.cpp)
+# add_executable(rqt_turtlebot_houston_node src/rqt_turtlebot_houston_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(rqt_turtlebot_slam_node rqt_turtlebot_slam_generate_messages_cpp)
+# add_dependencies(rqt_turtlebot_houston_node rqt_turtlebot_houston_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(rqt_turtlebot_slam_node
+# target_link_libraries(rqt_turtlebot_houston_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -123,12 +122,12 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
-  scripts/rqt_turtlebot_slam
+  scripts/rqt_turtlebot_houston
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS rqt_turtlebot_slam rqt_turtlebot_slam_node
+# install(TARGETS rqt_turtlebot_houston rqt_turtlebot_houston_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -156,7 +155,7 @@ install(FILES
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rqt_turtlebot_slam.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rqt_turtlebot_houston.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
