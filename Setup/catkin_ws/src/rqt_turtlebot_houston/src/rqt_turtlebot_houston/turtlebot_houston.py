@@ -1,168 +1,165 @@
-import os
+#!/usr/bin/env python
+
+import roslib; roslib.load_manifest('rviz_python_tutorial')
 import rospkg
 import rospy
-import signal
-import subprocess
+import rviz
 
-from qt_gui.plugin import Plugin
-from python_qt_binding import loadUi
-from python_qt_binding.QtCore import Qt, qWarning, Signal
-from python_qt_binding.QtGui import QIcon
-from python_qt_binding.QtWidgets import QFileDialog, QGraphicsView, QWidget
+import sys
+import os
 
-class turtlebot_houston(Plugin):
+from python_qt_binding.QtGui import *
+from python_qt_binding.QtCore import *
+from python_qt_binding.QtWidgets import *
 
-    def __init__(self, context):
-        super(turtlebot_houston, self).__init__(context)
-        # Give QObjects reasonable names
+
+class turtlebot_houston( QWidget ):
+
+    def __init__(self):
+        QWidget.__init__(self)
+
         self.setObjectName('turtlebot_houston')
         rp = rospkg.RosPack()
 
-        # Process standalone plugin command-line arguments
-        from argparse import ArgumentParser
-        parser = ArgumentParser()
-        # Add argument(s) to the parser.
-        parser.add_argument("-q", "--quiet", action="store_true",
-                      dest="quiet",
-                      help="Put plugin in silent mode")
-        args, unknowns = parser.parse_known_args(context.argv())
-        if not args.quiet:
-            print 'arguments: ', args
-            print 'unknowns: ', unknowns
+        self.frame = rviz.VisualizationFrame()
+        self.frame.setSplashPath( "" )
+        self.frame.initialize()
+        
+        file_rviz_config = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_houston.rviz')
+        file_icon_window = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_logo.png')
+        file_icon_save = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'document-save.png')
+        file_icon_open = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'document-open.png')
 
-        # Create QWidget
-        self._widget = QWidget()
-        # Get path to UI file which is a sibling of this file
-        # in this example the .ui and .py file are in the same folder
-        ui_file = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_houston.ui')
-        # Extend the widget with all attributes and children from UI file
-        loadUi(ui_file, self._widget)
-        # Give QObjects reasonable names
-        self._widget.setObjectName('turtlebot_houstonUi')
+        reader = rviz.YamlConfigReader()
+        config = rviz.Config()
+        reader.readFile( config, file_rviz_config )
+        self.frame.load( config )
 
-        self._widget.loadfile.setIcon(QIcon.fromTheme('document-open'))
-        self._widget.savefile.setIcon(QIcon.fromTheme('document-save'))
+        self.setWindowTitle( "Turtlebot GUI" )
+        self.setWindowIcon(QIcon(file_icon_window))
 
-        self._widget.start_tbot.clicked[bool].connect(self._handle_start_tbot_clicked)
-        self._widget.slam_algorithm.currentIndexChanged[str].connect(self._handle_slam_algorithm_changed)
-        print type(self._widget.slam_algorithm)
-        self._widget.wanderer.clicked[bool].connect(self._handle_wanderer_clicked)
-        self._widget.keyboard_teleop.clicked[bool].connect(self._handle_keyboard_teleop_clicked)
-        self._widget.loadfile.clicked[bool].connect(self._handle_loadfile_clicked)
-        self._widget.savefile.clicked[bool].connect(self._handle_savefile_clicked)
+        self.frame.setMenuBar( None )
+        self.frame.setStatusBar( None )
+        self.frame.setHideButtonVisibility( False )
 
-        self._widget.start_tbot.setEnabled(True)
-        self._widget.slam_algorithm.setEnabled(False)
-        self._widget.wanderer.setEnabled(False)
-        self._widget.keyboard_teleop.setEnabled(False)
-        self._widget.loadfile.setEnabled(False)
-        self._widget.savefile.setEnabled(False)
+        self.manager = self.frame.getManager()
 
-        self._widget.status_text.setReadOnly(True)
+        layout = QVBoxLayout()
 
-        #Booleans
+        h1_layout = QHBoxLayout()
+        h2_layout = QHBoxLayout()
+        
+        map_status_label = QLabel("No File")
+        h1_layout.addWidget(QLabel("Using Map: "))
+        h1_layout.addWidget(map_status_label)
+
+        h1_layout.addItem(QSpacerItem(1,1,QSizePolicy.Expanding, QSizePolicy.Minimum))
+        
+        self.status_turtlebot = QLabel( "Unknown" )
+#        self.status_turtlebot.setFixedWidth(100)
+        h1_layout.addWidget(QLabel("Turtlebot Status: "))
+        h1_layout.addWidget( self.status_turtlebot )
+
+        self.button_save_file = QPushButton("")
+        self.button_save_file.setIcon(QIcon(file_icon_save))
+        self.button_save_file.setFixedWidth(28)
+        self.button_save_file.clicked.connect(self.saveFile)
+        h2_layout.addWidget(self.button_save_file)
+
+        self.button_load_file = QPushButton("")
+        self.button_load_file.setIcon(QIcon(file_icon_open))
+        self.button_load_file.setFixedWidth(28)
+        self.button_load_file.clicked.connect(self.loadFile)
+        h2_layout.addWidget(self.button_load_file)
+
+        h2_layout.addItem(QSpacerItem(1,1,QSizePolicy.Expanding, QSizePolicy.Minimum))
+
+        self.button_start_turtlebot = QPushButton( "Start Turtlebot" )
+        self.button_start_turtlebot.clicked.connect( self.turtlebotStart )
+        self.button_start_turtlebot.setFixedWidth(150)
+        h2_layout.addWidget( self.button_start_turtlebot )
+        
+        self.button_stop_turtlebot = QPushButton( "Stop Turtlebot" )
+        self.button_stop_turtlebot.clicked.connect( self.turtlebotStop )
+        self.button_stop_turtlebot.setFixedWidth(150)
+        self.button_stop_turtlebot.setEnabled(False)
+        h2_layout.addWidget( self.button_stop_turtlebot )
+        
+
+        layout.addLayout( h1_layout )
+        layout.addLayout(h2_layout)
+
+        layout.addWidget( self.frame )
+        
+#        thickness_slider = QSlider( Qt.Horizontal )
+#        thickness_slider.setTracking( True )
+#        thickness_slider.setMinimum( 1 )
+#        thickness_slider.setMaximum( 1000 )
+#        thickness_slider.valueChanged.connect( self.onThicknessSliderChanged )
+#        layout.addWidget( thickness_slider )
+        
+        h_layout = QHBoxLayout()
+        
+        top_button = QPushButton( "Top View" )
+        top_button.clicked.connect( self.onTopButtonClick )
+        h_layout.addWidget( top_button )
+        
+        side_button = QPushButton( "Side View" )
+        side_button.clicked.connect( self.onSideButtonClick )
+        h_layout.addWidget( side_button )
+        
+        layout.addLayout( h_layout )
+        
+        self.setLayout( layout )
+
         self.tbot_launched = False
-        self.update_status = True
-
-        #Subprocesses
-        self.tbot_launch = None
-
-        # Show _widget.windowTitle on left-top of each plugin (when 
-        # it's set in _widget). This is useful when you open multiple 
-        # plugins at once. Also if you open multiple instances of your 
-        # plugin at once, these lines add number to make it easy to 
-        # tell from pane to pane.
-        if context.serial_number() > 1:
-            self._widget.setWindowTitle(self._widget.windowTitle() + (' (%d)' % context.serial_number()))
-        # Add widget to the user interface
-        context.add_widget(self._widget)
-
-        self.status_period = 1
-        rospy.Timer( rospy.Duration(self.status_period), self._timer_callback )
-
-        self.status_update_text = "Select a button"
-        self._widget.status_text.setText(self.status_update_text)
 
 
-    def _timer_callback(self, event):
-        self._status_update()
+#    def onThicknessSliderChanged( self, new_value ):
+#        if self.grid_display != None:
+#            self.grid_display.subProp( "Line Style" ).subProp( "Line Width" ).setValue( new_value / 1000.0 )
 
-    def _status_update(self):
-        if self.update_status:
-            #self._widget.status_text.setText(self.status_update_text)
-            self.update_status = False
-        if type(self.tbot_launch) is not type(None):
-            tbot_launch_status = self.tbot_launch.poll()
-            if tbot_launch_status is type(None):
-                self.status_update_text = "Turtlebot Started"
-                self.update_status = True
-            elif tbot_launch_status is not type(None) and not self.tbot_launched:
-                self.status_update_text = "Turtlebot Error"
-                self.update_status = True
-            else:
-                self.status_update_text = "Turtlebot Shutdown"
-                self.update_status = True
+    def onTopButtonClick( self ):
+        self.switchToView( "Top View" );
+        
+    def onSideButtonClick( self ):
+        self.switchToView( "Side View" );
 
-    def _handle_start_tbot_clicked(self, checked):
-        print type(self._widget.status_text)
-        if self.tbot_launched:
-            #os.killpg(os.getpgid(self.tbot_launch.pid), signal.SIGTERM)
-            self.tbot_launched = False
-            self._widget.slam_algorithm.setEnabled(False)
-            self._widget.wanderer.setEnabled(False)
-            self._widget.keyboard_teleop.setEnabled(False)
-            self._widget.loadfile.setEnabled(False)
-            self._widget.start_tbot.setText("Start Turtlebot")
-            self._widget.status_text.setText("Turtlebot Stopped")
-        else:
-            self.ip_of_turtlebot = self._widget.ip_of_turtlebot.toPlainText()
-            self.tbot_launch = subprocess.Popen("exec rosrun rqt_turtlebot_houston start_turtlebot "+self.ip_of_turtlebot, stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-            #self.tbot_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston turtlebot.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-            self.tbot_launched = True
-            self._widget.slam_algorithm.setEnabled(True)
-            self._widget.wanderer.setEnabled(True)
-            self._widget.keyboard_teleop.setEnabled(True)
-            self._widget.loadfile.setEnabled(True)
-            self._widget.start_tbot.setText("Stop Turtlebot")
-            self._widget.status_text.setText("Turtlebot Started")
-        print "Start Tbot Clicked"
+    def turtlebotStart(self):
+        print "Turtlebot Start"
+        self.tbot_launched = True
+        self.button_start_turtlebot.setEnabled(False)
+        self.button_stop_turtlebot.setEnabled(True)
+        self.status_turtlebot.setText("Starting")
 
-    def _handle_slam_algorithm_changed(self, package=None):
-        #self.slam_algorithm_launch = subprocess.Popen("exec rosrun rqt_turtlebot_houston slam_algorithm", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-        print "Slam Algorithm Changed:" + package
+    def turtlebotStop(self):
+        print "Turtlebot Stop"
+        self.tbot_launched = False
+        self.button_start_turtlebot.setEnabled(True)
+        self.button_stop_turtlebot.setEnabled(False)
+        self.status_turtlebot.setText("Stopping")
+    
+    def saveFile(self):
+        print "Save File"
+    
+    def loadFile(self):
+        print "Load File"
+        
+    def switchToView( self, view_name ):
+        view_man = self.manager.getViewManager()
+        for i in range( view_man.getNumViews() ):
+            if view_man.getViewAt( i ).getName() == view_name:
+                view_man.setCurrentFrom( view_man.getViewAt( i ))
+                return
+        print( "Did not find view named %s." % view_name )
 
-    def _handle_wanderer_clicked(self, checked):
-        self.wanderer_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston wanderer.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-        print "RTabMap Clicked"
+if __name__ == '__main__':
+    try:
+        app = QApplication( sys.argv )
 
-    def _handle_keyboard_teleop_clicked(self, checked):
-        #self.keyboard_teleop_launch = subprocess.Popen("exec roslaunch rqt_turtlebot_houston orb_slam.launch", stdin=subprocess.PIPE, shell=True, preexec_fn=os.setpgrp)
-        print "Orb_Slam Clicked"
-
-    def _handle_loadfile_clicked(self, checked):
-        filename = QFileDialog.getOpenFileName(self._widget, self._widget.tr('Load from File'), '.', self._widget.tr('PGM files {.pgm} (*.pgm)'))
-        self._widget.savefile.setEnabled(True)
-        print "LoadFile Clicked"
-
-    def _handle_savefile_clicked(self, checked):
-        self._widget.savefile.setEnabled(False)
-        print "SaveFile Clicked"
-
-    def shutdown_plugin(self):
-        # TODO unregister all publishers here
-        pass
-
-    def save_settings(self, plugin_settings, instance_settings):
-        # TODO save intrinsic configuration, usually using:
-        # instance_settings.set_value(k, v)
-        pass
-
-    def restore_settings(self, plugin_settings, instance_settings):
-        # TODO restore intrinsic configuration, usually using:
-        # v = instance_settings.value(k)
-        pass
-
-    #def trigger_configuration(self):
-        # Comment in to signal that the plugin has a way to configure
-        # This will enable a setting button (gear icon) in each dock widget title bar
-        # Usually used to open a modal configuration dialog
+        myviz = turtlebot_houston()
+        myviz.resize( 800, 600 )
+        myviz.show()
+        app.exec_()
+    except Exception, e:
+        print e
