@@ -37,6 +37,8 @@ rm ~/.config/ros.org/rqt_gui.ini
 ```bash
  rosrun rqt_turtlebot_slam rqt_turtlebot_slam
 ```
+
+![](Resources/00-turtlebot_houston_gui.gif)
  
 
 [Return to the main README page](/README.md)
