@@ -13,51 +13,47 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.collections as mcollections
 
-# replace with code from gui that gets in data
+def xml2pgm(xml_data, height, width):
+    name, _ = os.path.splitext(xml_data)
+    with open(xml_data, 'rt') as f:
+        tree = ET.parse(f)
 
-xml_data = 'simple_wall_geom.xml'
-name, _ = os.path.splitext(xml_data)
+    walls = []
+    for wall in tree.getroot():
+        points = wall.find("polygon").findall("point")
+        wall = np.empty((len(points),2))
+        for i, point in enumerate(points):
+            wall[i] = [point.find("X").text, point.find("Y").text] 
+        walls.append(wall)
 
-with open(xml_data, 'rt') as f:
-    tree = ET.parse(f)
+    fig, ax = plt.subplots(figsize=(height, width))
 
-walls = []
-for wall in tree.getroot():
-    w = dict()
-    w['ID'] = wall.find("ID").text
-    w['type'] = wall.find("type").text
-    w['height'] = wall.find("height").text 
-    polygon = wall.find("polygon")
-    points = polygon.findall("point")
-    #array of points
-    w['polygon'] = np.empty((len(points),3)) * np.nan
-    for i, point in enumerate(points):
-        w['polygon'][i] = [point.find(p).text
-                           for p in ["X", "Y", "Z"]]
-          
-    walls.append(w)
+    for wall in walls :
+        ax.fill(wall[:,0], wall[:,1], color='k')
 
+    ax.axis('off')
+    fig.tight_layout(pad=0)
 
+    fig.canvas.draw()
+    tab = fig.canvas.copy_from_bbox(fig.bbox).to_string_argb()
+    ncols, nrows = fig.canvas.get_width_height()
+    data = np.fromstring(tab, dtype = np.uint8).reshape(nrows, ncols, 4)
 
-#mess with figsize to figure out resolution
-fig, ax = plt.subplots()
-patches = []
-#for wall_type in df['type'].unique():
-#    walls = df[df['type'] == wall_type]
-for xyz in df['polygon']:
-    ax.fill(xyz[:,0], xyz[:,1], color='k')
+    im = Image.fromarray(data)
+    out_name = "{}.pgm".format(name)
+    im.save(out_name)
+    return out_name
 
-ax.axis('off')
-fig.tight_layout(pad=0)
-
-
-fig.canvas.draw()
-tab = fig.canvas.copy_from_bbox(fig.bbox).to_string_argb()
-ncols, nrows = fig.canvas.get_width_height()
-data = np.fromstring(tab, dtype = np.uint8).reshape(nrows, ncols, 4)
-
-
-im = Image.fromarray(data)
-im.save("{}.pgm".format(name))
-
-
+if __name__ == '__main__':
+    import sys
+    # replace with code from gui that gets in data
+    xml_data = 'simple_wall_geom.xml'
+    #mess with figsize to figure out resolution
+    height, width = (10,10)
+    """above can be replaced with following to be cmdline script:
+    import sys
+    xml_data = sys.argv[1]
+    height = sys.argv[2]
+    width = sys.argv[3]
+    """
+    xml2pgm(xml_data, height, width)
