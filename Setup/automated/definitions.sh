@@ -30,7 +30,7 @@ _aliases_dir="$_user_dir/$_aliases"
 _bashrc_dir="$_user_dir/$_bashrc"
 
 # Which Dabit Packages to install
-declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot-rqt-slam" "turtlebot_wanderer")
+declare -a _ros_packages=("apriltags" "turtlebot_houston" "rqt_turtlebot_houston" "turtlebot_wanderer")
 declare -a _workspace_packages=("apriltags_cpp")
 declare -a _workspace_install_packages=("apriltags_cpp")
 
