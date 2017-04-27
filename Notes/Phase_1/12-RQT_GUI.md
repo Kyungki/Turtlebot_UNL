@@ -12,7 +12,7 @@ git clone https://github.com/dabit-industries/turtlebot-houston
 ```
 3. Go to directory containing GUI code:
 ```bash
-cd ~/catkin_ws/src/turtlebot-houston/catkin_ws/src/turtlebot-rqt-slam
+cd ~/catkin_ws/src/rqt_turtlebot_houston
 ```
 
 4. Install dependencies
@@ -31,12 +31,14 @@ rm ~/.config/ros.org/rqt_gui.ini
 6. Source the bash files
 ```bash
  source ~/.bashrc
- source ~/catkin_ws/src/turtlebot-houston/catkin_ws/devel/setup.bash
+ source ~/catkin_ws/devel/setup.bash
  ```
 7. Run the interface
 ```bash
- rosrun rqt_turtlebot_slam rqt_turtlebot_slam
+ rosrun rqt_turtlebot_houston rqt_turtlebot_houston
 ```
+
+![](Resources/00-turtlebot_houston_gui.gif)
  
 
 [Return to the main README page](/README.md)

@@ -39,6 +39,23 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
             [ INFO] [1492930878.699859775]: Hello from ROS node /roscpp_example
             ```
 
+## Running Updates
+These commands are to be run on both the **master** and **turtlebot** computer
+1. On the command line, use our setup utility to do an update:
+    * `dabit-setup-utility update`
+2. Reset your workspace:
+    * `dabit-setup-utility reset`
+        * This code moves the existing `~/catkin_ws` and `~/workspace` to `~/backup/old_workspace_DD-MM-YY_hh-mm-ss`
+3. Install the new workspace:
+    * `dabit-setup-utility install`
+        * This code requires some interaction, please follow along in the terminal
+        * This may take a while as it is getting all the dependencies and building all the code
+        * This code moves the existing `~/catkin_ws` and `~/workspace` to `~/backup/old_workspace_DD-MM-YY_hh-mm-ss`
+4. On the Turtlebot, open a terminal and type:
+    * `roslaunch turtlebot_houston turtlebot.launch`
+5. On the Master, open a terminal and type:
+    * `rosrun rqt_turtlebot_houston rqt_turtlebot_houston`
+
 ## Running ROSPY Sample Code:
 * `rosrun turtlebot_houston rospy_hello_world.py`
 * `rosrun turtlebot_houston rospy_opencv.py`
@@ -54,7 +71,7 @@ These commands are to be run on both the **Master** and **Turtlebot** computer
 * `rosrun turtlebot_houston roscpp_subscriber`
 
 ## Running GUI Code:
-1. `rosrun rqt_turtlebot_slam rqt_turtlebot_slam`
+1. `rosrun rqt_turtlebot_houston rqt_turtlebot_houston`
 
 ## Running ROS Arduino:
 1. `roslaunch turtlebot_houston arduino.launch`
