@@ -27,13 +27,13 @@ __backup_workspace(){
 
   # Copy or move files and folders to backup folder
   if [[ "$1" = "mv" ]]; then
-    mv -v {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
+    mv -v {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir"} "$_backup_folder"
   else
-    cp -rv {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
+    cp -rv {"$_catkin_ws_dir","$_workspace_dir","$_tmp_dir"} "$_backup_folder"
   fi
 
   # Copy bashrc to backup folder
-  cp -v "$_bashrc_dir" "$_backup_folder"
+  cp -v {"$_bashrc_dir","$_rosrc_dir","$_aliases_dir"} "$_backup_folder"
 }
 
 confirm "Moving all working files to ~/old_workspace. Are you sure? [y/N]"
