@@ -16,6 +16,9 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
   pcl_conversions
   pcl_ros
+  geometry_msgs
+  nav_msgs
+message_generation
 )
 
 find_package(OpenCV 2 REQUIRED)
@@ -61,11 +64,12 @@ catkin_python_setup()
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  Trajectory.srv
+  Centroid.srv
+)
+
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -75,10 +79,13 @@ catkin_python_setup()
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  nav_msgs
+)
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -119,6 +126,7 @@ catkin_package(
                  image_transport
                  pcl_conversions
                  pcl_ros
+								 message_runtime
 )
 
 ###########
