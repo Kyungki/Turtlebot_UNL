@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Turtlebot
+Name=Master
 Comment=
 Exec=dabit-launcher master
 Icon=
