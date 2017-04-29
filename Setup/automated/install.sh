@@ -62,7 +62,7 @@ __copy_catkin_ws
 
 __install_dependencies(){
   echo "Sudo is needed for installing packages"
-  sudo apt install ros-kinetic-rtabmap-ros ros-kinetic-rosserial* python-qt-binding python3-pyqt5 libopencv* libcgal-dev libcgal-qt5* -y
+  sudo apt install ${_apt_packages[@]} -y
 }
 
 echo "Installing dependencies"
