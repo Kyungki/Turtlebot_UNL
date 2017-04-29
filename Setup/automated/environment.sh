@@ -27,6 +27,8 @@ chmod 600 "${HOME}/.ssh/turtlebot_rsa"
 chmod 644 "${HOME}/.ssh/turtlebot_rsa.pub"
 cat ${HOME}/.ssh/turtlebot_rsa.pub >> ${HOME}/.ssh/authorized_keys
 
+cp -r "$DABIT_DIR/Setup/automated/Desktop/." ${HOME}/Desktop
+
 cp "$DABIT_DIR/Setup/.rosrc" ${HOME}/.rosrc
 cp ${HOME}/.bashrc ${HOME}/.bashrc_backup
 
