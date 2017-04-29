@@ -73,14 +73,17 @@ __install_dependencies
 ###
 
 __install_arduino_ide(){
-  wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
-  cd "$_tmp_dir"
-  tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
-  cd "$_arduino_dir/arduino*"
-  . install.sh
-  mkdir -p "$_user_dir/Arduino/libraries"
-  cd "$_user_dir/Arduino/libraries"
-  rosrun rosserial_arduino make_libraries.py .
+  arduino_folder=$(ls $_arduino_dir 2> /dev/null | wc -l)
+  if [ **"$arduino_folder" != "0"** ]
+    wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
+    cd "$_tmp_dir"
+    tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
+    cd "$_arduino_dir/arduino*"
+    . install.sh
+    mkdir -p "$_user_dir/Arduino/libraries"
+    cd "$_user_dir/Arduino/libraries"
+    rosrun rosserial_arduino make_libraries.py .
+  fi
 }
 
 echo "Installing Arduino IDE"
