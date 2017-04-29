@@ -62,7 +62,7 @@ __copy_catkin_ws
 
 __install_dependencies(){
   echo "Sudo is needed for installing packages"
-  sudo apt install ros-kinetic-rtabmap-ros ros-kinetic-rosserial* python-qt-binding python3-pyqt5 libopencv* libcgal-dev libcgal-qt5* -y
+  sudo apt install ${_apt_packages[@]} -y
 }
 
 echo "Installing dependencies"
@@ -73,14 +73,17 @@ __install_dependencies
 ###
 
 __install_arduino_ide(){
-  wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
-  cd "$_tmp_dir"
-  tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
-  cd "$_arduino_dir/arduino*"
-  . install.sh
-  mkdir -p "$_user_dir/Arduino/libraries"
-  cd "$_user_dir/Arduino/libraries"
-  rosrun rosserial_arduino make_libraries.py .
+  arduino_folder = ${_arduino_tar%-linux64.tar.xz}
+  if [ -z "$arduino_dir/$arduino_folder" ]; then
+    wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
+    cd "$_tmp_dir"
+    tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
+    cd "$_arduino_dir/arduino*"
+    . install.sh
+    mkdir -p "$_user_dir/Arduino/libraries"
+    cd "$_user_dir/Arduino/libraries"
+    rosrun rosserial_arduino make_libraries.py .
+  fi
 }
 
 echo "Installing Arduino IDE"

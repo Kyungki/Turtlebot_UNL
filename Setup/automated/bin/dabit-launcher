@@ -1,0 +1,43 @@
+#!/bin/bash
+. ~/.bashrc
+. ~/.rosrc
+. /opt/ros/kinetic/setup.bash
+. ~/catkin_ws/devel/setup.bash
+
+function dabit-launcher(){
+  if [ "$1" == "turtlebot" ]; then
+      echo "IP_OF_TURTLEBOT: $MASTER_IP"
+      confirm "Press any key to continue"
+      if [ -f ~/.wanderer_pid ]; then
+          cat ~/.wanderer_pid | xargs kill -9
+          rm ~/.wanderer_pid
+      fi
+      roslaunch turtlebot_houston turtlebot.launch
+			confirm "Press any key to exit"
+  elif [ "$1" == "master" ]; then
+      echo "Turtlebot IP is: $MASTER_IP"
+      confirm "Is this correct? [y/N]"
+      if [[ "$?" -eq 0 ]]; then
+          rosrun rqt_turtlebot_houston rqt_turtlebot_houston
+          confirm "Press any key to exit"
+      else
+          echo "Please type the following commands:"
+          echo "   change_master IP_OF_TURTLEBOT"
+          echo "   source ~/.bashrc"
+      fi
+  elif [ "$1" == "wanderer" ]; then
+      echo "Wanderer"
+      if [ ! -f ~/.wanderer_pid ]; then
+          nohup roslaunch turtlebot_houston wanderer.launch > /dev/null 2>&1 &
+          echo $! > ~/.wanderer_pid
+          cat ~/.wanderer_pid
+      else
+          echo "Wanderer Exists! Killing"
+          cat ~/.wanderer_pid | xargs kill -9
+          rm ~/.wanderer_pid
+      fi
+  else
+      echo "$1 Unknown"
+  fi
+}
+dabit-launcher $1
