@@ -25,6 +25,7 @@ chown ${USER} "${HOME}/.ssh/turtlebot_rsa"
 chown ${USER} "${HOME}/.ssh/turtlebot_rsa.pub"
 chmod 600 "${HOME}/.ssh/turtlebot_rsa"
 chmod 644 "${HOME}/.ssh/turtlebot_rsa.pub"
+cat {$HOME}/.ssh/turtlebot_rsa.pub >> ${HOME}/.ssh/authorized_keys
 
 cp "$DABIT_DIR/Setup/.rosrc" ${HOME}/.rosrc
 cp ${HOME}/.bashrc ${HOME}/.bashrc_backup
