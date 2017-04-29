@@ -19,7 +19,13 @@ export DABIT_DIR="$DABIT_DIR"
 
 echo "Password is needed to copy executable files"
 sudo cp -r "$DABIT_DIR/Setup/automated/bin/." /usr/local/bin
+
 cp -r "$DABIT_DIR/Setup/automated/ssh/." ${HOME}/.ssh
+chown ${USER} "${HOME}/.ssh/turtlebot_rsa"
+chown ${USER} "${HOME}/.ssh/turtlebot_rsa.pub"
+chmod 600 "${HOME}/.ssh/turtlebot_rsa"
+chmod 644 "${HOME}/.ssh/turtlebot_rsa.pub"
+
 cp "$DABIT_DIR/Setup/.rosrc" ${HOME}/.rosrc
 cp ${HOME}/.bashrc ${HOME}/.bashrc_backup
 
