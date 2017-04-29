@@ -19,6 +19,11 @@ from sensor_msgs.msg import Image
 
 from apriltags.msg import AprilTagDetections 
 
+from subprocess import Popen, PIPE
+
+global master_ip
+master_ip = Popen(["change_master"], stdout=PIPE).stdout.read().strip('\n').strip('Current master: ')
+
 class rospy_thread(QThread):
     def __init__(self):
         QThread.__init__(self)
@@ -393,13 +398,16 @@ class turtlebot_houston(QWidget):
         print "Load File"
 
     def comboCV(self, package=None):
+        # To-Do: Requires a new widget to show image in separate window
         print "CV: {}".format(self.opencv_list[package])
 
     def comboPCL(self, package=None):
+        # To-Do: Requires a new widget to show image in separate window
         print "Segment: {}".format(self.segmentation_list[package])
 
     def wandererStart(self):
-        print "Wanderer Start"
+        shell = Popen(["ssh","turtlebot@{}".format(master_ip),"dabit-launcher","wanderer"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
+        print shell.stdout.read()
 
     def baggingStart(self):
         print "Bagging Start"
