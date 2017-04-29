@@ -1,0 +1,29 @@
+#!/bin/bash
+. ~/.bashrc
+. ~/.rosrc
+. /opt/ros/kinetic/setup.bash
+. ~/catkin_ws/devel/setup.bash
+
+function dabit-launcher(){
+  if [ "$1" == "turtlebot" ]; then
+      echo "IP_OF_TURTLEBOT: $MASTER_IP"
+      confirm "Press any key to continue"
+      roslaunch turtlebot_houston turtlebot.launch
+			confirm "Press any key to exit"
+  elif [ "$1" == "master" ]; then
+      echo "Turtlebot IP is: $MASTER_IP"
+      confirm "Is this correct? [y/N]"
+      if [[ "$?" -eq 0 ]]; then
+          rosrun rqt_turtlebot_houston rqt_turtlebot_houston
+          confirm "Press any key to exit"
+      else
+          echo "Please type the following commands:"
+          echo "   change_master IP_OF_TURTLEBOT"
+          echo "   source ~/.bashrc"
+      fi
+  else
+      echo "$1 Unknown"
+  fi
+  read
+}
+dabit-launcher $1
