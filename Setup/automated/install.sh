@@ -74,7 +74,7 @@ __install_dependencies
 
 __install_arduino_ide(){
   arduino_folder=$(ls $_arduino_dir 2> /dev/null | wc -l)
-  if [ **"$arduino_folder" != "0"** ]
+  if [ **"$arduino_folder" != "0"** ]; then
     wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
     cd "$_tmp_dir"
     tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
