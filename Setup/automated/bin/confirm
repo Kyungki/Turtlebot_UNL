@@ -11,4 +11,4 @@ function confirm() {
             ;;
     esac
 }
-confirm $@
+confirm "$@"
