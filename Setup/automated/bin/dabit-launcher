@@ -40,6 +40,7 @@ function dabit-launcher(){
       else
           echo "Wanderer Exists! Killing"
           cat ~/.wanderer_pid | xargs kill -9
+          rosnode kill /control.py
           rm ~/.wanderer_pid
       fi
   else
