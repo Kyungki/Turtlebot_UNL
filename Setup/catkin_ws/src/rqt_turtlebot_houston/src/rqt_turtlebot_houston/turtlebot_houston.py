@@ -21,9 +21,6 @@ from apriltags.msg import AprilTagDetections
 
 from subprocess import Popen, PIPE
 
-global master_ip
-master_ip = Popen(["change_master"], stdout=PIPE).stdout.read().strip('\n').strip('Current master: ')
-
 class rospy_thread(QThread):
     def __init__(self):
         QThread.__init__(self)
@@ -286,9 +283,9 @@ class turtlebot_houston(QWidget):
         self.combobox_segmentation.addItems(self.segmentation_list)
         self.combobox_segmentation.setFixedWidth(120)
 
-        self.button_wanderer = QPushButton("Start Wanderer")
-        self.button_wanderer.clicked.connect(self.wandererStart)
-        self.button_wanderer.setFixedWidth(120)
+        self.button_wanderer_startstop = QPushButton("Start Wanderer")
+        self.button_wanderer_startstop.clicked.connect(self.wandererStartStop)
+        self.button_wanderer_startstop.setFixedWidth(120)
 
         self.button_bagging = QPushButton("Start Logging")
         self.button_bagging.clicked.connect(self.baggingStart)
@@ -297,7 +294,7 @@ class turtlebot_houston(QWidget):
         
         h5_layout.addWidget(self.combobox_opencv)
         h5_layout.addWidget(self.combobox_segmentation)
-        h5_layout.addWidget(self.button_wanderer)
+        h5_layout.addWidget(self.button_wanderer_startstop)
         h5_layout.addWidget(self.button_bagging)
         h5_layout.addItem(QSpacerItem(1,1,QSizePolicy.Minimum, QSizePolicy.Expanding))
 
@@ -314,7 +311,7 @@ class turtlebot_houston(QWidget):
 
         self.tbot_launched = False
         self.bagging = False
-        self.wandering = False
+        self.wanderer_launched = False
 
         self.rthread = rospy_thread()
         self.rthread.start()
@@ -327,6 +324,8 @@ class turtlebot_houston(QWidget):
         self.img2_sub = rospy.Subscriber("/fiducial_markers/detections_image", Image, self.image_callback, 1)
 
         self.detections_sub = rospy.Subscriber("/apriltags/detections", AprilTagDetections, self.detections_callback)
+
+        self.master_ip = Popen(["change_master"], stdout=PIPE).stdout.read().strip('\n').strip('Current Master: ')
 
     def destruct(self):
         self.teleop.destruct()
@@ -404,9 +403,18 @@ class turtlebot_houston(QWidget):
         # To-Do: Requires a new widget to show image in separate window
         print "Segment: {}".format(self.segmentation_list[package])
 
-    def wandererStart(self):
-        shell = Popen(["ssh","turtlebot@{}".format(master_ip),"dabit-launcher","wanderer"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
+    def wandererStartStop(self):
+        print ["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"]
+        shell = Popen(["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
         print shell.stdout.read()
+        if not self.wanderer_launched:
+            print "Wanderer Start"
+            self.wanderer_launched = True
+            self.button_wanderer_startstop.setText("Stop Wanderer")
+        else:
+            print "Wanderer Stop"
+            self.wanderer_launched = False
+            self.button_wanderer_startstop.setText("Start Wanderer")
 
     def baggingStart(self):
         print "Bagging Start"

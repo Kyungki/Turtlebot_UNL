@@ -1,4 +1,3 @@
 <launch>
-  <node pkg="turtlebot_houston" type="mapping.py" name="mapping.py" output="screen"></node>
   <node pkg="turtlebot_houston" type="control.py" name="control.py" output="screen"></node>
 </launch>
