@@ -288,7 +288,6 @@ class turtlebot_houston(QWidget):
 
         self.button_wanderer = QPushButton("Start Wanderer")
         self.button_wanderer.clicked.connect(self.wandererStart)
-        self.button_wanderer.setEnabled(False)
         self.button_wanderer.setFixedWidth(120)
 
         self.button_bagging = QPushButton("Start Logging")

@@ -12,6 +12,11 @@ function dabit-launcher(){
           cat ~/.wanderer_pid | xargs kill -9
           rm ~/.wanderer_pid
       fi
+			if [ -f ~/.ros/rtabmap.db ]; then
+          _backup_folder="${HOME}/backups/rtabmap_"$(date '+%m-%d-%y_%H-%M-%S')
+          mkdir -p "$_backup_folder"
+          mv "${HOME}/.ros/rtabmap.db" "$_backup_folder"
+      fi
       roslaunch turtlebot_houston turtlebot.launch
 			confirm "Press any key to exit"
   elif [ "$1" == "master" ]; then
@@ -21,9 +26,10 @@ function dabit-launcher(){
           rosrun rqt_turtlebot_houston rqt_turtlebot_houston
           confirm "Press any key to exit"
       else
-          echo "Please type the following commands:"
-          echo "   change_master IP_OF_TURTLEBOT"
-          echo "   source ~/.bashrc"
+          read -p "Input the Master IP: " master
+          . change_master $master
+          . ${HOME}/.bashrc
+          dabit-launcher master
       fi
   elif [ "$1" == "wanderer" ]; then
       echo "Wanderer"
