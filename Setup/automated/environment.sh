@@ -3,7 +3,9 @@ CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 CURRENT_DIR=${CURRENT_DIR%/Setup/automated}
 
 if [ "$CURRENT_DIR" == "." ]; then
-    CURRENT_DIR=$CURRENT_DIR"/../.."
+  CURRENT_DIR=$CURRENT_DIR"/../.."
+elif [ "$CURRENT_DIR" == "turtlebot-houston" ]; then
+  CURRENT_DIR="$(pwd)/turtlebot-houston"
 fi
 
 if [ -z "$DABIT_DIR" ]; then
