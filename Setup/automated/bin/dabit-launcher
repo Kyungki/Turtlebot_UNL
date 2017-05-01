@@ -23,12 +23,21 @@ function dabit-launcher(){
       echo "Turtlebot IP is: $MASTER_IP"
       confirm "Is this correct? [y/N]"
       if [[ "$?" -eq 0 ]]; then
+          if [ -f ~/.ros/rtabmap.db ]; then
+              _backup_folder="${HOME}/backups/rtabmap_"$(date '+%m-%d-%y_%H-%M-%S')
+              mkdir -p "$_backup_folder"
+              mv "${HOME}/.ros/rtabmap.db" "$_backup_folder"
+          fi
           rosrun rqt_turtlebot_houston rqt_turtlebot_houston
           confirm "Press any key to exit"
       else
+					master=""
           read -p "Input the Master IP: " master
-          . change_master $master
-          . ${HOME}/.bashrc
+          echo $master
+          if [ ! -z $master ]; then
+            . change_master $master
+            . ${HOME}/.bashrc
+          fi
           dabit-launcher master
       fi
   elif [ "$1" == "wanderer" ]; then
@@ -43,8 +52,24 @@ function dabit-launcher(){
           rosnode kill /control.py
           rm ~/.wanderer_pid
       fi
+  elif [ "$1" == "viewer" ]; then
+      if [ -f "~/.ros/rtabmap.db" ]; then
+        rtabmap-databaseViewer ~/.ros/rtabmap.db
+      fi
+  elif [ "$1" == "xml_to_pgm" ]; then
+      if [ -z "$2" ]; then
+        python ${HOME}/workspace/xml_to_pgm.py "$2" 10 10
+      fi
+  elif [ "$1" == "sync_rtabmap"]; then
+      if [ -z "$2" ]; then
+          rtabmap_db="$2"
+      else
+          rtabmap_db="~/.ros/rtabmap.db"
+      fi
+      
+      rsync -avz --stats --progress turtlebot@$MASTER_IP "$rtabmapdb"
   else
       echo "$1 Unknown"
   fi
 }
-dabit-launcher $1
+dabit-launcher "$1" "$2"

@@ -4,13 +4,12 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /Global Options1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /LaserScan1
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
-        - /Local Map1/Costmap1
-        - /Local Map1/Planner1
+        - /Rtabmap cloud1
         - /MarkerArray1
       Splitter Ratio: 0.5
     Tree Height: 451
@@ -25,8 +24,12 @@ Panels:
   - Class: rviz/Views
     Expanded:
       - /Current View1
+      - /Side View1
+      - /Strict Top View1
+      - /Top View1
+      - /FPS View1
     Name: Views
-    Splitter Ratio: 0.5
+    Splitter Ratio: 0.53531599
   - Class: rviz/Time
     Experimental: false
     Name: Time
@@ -39,7 +42,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz/Grid
       Color: 160; 160; 164
-      Enabled: true
+      Enabled: false
       Line Style:
         Line Width: 0.0299999993
         Value: Lines
@@ -52,7 +55,7 @@ Visualization Manager:
       Plane: XY
       Plane Cell Count: 10
       Reference Frame: map
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -231,19 +234,156 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: false
+        base_link:
+          Value: true
+        camera_depth_frame:
+          Value: false
+        camera_depth_optical_frame:
+          Value: false
+        camera_link:
+          Value: false
+        camera_rgb_frame:
+          Value: false
+        camera_rgb_optical_frame:
+          Value: false
+        caster_back_link:
+          Value: false
+        caster_front_link:
+          Value: false
+        cliff_sensor_front_link:
+          Value: false
+        cliff_sensor_left_link:
+          Value: false
+        cliff_sensor_right_link:
+          Value: false
+        gyro_link:
+          Value: false
+        map:
+          Value: false
+        odom:
+          Value: false
+        plate_bottom_link:
+          Value: false
+        plate_middle_link:
+          Value: false
+        plate_top_link:
+          Value: false
+        pole_bottom_0_link:
+          Value: false
+        pole_bottom_1_link:
+          Value: false
+        pole_bottom_2_link:
+          Value: false
+        pole_bottom_3_link:
+          Value: false
+        pole_bottom_4_link:
+          Value: false
+        pole_bottom_5_link:
+          Value: false
+        pole_kinect_0_link:
+          Value: false
+        pole_kinect_1_link:
+          Value: false
+        pole_middle_0_link:
+          Value: false
+        pole_middle_1_link:
+          Value: false
+        pole_middle_2_link:
+          Value: false
+        pole_middle_3_link:
+          Value: false
+        pole_top_0_link:
+          Value: false
+        pole_top_1_link:
+          Value: false
+        pole_top_2_link:
+          Value: false
+        pole_top_3_link:
+          Value: false
+        wheel_left_link:
+          Value: false
+        wheel_right_link:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        map:
+          odom:
+            base_footprint:
+              base_link:
+                camera_rgb_frame:
+                  camera_depth_frame:
+                    camera_depth_optical_frame:
+                      {}
+                  camera_link:
+                    {}
+                  camera_rgb_optical_frame:
+                    {}
+                caster_back_link:
+                  {}
+                caster_front_link:
+                  {}
+                cliff_sensor_front_link:
+                  {}
+                cliff_sensor_left_link:
+                  {}
+                cliff_sensor_right_link:
+                  {}
+                gyro_link:
+                  {}
+                plate_bottom_link:
+                  {}
+                plate_middle_link:
+                  {}
+                plate_top_link:
+                  {}
+                pole_bottom_0_link:
+                  {}
+                pole_bottom_1_link:
+                  {}
+                pole_bottom_2_link:
+                  {}
+                pole_bottom_3_link:
+                  {}
+                pole_bottom_4_link:
+                  {}
+                pole_bottom_5_link:
+                  {}
+                pole_kinect_0_link:
+                  {}
+                pole_kinect_1_link:
+                  {}
+                pole_middle_0_link:
+                  {}
+                pole_middle_1_link:
+                  {}
+                pole_middle_2_link:
+                  {}
+                pole_middle_3_link:
+                  {}
+                pole_top_0_link:
+                  {}
+                pole_top_1_link:
+                  {}
+                pole_top_2_link:
+                  {}
+                pole_top_3_link:
+                  {}
+                wheel_left_link:
+                  {}
+                wheel_right_link:
+                  {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -381,7 +521,7 @@ Visualization Manager:
           Topic: /move_base/TrajectoryPlannerROS/local_plan
           Unreliable: false
           Value: true
-      Enabled: true
+      Enabled: false
       Name: Local Map
     - Alpha: 1
       Arrow Length: 0.200000003
@@ -409,9 +549,9 @@ Visualization Manager:
       Channel Name: intensity
       Class: rtabmap_ros/MapCloud
       Cloud decimation: 4
-      Cloud max depth (m): 4
-      Cloud min depth (m): 0
-      Cloud voxel size (m): 0.0500000007
+      Cloud max depth (m): 8
+      Cloud min depth (m): 0.400000006
+      Cloud voxel size (m): 0.0149999997
       Color: 255; 255; 255
       Color Transformer: RGB8
       Download graph: false
@@ -428,8 +568,8 @@ Visualization Manager:
       Node filtering angle (degrees): 0
       Node filtering radius (m): 0
       Position Transformer: XYZ
-      Size (Pixels): 3
-      Size (m): 0.00999999978
+      Size (Pixels): 4
+      Size (m): 0.0299999993
       Style: Points
       Topic: /rtabmap/mapData
       Unreliable: false
@@ -476,14 +616,15 @@ Visualization Manager:
       Marker Topic: /apriltags/marker_array
       Name: MarkerArray
       Namespaces:
-        {}
+        tag3: true
+        tag4: true
       Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 112; 137; 134
     Fixed Frame: map
-    Frame Rate: 30
+    Frame Rate: 15
   Name: root
   Tools:
     - Class: rviz/MoveCamera
@@ -498,23 +639,28 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0.0300000794
-      Class: rviz/TopDownOrtho
+      Class: rviz/Orbit
+      Distance: 8
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: -0.0102000004
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.0500000007
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 97.5040665
+      Pitch: 1.56979632
       Target Frame: base_footprint
-      Value: TopDownOrtho (rviz)
-      X: 0
-      Y: 0
+      Value: Orbit (rviz)
+      Yaw: 0
     Saved:
       - Class: rtabmap_ros/OrbitOriented
-        Distance: 6.60196114
+        Distance: 6
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.0599999987
           Stereo Focal Distance: 1
@@ -528,7 +674,7 @@ Visualization Manager:
         Focal Shape Size: 0.0500000007
         Name: Side View
         Near Clip Distance: 0.00999999978
-        Pitch: 0.600000024
+        Pitch: 0.5
         Target Frame: base_footprint
         Value: OrbitOriented (rtabmap_ros)
         Yaw: 3.1400001
@@ -539,13 +685,70 @@ Visualization Manager:
           Stereo Focal Distance: 1
           Swap Stereo Eyes: false
           Value: false
-        Name: Top View
+        Name: Strict Top View
         Near Clip Distance: 0.00999999978
-        Scale: 76.8996658
+        Scale: 60
         Target Frame: base_footprint
         Value: TopDownOrtho (rviz)
         X: 0
         Y: 0
+      - Class: rviz/Orbit
+        Distance: 8
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.0599999987
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: -0.0102000004
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.0500000007
+        Name: Top View
+        Near Clip Distance: 0.00999999978
+        Pitch: 1.56979632
+        Target Frame: base_footprint
+        Value: Orbit (rviz)
+        Yaw: 0
+      - Class: rviz/Orbit
+        Distance: 12
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.0599999987
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.0500000007
+        Name: Free View
+        Near Clip Distance: 0.00999999978
+        Pitch: 1.56979632
+        Target Frame: map
+        Value: Orbit (rviz)
+        Yaw: 0
+      - Class: rtabmap_ros/OrbitOriented
+        Distance: 0.00999999978
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.0599999987
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0.294999987
+        Focal Shape Fixed Size: false
+        Focal Shape Size: 0.0500000007
+        Name: FPS View
+        Near Clip Distance: 0.00999999978
+        Pitch: 0
+        Target Frame: base_footprint
+        Value: OrbitOriented (rtabmap_ros)
+        Yaw: 3.1400001
 Window Geometry:
   Displays:
     collapsed: false
@@ -563,4 +766,4 @@ Window Geometry:
     collapsed: false
   Width: 1362
   X: 0
-  Y: 54
+  Y: 25
