@@ -167,6 +167,9 @@ target_link_libraries(roscpp_subscriber ${catkin_LIBRARIES})
 add_executable(roscpp_opencv src/roscpp_opencv.cpp)
 target_link_libraries(roscpp_opencv ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
+add_executable(roscpp_opencv_headless src/roscpp_opencv_headless.cpp)
+target_link_libraries(roscpp_opencv_headless ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
 add_executable(roscpp_pcl_example src/roscpp_pcl_example.cpp)
 target_link_libraries(roscpp_pcl_example ${catkin_LIBRARIES})
 

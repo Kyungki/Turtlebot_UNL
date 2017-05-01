@@ -18,6 +18,14 @@
 
   <!-- AprilTags -->
   <include file="$(find turtlebot_houston)/launch/fiducial.launch"/>
+
+  <!-- Arduino -->
+  <include file="$(find turtlebot_houston)/launch/arduino.launch"/>
+
+  <!-- opencv and pcl examples -->
+  <node name="roscpp_opencv_example" pkg="turtlebot_houston" type="roscpp_opencv_headless" output="screen"/>
+  <node name="roscpp_pcl_example" pkg="turtlebot_houston" type="roscpp_pcl_example" output="screen"/>
+
   
   <!-- Mapping -->
   <group ns="rtabmap">
@@ -41,11 +49,11 @@
 	
 	  <!-- RTAB-Map's parameters: do "rosrun rtabmap rtabmap (double-dash)params" to see the list of available parameters. -->
 	  <param name="RGBD/ProximityBySpace"        type="string" value="true"/>   <!-- Local loop closure detection (using estimated position) with locations in WM -->
-	  <param name="RGBD/OptimizeFromGraphEnd"    type="string" value="false"/>  <!-- Set to false to generate map correction between /map and /odom -->
+	  <param name="RGBD/OptimizeFromGraphEnd"    type="string" value="true"/>  <!-- Set to false to generate map correction between /map and /odom -->
 	  <param name="Kp/MaxDepth"                  type="string" value="8.0"/>
 	  <param name="Reg/Strategy"                 type="string" value="2"/>      <!-- Loop closure transformation refining with ICP: 0=Visual, 1=ICP, 2=Visual+ICP -->
 	  <param name="Icp/CorrespondenceRatio"     type="string" value="0.3"/>
-	  <param name="Vis/MinInliers"               type="string" value="5"/>      <!-- 3D visual words minimum inliers to accept loop closure -->
+	  <param name="Vis/MinInliers"               type="string" value="10"/>      <!-- 3D visual words minimum inliers to accept loop closure -->
 	  <param name="Vis/InlierDistance"           type="string" value="0.1"/>    <!-- 3D visual words correspondence distance -->
 	  <param name="RGBD/AngularUpdate"           type="string" value="0.1"/>    <!-- Update map only if the robot is moving -->
 	  <param name="RGBD/LinearUpdate"            type="string" value="0.1"/>    <!-- Update map only if the robot is moving -->
@@ -53,6 +61,9 @@
 	  <param name="Mem/RehearsalSimilarity"      type="string" value="0.50"/>
 	  <param name="Optimizer/Slam2D"             type="string" value="true"/>
 	  <param name="Reg/Force3DoF"                type="string" value="true"/>   
+	  <param name="Grid/NoiseFilteringRadius" type="string" value="0.1"/>   
+	  <param name="Grid/NoiseFilteringMinNeighbors" type="string" value="4"/>   
+          <param name="Grid/MaxGroundHeight" type="string" value="0.05"/>
 	  
 	  <!-- localization mode -->
 	  <param     if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>
@@ -86,5 +97,5 @@
     </node>
     
   </group>
-  <node pkg="turtlebot_houston" type="mapping.py" name="mapping.py" output="screen"></node>
+  <node pkg="turtlebot_houston" type="mapping.py" name="mapping" output="screen"></node>
 </launch>
