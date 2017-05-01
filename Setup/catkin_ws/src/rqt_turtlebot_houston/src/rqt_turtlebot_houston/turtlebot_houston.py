@@ -634,7 +634,7 @@ class turtlebot_houston(QWidget):
         pkg = self.opencv_list[package]
         print "CV: {}".format(pkg)
         if pkg == "OpenCV Test":
-            self.image_opencv_example = ImageWidget("/roscpp_opencv/output_video", True)
+            self.image_opencv_example = ImageWidget("/roscpp_opencv/output_video", False)
             self.image_opencv_example.resize(400,400)
             self.image_opencv_example.show()
 
