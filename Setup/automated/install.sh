@@ -74,16 +74,19 @@ __install_dependencies
 
 __install_arduino_ide(){
   arduino_folder = ${_arduino_tar%-linux64.tar.xz}
-  if [ -z "$arduino_dir/$arduino_folder" ]; then
+  if [ -z "$_user_dir/$arduino_folder" ]; then
     wget "https://downloads.arduino.cc/$_arduino_tar" -P "$_tmp_dir"
     cd "$_tmp_dir"
-    tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_arduino_dir"
-    cd "$_arduino_dir/arduino*"
+    tar -xvf "$_tmp_dir/$_arduino_tar" -C "$_user_dir/$arduino_folder"
+    cd "$_user_dir/arduino*"
     . install.sh
     mkdir -p "$_user_dir/Arduino/libraries"
     cd "$_user_dir/Arduino/libraries"
     rosrun rosserial_arduino make_libraries.py .
+    sudo usermod -a -G dialout turtlebot
   fi
+  mkdir -p "$_user_dir/Arduino"
+  cp -r "$_dabit_dir/Setup/Arduino/." "$_user_dir/Arduino"
 }
 
 echo "Installing Arduino IDE"
