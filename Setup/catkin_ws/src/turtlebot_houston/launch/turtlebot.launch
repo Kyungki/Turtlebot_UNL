@@ -21,6 +21,11 @@
 
   <!-- Arduino -->
   <include file="$(find turtlebot_houston)/launch/arduino.launch"/>
+
+  <!-- opencv and pcl examples -->
+  <node name="roscpp_opencv_example" pkg="turtlebot_houston" type="roscpp_opencv_headless" output="screen"/>
+  <node name="roscpp_pcl_example" pkg="turtlebot_houston" type="roscpp_pcl_example" output="screen"/>
+
   
   <!-- Mapping -->
   <group ns="rtabmap">
