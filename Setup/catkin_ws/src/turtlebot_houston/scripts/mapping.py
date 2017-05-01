@@ -10,7 +10,7 @@ from std_msgs.msg import Bool
 from turtlebot_houston.srv import *
 import gc
 
-SCALE_FACTOR = 2
+SCALE_FACTOR = 4
 
 #Class that implements priority queue.
 class PriorityQueue:
