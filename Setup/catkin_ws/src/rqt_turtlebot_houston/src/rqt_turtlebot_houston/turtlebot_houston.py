@@ -131,8 +131,8 @@ class teleop(QThread):
 	self.th = 0
 	self.status = 0
 	self.count = 0
-	self.acc = 0.005
-        self.acc_turn = 0.04
+	self.acc = 0.01
+        self.acc_turn = 0.05
 	self.target_speed = 0
 	self.target_turn = 0
 	self.control_speed = 0
@@ -141,7 +141,7 @@ class teleop(QThread):
         self.key = None
         self.moving = True
 
-	self.pub_vel = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=5)
+	self.pub_vel = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=3)
 
     def stop(self):
 	twist = Twist()
