@@ -12,14 +12,19 @@ from sensor_msgs.msg import LaserScan
 from threading import Thread
 import Queue
 
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+import actionlib
+from actionlib_msgs.msg import *
+from geometry_msgs.msg import Pose, PoseWithCovarianceStamped, Point, PoseStamped, Quaternion
+
 WHEEL_RADIUS = 0.035
 DISTANCE_BETWEEN_WHEELS = 0.23
 ROBOT_RADIUS = 0.28
 POS_TOLERANCE = 0.03
 ANGLE_TOLERANCE = 0.03
-POS_REQUEST_RATE = 120.0
-PROCESS_COSTMAP = False
-ROTATE_AROUND_GRANULARITY = 6
+POS_REQUEST_RATE = 60.0
+PROCESS_COSTMAP = True
+ROTATE_AROUND_GRANULARITY = 4
 LINEAR_VELOCITY = 0.18
 OBSTACLE_DETECTION_THRESHOLD = 0.65
 
@@ -377,7 +382,7 @@ def executeTrajectory(control):
     while not isNewTrajectoryReady:
         pass
 
-    while not reachedGoal and not rospy.is_shutdown() and not exit:
+    while not reachedGoal and control and not rospy.is_shutdown() and not exit:
         counter = 0
         oldTrajectoryPoses = trajectory.path.poses
         isNewTrajectoryReady = False
@@ -446,7 +451,20 @@ def exploreEnvironment():
 
         #3) Go to a new goal
         print "3) Navigating to the centroid."
-        navigateToGoal(control, centroidResponse.centroid)
+        goal = MoveBaseGoal()
+        goal.target_pose.header.frame_id = 'map'
+        goal.target_pose.header.stamp = rospy.Time.now()
+        x = centroidResponse.centroid.x
+        y = centroidResponse.centroid.y
+        z = centroidResponse.centroid.z
+        goal.target_pose.pose = Pose(Point(x,y,z),Quaternion(float(0), float(0), float(0), float(1)))
+        print goal
+        global reachedGoal
+        reachedGoal = False
+        move_base.send_goal(goal)
+        #navigateToGoal(None, goal)
+        reachedGoal = move_base.wait_for_result(rospy.Duration(120))
+        #navigateToGoal(control, centroidResponse.centroid)
         print "======>   Ended iteration   <====="
 
 #Navigates the robot to the goal position
@@ -478,6 +496,12 @@ if __name__ == "__main__":
     getCentroid = rospy.ServiceProxy('getCentroid', Centroid)
     print "DONE"
     # centroid = getCentroid(map)
+
+    print "Waiting for move_base service...",
+    global move_base
+    move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
+    move_base.wait_for_server(rospy.Duration(10))
+    print "DONE"
 
     #Flags that indicate if the initial or goal positions were received
     global receivedInitPos
