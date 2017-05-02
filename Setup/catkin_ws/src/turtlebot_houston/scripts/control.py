@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# Clone from https://github.com/bnurbekov/Turtlebot_Navigation
-# Edits made to fit our purposes
-
 import sys
 import rospy, time, tf
 import math as math
@@ -15,15 +12,20 @@ from sensor_msgs.msg import LaserScan
 from threading import Thread
 import Queue
 
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+import actionlib
+from actionlib_msgs.msg import *
+from geometry_msgs.msg import Pose, PoseWithCovarianceStamped, Point, PoseStamped, Quaternion
+
 WHEEL_RADIUS = 0.035
 DISTANCE_BETWEEN_WHEELS = 0.23
-ROBOT_RADIUS = 0.26
-POS_TOLERANCE = 0.1
-ANGLE_TOLERANCE = 0.15
+ROBOT_RADIUS = 0.28
+POS_TOLERANCE = 0.03
+ANGLE_TOLERANCE = 0.03
 POS_REQUEST_RATE = 60.0
-PROCESS_COSTMAP = False
-ROTATE_AROUND_GRANULARITY = 9
-LINEAR_VELOCITY = 0.16
+PROCESS_COSTMAP = True
+ROTATE_AROUND_GRANULARITY = 4
+LINEAR_VELOCITY = 0.18
 OBSTACLE_DETECTION_THRESHOLD = 0.65
 
 #Impelements PID controller
@@ -80,7 +82,7 @@ class RobotControl:
     #Rotate 360 degrees
     def rotateAround(self):
         for i in range(0, self.rotate_around_granularity):
-            self.rotate(2 * math.pi/self.rotate_around_granularity)
+            self.rotate(2 * math.pi/self.rotate_around_granularity, in_place=True)
 
     #Commands the robot to go to the position specified
     def goToPositionInAStraightLine(self, speed, destination_x, destination_y):
@@ -123,22 +125,30 @@ class RobotControl:
 
             rate.sleep()
 
-        self.publishTwist(0, 0)
+        #self.publishTwist(0, 0)
 
     #Accepts an angle and makes the robot rotate around it.
-    def rotate(self, angle):
+    def rotate(self, angle, in_place=False):
         sum = current_theta + angle
         destination_angle = RobotControl.normalize_angle(sum)
 
-        self.rotateToAngle(destination_angle)
+        self.rotateToAngle(destination_angle,in_place)
 
     #Rotates to the specified angle in the global coordinate frame
-    def rotateToAngle(self, destination_angle):
-        yaw_control = PID(P=0.8, I=0.03, D=0.001, Derivator=0, Integrator=0, outMin=-1.3, outMax=1.3)
+    def rotateToAngle(self, destination_angle, in_place=False):
+        yaw_control = PID(P=0.85, I=0.001, D=0.005, Derivator=0, Integrator=0, outMin=-1.3, outMax=1.3)
+	# P=0.8, I=0.03, D=0.001
 
         error = RobotControl.normalize_angle(destination_angle - current_theta)
 
         rate = rospy.Rate(self.update_rate)
+
+	print "Rotating: {0}\t{1}".format(destination_angle, error)
+
+        if in_place:
+            fwd = 0
+        else:
+	    fwd = 0.08
 
         while abs(error) > self.angle_tolerance:
             if isNewTrajectoryReady or obstacleEncountered:
@@ -148,11 +158,16 @@ class RobotControl:
 
             feed = yaw_control.update(error)
 
-            self.publishTwist(0, feed)
+            self.publishTwist(fwd, feed)
+
+            if fwd > 0:
+                fwd = fwd - 0.005
+            else:
+                fwd = 0
 
             rate.sleep()
 
-        self.publishTwist(0, 0)
+        self.publishTwist(fwd, 0)
 
     #Publishes twist
     def publishTwist(self, x_vel, angular_vel):
@@ -293,7 +308,7 @@ def scanProcessing():
                             current_angle = abs(RobotControl.normalize_angle(dest_angle_from_lower_bound - i * scanMessage.angle_increment))
                             # print "Current angle: %f" % current_angle
                             passage_width = current_range * math.sin(current_angle)
-                            # print "Passage width: %f" % passage_width
+                            print "Passage width: %f" % passage_width
 
                             if passage_width < ROBOT_RADIUS:
                                 # print "Obstacle encountered!"
@@ -319,6 +334,7 @@ def requestTrajectory(goalPos):
         else:
             #Reset flag
             if receivedNewMap:
+                print "Received New Map"
                 receivedNewMap = False
             # if receivedNewCostMap:
             #     receivedNewCostMap = False
@@ -366,7 +382,7 @@ def executeTrajectory(control):
     while not isNewTrajectoryReady:
         pass
 
-    while not reachedGoal and not rospy.is_shutdown() and not exit:
+    while not reachedGoal and control and not rospy.is_shutdown() and not exit:
         counter = 0
         oldTrajectoryPoses = trajectory.path.poses
         isNewTrajectoryReady = False
@@ -435,7 +451,20 @@ def exploreEnvironment():
 
         #3) Go to a new goal
         print "3) Navigating to the centroid."
-        navigateToGoal(control, centroidResponse.centroid)
+        goal = MoveBaseGoal()
+        goal.target_pose.header.frame_id = 'map'
+        goal.target_pose.header.stamp = rospy.Time.now()
+        x = centroidResponse.centroid.x
+        y = centroidResponse.centroid.y
+        z = centroidResponse.centroid.z
+        goal.target_pose.pose = Pose(Point(x,y,z),Quaternion(float(0), float(0), float(0), float(1)))
+        print goal
+        global reachedGoal
+        reachedGoal = False
+        move_base.send_goal(goal)
+        #navigateToGoal(None, goal)
+        reachedGoal = move_base.wait_for_result(rospy.Duration(120))
+        #navigateToGoal(control, centroidResponse.centroid)
         print "======>   Ended iteration   <====="
 
 #Navigates the robot to the goal position
@@ -467,6 +496,12 @@ if __name__ == "__main__":
     getCentroid = rospy.ServiceProxy('getCentroid', Centroid)
     print "DONE"
     # centroid = getCentroid(map)
+
+    print "Waiting for move_base service...",
+    global move_base
+    move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
+    move_base.wait_for_server(rospy.Duration(10))
+    print "DONE"
 
     #Flags that indicate if the initial or goal positions were received
     global receivedInitPos
@@ -505,7 +540,7 @@ if __name__ == "__main__":
     #Subscribe to map updates
     map_sub = rospy.Subscriber('/map', OccupancyGrid, mapCallback, queue_size=1)
     scan_sub = rospy.Subscriber('/scan', LaserScan, scanCallback, queue_size=1)
-    # costmap_sub = rospy.Subscriber('/move_base/local_costmap/costmap', OccupancyGrid, costmapCallback, queue_size=1)
+    costmap_sub = rospy.Subscriber('/move_base/local_costmap/costmap', OccupancyGrid, costmapCallback, queue_size=1)
     #Start requesting position in background
     Thread(target=request_pos_at_rate, name="Request_pos_at_rate Thread", args=[POS_REQUEST_RATE]).start()
     Thread(target=scanProcessing, name="Request_pos_at_rate Thread").start()

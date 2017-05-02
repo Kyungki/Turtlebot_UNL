@@ -9,7 +9,6 @@ Panels:
         - /TF1/Tree1
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
-        - /Rtabmap cloud1
         - /MarkerArray1
       Splitter Ratio: 0.5
     Tree Height: 451
@@ -34,7 +33,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Rtabmap cloud
+    SyncSource: LaserScan
 Visualization Manager:
   Class: ""
   Displays:
@@ -558,15 +557,15 @@ Visualization Manager:
       Download map: false
       Enabled: true
       Filter ceiling (m): 0
-      Filter floor (m): 0
+      Filter floor (m): 0.100000001
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 4096
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: Rtabmap cloud
-      Node filtering angle (degrees): 0
-      Node filtering radius (m): 0
+      Node filtering angle (degrees): 15
+      Node filtering radius (m): 0.100000001
       Position Transformer: XYZ
       Size (Pixels): 4
       Size (m): 0.0299999993
@@ -576,19 +575,19 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 1
-      Class: rviz/GridCells
-      Color: 255; 0; 0
-      Enabled: true
-      Name: GridCells
-      Topic: /centroidGridCell
-      Value: true
     - Alpha: 0.899999976
       Class: rviz/GridCells
       Color: 255; 170; 0
       Enabled: true
       Name: GridCells
       Topic: /clusterGridCells
+      Value: true
+    - Alpha: 1
+      Class: rviz/GridCells
+      Color: 255; 0; 0
+      Enabled: true
+      Name: GridCells
+      Topic: /centroidGridCell
       Value: true
     - Alpha: 0.300000012
       Class: rviz/GridCells
@@ -616,9 +615,32 @@ Visualization Manager:
       Marker Topic: /apriltags/marker_array
       Name: MarkerArray
       Namespaces:
+        tag2: true
         tag3: true
         tag4: true
       Queue Size: 100
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 255; 85; 255
+      Enabled: true
+      Head Diameter: 0.300000012
+      Head Length: 0.200000003
+      Length: 0.300000012
+      Line Style: Lines
+      Line Width: 0.0299999993
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Style: None
+      Radius: 0.0299999993
+      Shaft Diameter: 0.100000001
+      Shaft Length: 0.100000001
+      Topic: /move_base/NavfnROS/plan
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
