@@ -15,19 +15,15 @@ from sensor_msgs.msg import LaserScan
 from threading import Thread
 import Queue
 
-from geometry_msgs.msg import PoseStamped
-import actionlib
-from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-
 WHEEL_RADIUS = 0.035
 DISTANCE_BETWEEN_WHEELS = 0.23
-ROBOT_RADIUS = 0.26
-POS_TOLERANCE = 0.1
-ANGLE_TOLERANCE = 0.15
-POS_REQUEST_RATE = 60.0
+ROBOT_RADIUS = 0.2
+POS_TOLERANCE = 0.02
+ANGLE_TOLERANCE = 0.05
+POS_REQUEST_RATE = 30.0
 PROCESS_COSTMAP = False
 ROTATE_AROUND_GRANULARITY = 9
-LINEAR_VELOCITY = 0.16
+LINEAR_VELOCITY = 0.12
 OBSTACLE_DETECTION_THRESHOLD = 0.65
 
 #Impelements PID controller
@@ -439,25 +435,7 @@ def exploreEnvironment():
 
         #3) Go to a new goal
         print "3) Navigating to the centroid."
-        print centroidResponse.centroid
-#        x: 4.33663203567
-#        y: 4.96702616662
-#        z: 0.0
-        goal = MoveBaseGoal()
-        goal.target_pose.header.frame_id = 'map'
-        goal.target_pose.pose.position = centroidResponse.centroid
-        goal.target_pose.pose.orientation.x = 0.0
-        goal.target_pose.pose.orientation.y = 0.0
-        goal.target_pose.pose.orientation.z = 0.0
-        goal.target_pose.pose.orientation.w = 1.0
-
-        print "Sending goal:\n{}".format(goal)
-        client.send_goal(goal)
-        print "Goal sent!"
-        #FIXME: timeout may cause issues when traveling long distances
-        client.wait_for_result(rospy.Duration(30))
-        
-        #navigateToGoal(control, centroidResponse.centroid)
+        navigateToGoal(control, centroidResponse.centroid)
         print "======>   Ended iteration   <====="
 
 #Navigates the robot to the goal position
@@ -489,11 +467,6 @@ if __name__ == "__main__":
     getCentroid = rospy.ServiceProxy('getCentroid', Centroid)
     print "DONE"
     # centroid = getCentroid(map)
-
-    global client
-    print "Waiting on move_base"
-    client = actionlib.SimpleActionClient("move_base", MoveBaseAction)
-    client.wait_for_server(rospy.Duration(5))
 
     #Flags that indicate if the initial or goal positions were received
     global receivedInitPos

@@ -25,6 +25,8 @@ void image_cb(const sensor_msgs::ImageConstPtr& msg)
 {
   std_msgs::Header msg_header = msg->header;
   std::string frame_id = msg_header.frame_id.c_str();
+  ROS_INFO_STREAM("New Image from " << frame_id);
+  //ROS_INFO_STREAM("Local: " << std::put_time(std::localtime(&t), "%c %Z"));
 
   cv_bridge::CvImagePtr cv_ptr;
   try
