@@ -304,6 +304,9 @@ class turtlebot_houston(QWidget):
     def __init__(self):
         QWidget.__init__(self)
 
+        self._init_UI()
+
+    def _init_UI(self):
         rospy.init_node('turtlebot_houston_gui', anonymous=False)
         
         self.bridge = CvBridge()
@@ -504,7 +507,6 @@ class turtlebot_houston(QWidget):
 
         self.master_ip = Popen(["change_master"], stdout=PIPE).stdout.read().strip('\n').strip('Current Master: ')
 
-
     def destruct(self):
         self.teleop.destruct()
 	self.frame = None
@@ -671,15 +673,45 @@ class turtlebot_houston(QWidget):
                 return
         print("Did not find view named %s." % view_name)
 
+class main_window(QMainWindow):
+    def __init__(self):
+        print "Main Window"
+        QMainWindow.__init__(self)
+        self.statusBar().showMessage('Loading')
+        self._init_UI()
+    
+    def _init_UI(self):
+        main_widget = turtlebot_houston()
+        self.setCentralWidget(main_widget)
+        print "Main Window 2"
+        self.mainMenu = self.menuBar()
+        self.mainMenu.setNativeMenuBar(False)
+        self.fileMenu = self.mainMenu.addMenu('&File')
+        self.mapMenu = self.mainMenu.addMenu('&Map')
+
+        exitButton = QAction(QIcon(), 'Exit', self)
+        exitButton.setShortcut("Ctrl+Q")
+        exitButton.setStatusTip("Exit Application")
+        exitButton.triggered.connect(self.close)
+        self.fileMenu.addAction(exitButton)
+
+        self.statusBar().showMessage('Ready')
+
+        #FIXME: use setGeometry?
+        self.resize(800,600)
+        self.setMinimumSize(800,600)
+        self.setMaximumSize(800,600)
+
+        self.show()
+
 if __name__ == '__main__':
     try:
         app = QApplication(sys.argv)
 
-        myviz = turtlebot_houston()
-        myviz.resize(800, 600)
-        myviz.show()
-	app.aboutToQuit.connect(myviz.destruct)
+        print "WTF"
+        main = main_window()
+	#app.aboutToQuit.connect(main_window.destruct)
         app.exec_()
-        myviz.destruct()
+        #main_window.destruct()
     except Exception, e:
         print e
