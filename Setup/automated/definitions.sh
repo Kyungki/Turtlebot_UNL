@@ -32,9 +32,9 @@ _bashrc_dir="$_user_dir/$_bashrc"
 declare -a _apt_packages=("ros-kinetic-rtabmap-ros" "ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*")
 
 # Which Dabit Packages to install
-declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer""quanergy_client_ros")
-declare -a _workspace_packages=("apriltags_cpp" "quanergy")
-declare -a _workspace_install_packages=("apriltags_cpp" "quanergy")
+declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer" "quanergy_client_ros")
+declare -a _workspace_packages=("apriltags_cpp" "quanergy_client")
+declare -a _workspace_install_packages=("apriltags_cpp" "quanergy_client")
 
 
 # Miscelleneous Defines
