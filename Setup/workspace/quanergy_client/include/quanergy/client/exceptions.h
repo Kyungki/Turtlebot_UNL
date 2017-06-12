@@ -46,6 +46,12 @@ namespace quanergy
       virtual const char* what() const throw() { return "Packet sizes don't match"; }
     };
 
+    /** \brief Invalid packet */
+    struct InvalidPacketError : public std::exception
+    {
+      virtual const char* what() const throw() { return "Invalid packet"; }
+    };
+
     /** \brief Invalid data type in header; no parser available */
     struct InvalidDataTypeError : public std::exception
     {
@@ -62,6 +68,12 @@ namespace quanergy
     struct FirmwareVersionMismatchError : public std::exception
     {
       virtual const char* what() const throw() { return "Firmware version mismatch"; }
+    };
+    
+    /** \brief Degress per cloud must be 360 or less */
+    struct InvalidDegreesPerCloud : public std::exception
+    {
+      virtual const char* what() const throw() { return "Invalid degrees per cloud"; }
     };
 
   } // namespace client
