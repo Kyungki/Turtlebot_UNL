@@ -22,6 +22,10 @@
   <!-- Arduino -->
   <include file="$(find turtlebot_houston)/launch/arduino.launch"/>
 
+  <!-- Lidar -->
+  <include file="$(find turtlebot_houston)/launch/quanergy.launch"/>
+  <include file="$(find turtlebot_houston)/launch/quanergy_lidarscan.launch"/>
+
   <!-- opencv and pcl examples -->
   <node name="roscpp_opencv_example" pkg="turtlebot_houston" type="roscpp_opencv_headless" output="screen"/>
   <node name="roscpp_pcl_example" pkg="turtlebot_houston" type="roscpp_pcl_example" output="screen"/>
@@ -39,7 +43,7 @@
 	  <param name="subscribe_scan"      type="bool"   value="true"/>
 	
 	  <!-- inputs -->
-	  <remap from="scan"            to="/scan"/>
+	  <remap from="scan"            to="/lidar_link/scan"/>
 	  <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
   	  <remap from="depth/image"     to="/camera/depth_registered/image_raw"/>
   	  <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>

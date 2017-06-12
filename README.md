@@ -50,4 +50,7 @@ OpenCV
 PCL
 * [PCL and ROS](/Notes/Phase_1/13-ROSPCL.md)
 
+Quanergy M8
+* [Quanergy M8](/Notes/Phase_1/19-Quanergy_M8.md)
+
 

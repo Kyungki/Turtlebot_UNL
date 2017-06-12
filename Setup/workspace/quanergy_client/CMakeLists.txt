@@ -2,10 +2,11 @@ project(QuanergyClient)
 cmake_minimum_required(VERSION 2.8)
 
 #  This should match what's in include/quanergy/client/version.h
-set(QUANERGY_CLIENT_VERSION "2.0.12")
+set(QUANERGY_CLIENT_VERSION "3.0.2")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+option(NoViz "Do not build visualizer" OFF)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unknown-pragmas -fno-strict-aliasing -Wno-format-extra-args -Wno-sign-compare -Wno-invalid-offsetof -Wno-conversion")
@@ -44,11 +45,17 @@ ENDIF("${is_system_dir}" STREQUAL "-1")
 
 find_package(Boost COMPONENTS system thread REQUIRED)
 
-if (CMAKE_CROSSCOMPILING)
+if (NoViz OR CMAKE_CROSSCOMPILING)
   find_package(PCL REQUIRED common io)
 else()
   find_package(PCL REQUIRED common io visualization)
 endif()
+
+file(GLOB_RECURSE project_HEADERS
+    "*.h"
+    "*.hpp"
+)
+
 
 include_directories(
   include
@@ -66,8 +73,15 @@ set(client_SRCS
   src/modules/polar_to_cart_converter.cpp
   src/modules/distance_filter.cpp
   src/modules/ring_intensity_filter.cpp
+  src/modules/encoder_angle_calibration.cpp
   src/common/point_xyz.cpp
   src/common/point_xyzir.cpp
+  src/client/failover_client.cpp
+  src/parsers/data_packet_parser_00.cpp
+  src/parsers/data_packet_parser_01.cpp
+  src/parsers/data_packet_parser_failover.cpp
+  src/parsers/data_packet_parser_m8.cpp
+  ${project_HEADERS}
 )
 
 
@@ -79,6 +93,26 @@ endif()
 
 configure_file(doxyfile.in
   "${PROJECT_BINARY_DIR}/doxyfile" @ONLY)
+
+#############
+## Testing ##
+#############
+
+# Unit Tests
+find_package(GTest)
+
+if (GTEST_FOUND)
+  add_executable(test_quanergy_client test/test_encoder_angle_calibration.cpp)
+
+  target_link_libraries(test_quanergy_client
+    quanergy_client
+    ${GTEST_LIBRARIES}
+    boost_system
+    pthread
+    )
+
+  add_test(encoder_calibration_unit_test test_quanergy_client)
+endif()
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
@@ -196,12 +230,12 @@ endif()
 include(CPack)
 
 ##########
-#  test  #
+#  apps  #
 ##########
 
 if (PCL_VISUALIZATION_FOUND)
-  add_executable(test src/test/test.cpp)
-  target_link_libraries(test quanergy_client ${PCL_LIBRARIES})
+  add_executable(visualizer apps/visualizer.cpp apps/visualizer_module.cpp)
+  target_link_libraries(visualizer quanergy_client ${PCL_LIBRARIES} pthread)
 endif()
 
 message("PCL_LIBRARIES: ${PCL_LIBRARIES}")

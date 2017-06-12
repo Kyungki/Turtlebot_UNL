@@ -299,7 +299,7 @@ def RvizWidget(QWidget):
         print "test"
 
 
-class turtlebot_houston(QWidget):
+class main_window(QWidget):
 
     def __init__(self):
         QWidget.__init__(self)
@@ -547,8 +547,6 @@ class turtlebot_houston(QWidget):
             self.key = event.text()
             if self.key == "":
                 self.key = event.key()
-            if self.key == chr(27):
-                self.close()
             self.keyboard_teleop.key = self.key
             return True
         if (event.type() == QEvent.KeyRelease):
@@ -673,27 +671,48 @@ class turtlebot_houston(QWidget):
                 return
         print("Did not find view named %s." % view_name)
 
-class main_window(QMainWindow):
+class turtlebot_houston(QMainWindow):
     def __init__(self):
-        print "Main Window"
         QMainWindow.__init__(self)
         self.statusBar().showMessage('Loading')
         self._init_UI()
     
     def _init_UI(self):
-        main_widget = turtlebot_houston()
+        main_widget = main_window()
         self.setCentralWidget(main_widget)
-        print "Main Window 2"
         self.mainMenu = self.menuBar()
         self.mainMenu.setNativeMenuBar(False)
         self.fileMenu = self.mainMenu.addMenu('&File')
-        self.mapMenu = self.mainMenu.addMenu('&Map')
+        self.mapMenu = self.mainMenu.addMenu('Map')
+        self.moveMenu = self.mainMenu.addMenu('Movement')
+        self.aboutMenu = self.mainMenu.addMenu('About')
+        self.debugMenu = self.mainMenu.addMenu('Debug')
 
         exitButton = QAction(QIcon(), 'Exit', self)
         exitButton.setShortcut("Ctrl+Q")
         exitButton.setStatusTip("Exit Application")
         exitButton.triggered.connect(self.close)
         self.fileMenu.addAction(exitButton)
+
+        load2DMapButton = QAction(QIcon(), 'Load 2D Map', self)
+        load2DMapButton.setStatusTip("Load 2D Map (XML, PGM)")
+        self.mapMenu.addAction(load2DMapButton)
+
+        load3DMapButton = QAction(QIcon(), 'Load 3D Map', self)
+        load3DMapButton.setStatusTip("Load 3D Map (PCL, PCD)")
+        self.mapMenu.addAction(load3DMapButton)
+
+        rotate90Button = QAction(QIcon(), 'Rotate +90deg', self)
+        rotate90Button.setStatusTip("Rotate 90deg Clockwise")
+        self.moveMenu.addAction(rotate90Button)
+        
+        rotateNeg90Button = QAction(QIcon(), 'Rotate -90deg', self)
+        rotateNeg90Button.setStatusTip("Rotate 90deg Counter-Clockwise")
+        self.moveMenu.addAction(rotateNeg90Button)
+
+        rotate180Button = QAction(QIcon(), 'Rotate 180deg', self)
+        rotate180Button.setStatusTip("Rotate 180deg")
+        self.moveMenu.addAction(rotate180Button)
 
         self.statusBar().showMessage('Ready')
 
@@ -708,8 +727,7 @@ if __name__ == '__main__':
     try:
         app = QApplication(sys.argv)
 
-        print "WTF"
-        main = main_window()
+        main = turtlebot_houston()
 	#app.aboutToQuit.connect(main_window.destruct)
         app.exec_()
         #main_window.destruct()

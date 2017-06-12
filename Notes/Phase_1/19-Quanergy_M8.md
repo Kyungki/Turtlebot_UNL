@@ -4,8 +4,11 @@
 ## Prequisites
 
 
-## Mounting on Turtlebot
+## Assembly
+![](Resources/19-m8.png)
 
+## Mounting on Turtlebot
+![](Resources/19-turtlebot_m8.png)
 
 ## Installation
 
