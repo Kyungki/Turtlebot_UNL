@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="sensor_m8" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_gazebo.urdf.xacro"/>
-  <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro"/>
+  <xacro:include filename="$(find turtlebot_houston_description)/urdf/turtlebot_gazebo.urdf.xacro"/>
+  <xacro:include filename="$(find turtlebot_houston_description)/urdf/turtlebot_properties.urdf.xacro"/>
 
   <!-- Xacro properties -->
   <xacro:property name="m8_px" value="0"/>
@@ -47,7 +47,7 @@
 
     <joint name="m8_joint" type="fixed">
       <origin xyz="${lidar_px} ${lidar_py} ${lidar_pz}"
-        rpy="0 0 0"/>
+        rpy="0 0 ${M_PI/2}"/>
       <parent link="m8_baseplate"/>
       <child link="lidar_link"/>
     </joint>

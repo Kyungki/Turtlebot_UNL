@@ -29,7 +29,7 @@ _rosrc_dir="$_user_dir/$_rosrc"
 _aliases_dir="$_user_dir/$_aliases"
 _bashrc_dir="$_user_dir/$_bashrc"
 
-declare -a _apt_packages=("ros-kinetic-rtabmap-ros" "ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*")
+declare -a _apt_packages=("ros-kinetic-rtabmap-ros" "ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*" "ros-kinetic-pointcloud-to-laserscan")
 
 # Which Dabit Packages to install
 declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer" "quanergy_client_ros")

@@ -10,8 +10,6 @@ from rqt_turtlebot_houston.turtlebot_houston import turtlebot_houston
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    viz = turtlebot_houston()
-    viz.resize(800,600)
-    viz.show()
+    main = turtlebot_houston()
     app.exec_()
 

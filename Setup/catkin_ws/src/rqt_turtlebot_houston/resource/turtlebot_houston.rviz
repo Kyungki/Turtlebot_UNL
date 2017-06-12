@@ -10,8 +10,9 @@ Panels:
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
         - /MarkerArray1
+        - /PointCloud21
       Splitter Ratio: 0.5
-    Tree Height: 451
+    Tree Height: 356
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -65,6 +66,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        astra_mount_joint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -121,6 +127,16 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        lidar_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m8_baseplate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         plate_bottom_link:
           Alpha: 1
           Show Axes: false
@@ -237,6 +253,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        astra_mount_joint:
+          Value: true
         base_footprint:
           Value: false
         base_link:
@@ -263,6 +281,10 @@ Visualization Manager:
           Value: false
         gyro_link:
           Value: false
+        lidar_link:
+          Value: true
+        m8_baseplate:
+          Value: true
         map:
           Value: false
         odom:
@@ -319,14 +341,15 @@ Visualization Manager:
           odom:
             base_footprint:
               base_link:
-                camera_rgb_frame:
-                  camera_depth_frame:
-                    camera_depth_optical_frame:
+                astra_mount_joint:
+                  camera_rgb_frame:
+                    camera_depth_frame:
+                      camera_depth_optical_frame:
+                        {}
+                    camera_link:
                       {}
-                  camera_link:
-                    {}
-                  camera_rgb_optical_frame:
-                    {}
+                    camera_rgb_optical_frame:
+                      {}
                 caster_back_link:
                   {}
                 caster_front_link:
@@ -339,6 +362,9 @@ Visualization Manager:
                   {}
                 gyro_link:
                   {}
+                m8_baseplate:
+                  lidar_link:
+                    {}
                 plate_bottom_link:
                   {}
                 plate_middle_link:
@@ -615,9 +641,7 @@ Visualization Manager:
       Marker Topic: /apriltags/marker_array
       Name: MarkerArray
       Namespaces:
-        tag2: true
-        tag3: true
-        tag4: true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -642,6 +666,66 @@ Visualization Manager:
       Topic: /move_base/NavfnROS/plan
       Unreliable: false
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 85; 255
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.0299999993
+      Style: Flat Squares
+      Topic: /lidar_link/scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 96
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.00999999978
+      Style: Flat Squares
+      Topic: /lidar_link/points_throttle
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 112; 137; 134
