@@ -14,3 +14,15 @@
 	path = Setup/catkin_ws/src/g2o
 	url = http://github.com/felixendres/g2o
 	branch = c++03
+[submodule "Setup/workspace/g2o"]
+	path = Setup/workspace/g2o
+	url = https://github.com/RainerKuemmerle/g2o
+[submodule "Setup/workspace/gtsam"]
+	path = Setup/workspace/gtsam
+	url = https://bitbucket.org/gtborg/gtsam.git
+[submodule "Setup/workspace/rtabmap"]
+	path = Setup/workspace/rtabmap
+	url = https://github.com/introlab/rtabmap
+[submodule "Setup/catkin_ws/src/rtabmap_ros"]
+	path = Setup/catkin_ws/src/rtabmap_ros
+	url = https://github.com/introlab/rtabmap_ros

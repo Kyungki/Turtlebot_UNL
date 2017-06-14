@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Cloned from https://github.com/bnurbekov/Turtlebot_Navigation
-
 import rospy, math, heapq, Queue, threading
 # Add additional imports for each of the message types used
 from geometry_msgs.msg import Twist, Point, PoseStamped
