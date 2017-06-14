@@ -29,12 +29,12 @@ _rosrc_dir="$_user_dir/$_rosrc"
 _aliases_dir="$_user_dir/$_aliases"
 _bashrc_dir="$_user_dir/$_bashrc"
 
-declare -a _apt_packages=("ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*" "ros-kinetic-pointcloud-to-laserscan" "libpcap-dev" "libsuitesparse-dev")
+declare -a _apt_packages=("ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*" "ros-kinetic-pointcloud-to-laserscan" "libpcap-dev" "libsuitesparse-dev" "ros-kinetic-turtlebot-apps" "ros-kinetic-imu-tools")
 declare -a _remove_packages=("ros-kinetic-rtabmap*")
 
 # Which Dabit Packages to install
 declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer" "quanergy_client_ros" "rtabmap_ros")
-declare -a _workspace_packages=("apriltags_cpp" "quanergy_client" "rtabmap")
+declare -a _workspace_packages=("apriltags_cpp" "quanergy_client" "rtabmap" "g2o" "gtsam")
 declare -a _workspace_install_packages=("apriltags_cpp" "quanergy_client")
 
 
