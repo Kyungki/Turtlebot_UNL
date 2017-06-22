@@ -21,4 +21,6 @@
   <include file="$(find turtlebot_houston)/launch/quanergy_lidarscan.launch">
   </include>
 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rqt_turtlebot_houston)/resource/quanergy.rviz"/>
+
 </launch>

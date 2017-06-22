@@ -29,12 +29,12 @@ _rosrc_dir="$_user_dir/$_rosrc"
 _aliases_dir="$_user_dir/$_aliases"
 _bashrc_dir="$_user_dir/$_bashrc"
 
-declare -a _apt_packages=("ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*" "ros-kinetic-pointcloud-to-laserscan" "libpcap-dev" "libsuitesparse-dev" "ros-kinetic-imu-tools" "libavresample-dev" "libgphoto2-dev" "tesseract-ocr" "libtesseract-dev" "liblept5" "libleptonica-dev" "libopenni2-dev" "libopenni-dev" "libunicap2-dev" "libxine2-dev" "libgstreamer1.0-dev" "libgdal-dev" "libgdcm2-dev" "libudev-dev")
-declare -a _remove_packages=("ros-kinetic-rtabmap*")
+declare -a _apt_packages=("ros-kinetic-rosserial*" "python3-pyqt5" "libopencv*" "libcgal-dev" "libcgal-qt5*" "ros-kinetic-pointcloud-to-laserscan" "libpcap-dev" "libsuitesparse-dev" "ros-kinetic-imu-tools" "libavresample-dev" "libgphoto2-dev" "tesseract-ocr" "libtesseract-dev" "liblept5" "libleptonica-dev" "libopenni2-dev" "libopenni-dev" "libunicap2-dev" "libxine2-dev" "libgstreamer1.0-dev" "libgdal-dev" "libgdcm2-dev" "libudev-dev" "ros-kinetic-pointcloud-to-laserscan")
+declare -a _remove_packages=()
 
 # Which Dabit Packages to install
-declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer" "quanergy_client_ros" "rtabmap_ros")
-declare -a _workspace_packages=("apriltags_cpp" "quanergy_client" "rtabmap" "g2o" "gtsam")
+declare -a _ros_packages=("apriltags" "turtlebot_houston" "turtlebot_houston_description" "rqt_turtlebot_houston" "turtlebot_wanderer" "quanergy_client_ros")
+declare -a _workspace_packages=("apriltags_cpp" "quanergy_client")
 _opencv_install_args="-DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=$HOME/workspace/opencv_contrib-3.2.0/modules -DTesseract_INCLUDE_DIR=/usr/include/tesseract"
 declare -a _workspace_install_packages=("apriltags_cpp" "quanergy_client")
 
