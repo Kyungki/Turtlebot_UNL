@@ -26,9 +26,6 @@ from apriltags.msg import AprilTagDetections
 
 from subprocess import Popen, PIPE
 
-from rqt_bag.bag import Bag
-from rqt_gui.main import Main
-
 class rospy_thread(QThread):
     def __init__(self):
         QThread.__init__(self)
@@ -324,7 +321,7 @@ class main_window(QWidget):
         self.frame.setSplashPath("")
         self.frame.initialize()
         
-        file_rviz_config = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_houston.rviz')
+        file_rviz_config = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_houston_bag.rviz')
         file_icon_window = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'turtlebot_logo.png')
         file_icon_save = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'document-save.png')
         file_icon_open = os.path.join(rp.get_path('rqt_turtlebot_houston'), 'resource', 'document-open.png')
@@ -650,7 +647,6 @@ class main_window(QWidget):
             #self.rviz_pcl_example.resize(400,400)
 #            self.rviz_pcl_example.show()
 
-
     def wandererStartStop(self):
         print ["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"]
         shell = Popen(["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
@@ -682,8 +678,8 @@ class turtlebot_houston(QMainWindow):
         self._init_UI()
     
     def _init_UI(self):
-        main_widget = main_window()
-        self.setCentralWidget(main_widget)
+        self.main_widget = main_window()
+        self.setCentralWidget(self.main_widget)
         self.mainMenu = self.menuBar()
         self.mainMenu.setNativeMenuBar(False)
         self.fileMenu = self.mainMenu.addMenu('&File')
@@ -692,6 +688,12 @@ class turtlebot_houston(QMainWindow):
         self.moveMenu = self.mainMenu.addMenu('Movement')
         self.aboutMenu = self.mainMenu.addMenu('About')
         self.debugMenu = self.mainMenu.addMenu('Debug')
+
+        restartButton = QAction(QIcon(), 'Restart', self)
+        restartButton.setShortcut("Ctrl+R")
+        restartButton.setStatusTip("Restart Application")
+        restartButton.triggered.connect(self.restart)
+        self.fileMenu.addAction(restartButton)
 
         exitButton = QAction(QIcon(), 'Exit', self)
         exitButton.setShortcut("Ctrl+Q")
@@ -733,9 +735,14 @@ class turtlebot_houston(QMainWindow):
         self.setMaximumSize(800,600)
 
         self.show()
+        
+    def restart(self):
+        self.close()
+        self.__init__()
 
     def rqtbag(self):
         Popen(["rosrun","rqt_bag","rqt_bag"])
+
 
 if __name__ == '__main__':
     try:

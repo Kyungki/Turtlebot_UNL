@@ -40,6 +40,28 @@ function dabit-launcher(){
           fi
           dabit-launcher master
       fi
+  elif [ "$1" == "master-bag" ]; then
+      echo "Master IP should be: localhost"
+      echo "Master IP is: $MASTER_IP"
+      confirm "Is this correct? [y/N]"
+      if [[ "$?" -eq 0 ]]; then
+          if [ -f ~/.ros/rtabmap.db ]; then
+              _backup_folder="${HOME}/backups/rtabmap_"$(date '+%m-%d-%y_%H-%M-%S')
+              mkdir -p "$_backup_folder"
+              mv "${HOME}/.ros/rtabmap.db" "$_backup_folder"
+          fi
+          roslaunch rqt_turtlebot_houston rqt_turtlebot_houston_bag.launch
+          confirm "Press any key to exit"
+      else
+					master=""
+          read -p "Input the Master IP: " master
+          echo $master
+          if [ ! -z $master ]; then
+            . change_master $master
+            . ${HOME}/.bashrc
+          fi
+          dabit-launcher master
+      fi
   elif [ "$1" == "wanderer" ]; then
       echo "Wanderer"
       if [ ! -f ~/.wanderer_pid ]; then

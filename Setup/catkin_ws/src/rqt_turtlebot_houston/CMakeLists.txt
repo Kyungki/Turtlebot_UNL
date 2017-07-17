@@ -123,6 +123,7 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
   scripts/rqt_turtlebot_houston
+  scripts/rqt_turtlebot_houston_bag
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
