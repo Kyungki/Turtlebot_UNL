@@ -1,0 +1,10 @@
+<!--
+  Used for visualising the turtlebot while building a map or navigating with the ros navistack.
+ -->
+<launch>
+  <param name="/use_sim_time" value="true"/>
+  <rosparam param="/use_sim_time">true</rosparam>
+  <include file="$(find turtlebot_houston)/launch/robot_model.launch"></include>
+  <node name="rqt_bag" pkg="rqt_bag" type="rqt_bag" args="--clock"/> 
+  <node name="rqt_turtlebot_houston_bag" pkg="rqt_turtlebot_houston" type="rqt_turtlebot_houston_bag"/>
+</launch>

@@ -26,6 +26,9 @@ from apriltags.msg import AprilTagDetections
 
 from subprocess import Popen, PIPE
 
+from rqt_bag.bag import Bag
+from rqt_gui.main import Main
+
 class rospy_thread(QThread):
     def __init__(self):
         QThread.__init__(self)
@@ -647,6 +650,7 @@ class main_window(QWidget):
             #self.rviz_pcl_example.resize(400,400)
 #            self.rviz_pcl_example.show()
 
+
     def wandererStartStop(self):
         print ["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"]
         shell = Popen(["ssh","turtlebot@{}".format(self.master_ip),"dabit-launcher","wanderer"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
@@ -683,6 +687,7 @@ class turtlebot_houston(QMainWindow):
         self.mainMenu = self.menuBar()
         self.mainMenu.setNativeMenuBar(False)
         self.fileMenu = self.mainMenu.addMenu('&File')
+        self.dataMenu = self.mainMenu.addMenu('Data')
         self.mapMenu = self.mainMenu.addMenu('Map')
         self.moveMenu = self.mainMenu.addMenu('Movement')
         self.aboutMenu = self.mainMenu.addMenu('About')
@@ -693,6 +698,12 @@ class turtlebot_houston(QMainWindow):
         exitButton.setStatusTip("Exit Application")
         exitButton.triggered.connect(self.close)
         self.fileMenu.addAction(exitButton)
+
+        self.rqtbag_start = False
+        rqtbagButton = QAction(QIcon(), 'RQTBag', self)
+        rqtbagButton.setStatusTip("Start RQT Bag")
+        rqtbagButton.triggered.connect(self.rqtbag)
+        self.dataMenu.addAction(rqtbagButton)
 
         load2DMapButton = QAction(QIcon(), 'Load 2D Map', self)
         load2DMapButton.setStatusTip("Load 2D Map (XML, PGM)")
@@ -722,6 +733,9 @@ class turtlebot_houston(QMainWindow):
         self.setMaximumSize(800,600)
 
         self.show()
+
+    def rqtbag(self):
+        Popen(["rosrun","rqt_bag","rqt_bag"])
 
 if __name__ == '__main__':
     try:
