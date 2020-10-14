@@ -60,6 +60,11 @@ echo export TURTLEBOT_3D_SENSOR=astra >> ~/.bashrc
 echo export TURTLEBOT_STACK=hexagons >> ~/.bashrc 
 ```
 
+6. Read bashrc
+```bash
+gedit ~/.bashrc
+```
+
 Due to incorrect NTP time servers, configure the same NTP zone between all ROS computers:
 ```bash
 sudo ntpdate ntp.ubuntu.com
